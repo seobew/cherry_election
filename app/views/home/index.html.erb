@@ -1,2 +1,22 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h2>경희</h2>
+<% @articles.each do |article| %>
+    <p>
+        <a href= "<%= article.link %>"><%=article.title%></a>
+        <a href= "/home/like/<%=article.id%>">좋아요</a>(<%=article.like%>)
+        <a href= "/home/unlike/<%=article.id%>">싫어요</a>(<%=article.unlike%>)
+    </p>
+<% end %>
+
+
+   
+<h2>소정</h2>
+<% @candidates.each do |c| %>
+<a href= "/home/candidate/<%=c.id%>"><%=c.name%></a>
+<% end %>
+
+
+<!--
+<% @articles.each do |article| %>
+<h2>[기사링크]<a href><% article.link %></a></h2>
+<% end %>
+-->

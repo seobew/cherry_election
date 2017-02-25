@@ -1,0 +1,30 @@
+1. 더미 데이터(Candidate) 넣기
+rails c
+candi = Candidate.new(name:"문재인", party:"더불어민주당", ... )
+candi.save()
+
+넣은거 확인
+rails db
+select * from candidates
+
+
+2. 넣은 더미 데이터 보여주기
+(home_controller.rb)
+class HomeController < ApplicationController
+  def index
+    @candidates = Candidate.all
+  end
+end
+
+
+(index.html.erb)
+<% @candidates.each do |c| %>
+    <p><%= c.name %></p>
+<% end %>
+
+3. 더미 데이터(Article)넣기
+
+4. index페이지에서 article들 보여주기 + 하단에 후보자들 페이지 링크
+
+
+5. 후보자 페이지

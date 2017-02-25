@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   get 'home/index'
+  # get 'home/index' => 'home#index'
+  root 'home#index'
+  get 'home/like/:article' => 'home#like'
+  get 'home/unlike/:article' => 'home#unlike'
+  get 'home/candidate/:candidate_id' => 'home#candidate'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
