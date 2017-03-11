@@ -31,5 +31,15 @@ elsif post == 2
 		puts i.inner_text
 		puts i['href']
   end
+elsif post == 3
+  donga_num = num * 15 + 1
+	one = Nokogiri::HTML(open("http://news.donga.com/search?p=#{donga_num}&query=#{de_name}&check_news=1&more=1&sorting=1&search_date=1&v1=&v2=&range=1"))
+	t = one.xpath("//p[class='tit']//a")
+	t.each do |i|
+		puts i.inner_text
+		puts i['href']
+	end
+
+  #http://news.donga.com/search?check_news=1%7C2%7C3%7C6%7C7%7C8%7C9%7C12%7C14&more=&sorting=1&range=1&query=%EB%AC%B8%EC%9E%AC%EC%9D%B8
 
 end
