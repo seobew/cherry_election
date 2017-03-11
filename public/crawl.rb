@@ -31,12 +31,5 @@ elsif post == 2
 		puts i.inner_text
 		puts i['href']
   end
-elsif post == 3
-	one = Nokogiri::HTML(open("http://search.chosun.com/search/news.search?query=#{de_name}&pageno=#{num}&orderby=&naviarraystr=&kind=&cont1=&cont2=&cont5=&categoryname=&categoryd2=&c_scope=news&sdate=&edate=&premium="))
-	t = one.xpath("//dt//a")
-	t.each do |i|
-		puts i.inner_text
-		puts i['href']
-	end
 
 end
