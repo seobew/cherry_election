@@ -2,7 +2,7 @@ class CreateUserfavors < ActiveRecord::Migration
   def change
     create_table :userfavors do |t|
       t.boolean :check_like
-      t.boolean :check_dislike
+      t.boolean :check_unlike
 
       t.timestamps null: false
     end

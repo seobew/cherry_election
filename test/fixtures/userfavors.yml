@@ -2,8 +2,8 @@
 
 one:
   check_like: false
-  check_dislike: false
+  check_unlike: false
 
 two:
   check_like: false
-  check_dislike: false
+  check_unlike: false
