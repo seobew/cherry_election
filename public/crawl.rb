@@ -64,5 +64,4 @@ elsif post == 6
     puts i['href']
   end
 
-
 end
