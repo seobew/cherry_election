@@ -46,6 +46,15 @@ elsif post == 4
 	t.each do |i|
 		puts i.inner_text
 		puts i['href']
-	end
+  end
+elsif post == 5
+  num = num + 1
+  one = Nokogiri::HTML(open("http://search.seoul.co.kr/index.php?scope=&sort=desc&cpCode=&period=&sDate=&eDate=&keyword=#{de_name}&iCategory=&pCategory=undefined&pageNum=#{num}"))
+  t = one.xpath("//dl[@class='article']//dt//a")
+  t.each do |i|
+    puts i.inner_text
+    puts i['href']
+  end
+
 
 end
