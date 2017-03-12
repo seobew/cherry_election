@@ -7,7 +7,9 @@ class HomeController < ApplicationController
   end
   
   def like
+    article_relationship = Userfavor.find_by(article_id: params[:article])
     article=Article.find(params[:article])
+    puts article
     article.like= article.like + 1
     article.save
     puts 'here like called!'

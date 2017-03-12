@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'home/like/:article' => 'home#like'
   get 'home/unlike/:article' => 'home#unlike'
   get 'home/candidate/:candidate_id' => 'home#candidate'
+  post '/article/like', to: 'home#like', as: 'article_like'
+  post '/article/unlike', to: 'home#unlike', as: 'article_unlike'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
