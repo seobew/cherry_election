@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170311122355) do
+ActiveRecord::Schema.define(version: 20170312111319) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -35,6 +35,13 @@ ActiveRecord::Schema.define(version: 20170311122355) do
     t.float    "rank"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "userfavors", force: :cascade do |t|
+    t.boolean  "check_like"
+    t.boolean  "check_dislike"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|
