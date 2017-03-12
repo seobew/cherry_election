@@ -9,10 +9,9 @@ class HomeController < ApplicationController
     if !current_user
       message = "로그인을 하신 후에 이용해주세요."
     else
-      article_relationship = Userfavor.find_by(article_id: params[:article])
+      article_relationship = Userfavor.find_by(article_id: params[:article],user_id: current_user)
       if article_relationship.nil?
         temp_userfavor = Userfavor.create(article_id: params[:article], user_id: current_user, check_like: true, check_unlike: false)
-        temp_userfavor.save
         article=Article.find(params[:article])
         article.like= article.like + 1
         article.save
@@ -20,10 +19,6 @@ class HomeController < ApplicationController
         message = "이미 좋아요를 누르셨습니다."
       end
     end
-    # redirect_to home_index_path(message:message)
-    puts "@@@@@@@@@@@@@@@@@@@@"
-    puts message
-    puts "@@@@@@@@@@@@@@@@@@@@"
     redirect_to home_index_path
   end
   
@@ -42,10 +37,6 @@ class HomeController < ApplicationController
         message = "이미 싫어요를 누르셨습니다."
       end
     end
-    # redirect_to home_index_path(message:message)
-    puts "@@@@@@@@@@@@@@@@@@@@"
-    puts message
-    puts "@@@@@@@@@@@@@@@@@@@@"
     redirect_to home_index_path
   end
   
