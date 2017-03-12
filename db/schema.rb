@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20170312115023) do
   end
 
   create_table "userfavors", force: :cascade do |t|
+    t.integer  "article_id"
+    t.integer  "user_id"
     t.boolean  "check_like"
     t.boolean  "check_unlike"
     t.datetime "created_at",   null: false
