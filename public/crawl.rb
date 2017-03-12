@@ -55,6 +55,14 @@ elsif post == 5
     puts i.inner_text
     puts i['href']
   end
+elsif post == 6
+  num = num + 1
+  one = Nokogiri::HTML(open("http://jtbc.joins.com/search/news?source=jtbc&field=any&page=#{num}&section=any&sort=latest&term=#{de_name}"))
+  t = one.xpath("//h3[@class='prg_ttl']//a")
+  t.each do |i|
+    puts i.inner_text
+    puts i['href']
+  end
 
 
 end
