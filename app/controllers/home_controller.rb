@@ -1,3 +1,8 @@
+require 'open-uri'
+require 'nokogiri'
+require 'uri'
+require 'cgi'
+
 class HomeController < ApplicationController
   def index
     @message = params[:message]
@@ -91,5 +96,15 @@ class HomeController < ApplicationController
   
   def candidate
     @candidate=Candidate.find(params[:candidate_id])
+    board = Nokogiri::HTML(open("http://www.gallup.co.kr/gallupdb/report.asp"))
+    # t = board.at('span:contains("2017")')
+    t = board.search "[text()*='대선 후보 지지도']"
+    link_text =  t.first.parent["href"]
+    board2 = Nokogiri::HTML(open("http://www.gallup.co.kr/gallupdb/#{link_text}"))
+    tt = board2.search "[text()*='대선 후보 지지도:']"
+    tt = tt.text
+    name_index = tt.index(@candidate.name)
+    ttt = tt[name_index+3..name_index+6]
+    @rate = ttt.to_i
   end
 end
