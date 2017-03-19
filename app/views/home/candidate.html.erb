@@ -1,7 +1,7 @@
 <script type="text/javascript">
   var word_array = [
     <% for i in 0...@texts.size %>
-      {text: "<%=@texts[i]%>", weight: <%=@weights[i]%>},
+      {text: "<%= @texts[i] %>", weight: <%= @weights[i] %>, link:"https://www.google.co.kr/webhp?hl=ko&sa=X&ved=0ahUKEwiEq9i91uLSAhVIwLwKHXB1BloQPAgD#q=<%= @candidate.name %>+<%=@texts[i]%>&newwindow=1&hl=ko&tbm=nws&*"},
     <% end %>
   ];
 
