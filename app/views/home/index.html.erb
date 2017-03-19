@@ -7,18 +7,38 @@
 <% @articles.each do |article| %>
     <p>
         <a href= "<%= article.link %>"><%=article.title%></a>
-        
-        <%= form_tag("/article/like", method: "post") do %>
+        <% userfavor = Userfavor.find_by(article_id: article.id,user_id: current_user) %>
+        <% if userfavor && (userfavor.check_like || userfavor.check_unlike) %>
+          <% if userfavor.check_like %>
+            <%= form_tag("/article/like_cancel", method: "post") do %>
+                <%= hidden_field_tag :article , article.id %>
+                <%= submit_tag("좋아요 취소") %>(<%=article.like%>)
+            <% end %>
+            <%= form_tag("/article/unlike", method: "post") do %>
+                <%= hidden_field_tag :article , article.id %>
+                <%= submit_tag("싫어요") %>(<%=article.unlike%>)
+            <% end %>
+          <% else if userfavor.check_unlike %>
+            <%= form_tag("/article/like", method: "post") do %>
+                <%= hidden_field_tag :article , article.id %>
+                <%= submit_tag("좋아요") %>(<%=article.like%>)
+            <% end %>
+            <%= form_tag("/article/unlike_cancel", method: "post") do %>
+                <%= hidden_field_tag :article , article.id %>
+                <%= submit_tag("싫어요 취소") %>(<%=article.unlike%>)
+            <% end %>
+          <% end %>
+        <% end %>
+        <% else %>
+          <%= form_tag("/article/like", method: "post") do %>
             <%= hidden_field_tag :article , article.id %>
             <%= submit_tag("좋아요") %>(<%=article.like%>)
-        <% end %>
-        <%= form_tag("/article/unlike", method: "post") do %>
+          <% end %>
+          <%= form_tag("/article/unlike", method: "post") do %>
             <%= hidden_field_tag :article , article.id %>
             <%= submit_tag("싫어요") %>(<%=article.unlike%>)
+          <% end %>
         <% end %>
-        
-        <!--<a href= "/home/like/<%=article.id%>">좋아요</a>(<%=article.like%>)-->
-        <!--<a href= "/home/unlike/<%=article.id%>">싫어요</a>(<%=article.unlike%>)-->
     </p>
 <% end %>
 
