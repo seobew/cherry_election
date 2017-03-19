@@ -1,28 +1,20 @@
-<!DOCTYPE html>
-<html lang= "ko-KR">
-<head>
-  <meta charset= "UTF-8">
-  <title>CherryElection</title>
-  <link rel="stylesheet" href="css/grid.css" type="text/css">
-</head>
 
-<body>
     <header class= "header">
         <h1 class= "logo">벛꽃대선</h1>
     </header>
  
     <section class= "random_candidate">
      <div class="container">
-      <div class="row">
+      <div class="row" style="display:flex; flex-direction:row; flex-wrap: nowrap;">
       
-        <div class="col-2">  
+        <div class="random_candidate_container">
           <h2 class= "random_candidate_profile"></h2>
                 <% @candidates.each do |c| %>
                 <a href= "/home/candidate/<%=c.id%>"><%=c.name%></a>
+   
         </div>
-        
-            
-        <div class="col-10"> 
+       
+        <div class="candidate"> 
             <h2 class="random_candidate_article"></h2>
                 <ul>
                   <li><a class="grey-text text-lighten-3" href="/home/candidate/<%=c.link%>"><%=c.link%></a></li>
@@ -32,26 +24,25 @@
                 </ul>
                 <% end %>
         </div>
-        
+      </div>
       </div> 
-     </div>
     </section>
 
     
     <scetion class= "article">
       <div class="container">
-        <div class="row">
-            <div class="article-col-1">
+        <div class="row" style="display:flex; flex-direction:row; flex-wrap: nowrap;">
+            <div class="article_candidate" style="flex-basis:10%;">
                 <a href="#">후보자</a>
             </div>
             
-            <div class="article-col-8">
+            <div class="article_link" style="flex-basis:70%;">
                <h2 class= "article_link"></h2>
                 <% @articles.each do |article| %>
                     <a href= "<%= article.link %>"><%=article.title%></a>
             </div>
             
-            <div class="article-col-3">
+            <div class="article_flavor"  style="flex-basis:20%;">
                 <a href= "/home/like/<%=article.id%>">좋아요</a>(<%=article.like%>)
                 <a href= "/home/unlike/<%=article.id%>">싫어요</a>(<%=article.unlike%>)
                 <% end %>
