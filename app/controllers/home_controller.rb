@@ -26,9 +26,5 @@ class HomeController < ApplicationController
   
   def candidate
     @candidate=Candidate.find(params[:candidate_id])
-    
-    
-    
-    
   end
 end
