@@ -1,43 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>jQCloud Example</title>
-    <link rel="stylesheet" type="text/css" href="jqcloud.css" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-    <script type="text/javascript" src="jqcloud-1.0.4.js"></script>
-    <script type="text/javascript">
-      /*!
-       * Create an array of word objects, each representing a word in the cloud
-       */
-      var word_array = [
-          {text: "<%=@candidate.keyword%>", weight: 15, link:"<%=@candidate.link%>"},
-          {text: "Ipsum", weight: 9, link: "http://jquery.com/"},
-          {text: "Dolor", weight: 6, html: {title: "I can haz any html attribute"}},
-          {text: "Sit", weight: 7},
-          {text: "Amet", weight: 17},
-          {text: "Amet", weight: 18},
-          {text: "Amet", weight: 20},
-          {text: "Amet", weight: 30},
-          {text: "Amet", weight: 40},
-          {text: "Amet", weight: 19},
-          {text: "Amet", weight: 40},
-          {text: "Amet", weight: 20},
-          {text: "Amet", weight: 50},
-          {text: "Amet", weight: 35}
-          // ...as many words as you want
-      ];
+<script type="text/javascript">
+  var word_array = [
+    <% for i in 0...@texts.size %>
+      {text: "<%=@texts[i]%>", weight: <%=@weights[i]%>},
+    <% end %>
+  ];
 
-      $(function() {
-        // When DOM is ready, select the container element and call the jQCloud method, passing the array of words as the first argument.
-        $("#example").jQCloud(word_array);
-      });
-    </script>
-  </head>
-  <body>
-     <h1>candidate's templete</h1>
-    <%= @candidate.name %>
-    <a href="<%= @candidate.link %>"><%= @candidate.link %></a> 
-    <!-- You should explicitly specify the dimensions of the container element -->
-    <div id="example" style="width: 550px; height: 350px;"></div>
-  </body>
-</html>
+  $(function() {
+    // When DOM is ready, select the container element and call the jQCloud method, passing the array of words as the first argument.
+    $("#word_cloud").jQCloud(word_array);
+  });
+</script>
+
+
+<h1>candidate's templete</h1>
+<%= @candidate.name %> <a href="<%= @candidate.link %>"><%= @candidate.link %></a>
+<div id="word_cloud" style="width: 550px; height: 350px;"></div>

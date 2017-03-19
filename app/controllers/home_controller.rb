@@ -27,8 +27,12 @@ class HomeController < ApplicationController
   def candidate
     @candidate=Candidate.find(params[:candidate_id])
     
-    
-    
-    
+    word_weight_set=@candidate.keyword.split(",")
+    @texts =[]
+    @weights = []
+    for s in word_weight_set
+      @texts.push(s.split(":")[0])
+      @weights.push(s.split(":")[1].to_i)
+    end
   end
 end
