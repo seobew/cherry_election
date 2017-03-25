@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'home/index'
   # get 'home/index' => 'home#index'
   root 'home#index'
   get 'home/like/:article' => 'home#like'
   get 'home/unlike/:article' => 'home#unlike'
   get 'home/candidate/:candidate_id' => 'home#candidate'
+  post '/article/like', to: 'home#like', as: 'article_like'
+  post '/article/unlike', to: 'home#unlike', as: 'article_unlike'
+  post '/article/like_cancel', to: 'home#like_cancel', as: 'article_like_cancel'
+  post '/article/unlike_cancel', to: 'home#unlike_cancel', as: 'article_unlike_cancel'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
