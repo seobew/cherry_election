@@ -1,0 +1,162 @@
+@charset "utf-8";
+
+/*mobile
+@media screen and (max-width:767px){
+    .container {
+        width: 100%;
+    }
+    .row::after {
+        content:"";
+        display:block;
+        clear:both;
+    }
+}
+
+/*tablet*/
+@media screen and (min-width:768px) and (max-width:959px){
+     .container {
+        width:100%;
+    }
+    .row::after {
+        content:"";
+        display:block;
+        clear:both;
+    }
+}
+
+
+/*desktop
+@media screen and (min-width:960px){
+     .container {
+        width:960px;
+        margin: 0 auto;
+        
+    }
+    
+    .row::after {
+        content:"";
+        display:block;
+        clear:both;
+        display:flex; flex-direction:row; flex-wrap: nowrap;
+        
+    }
+}
+*/
+
+/*reset*/
+* {box-sizing: border-box;
+margin: 0;
+
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/*header*/
+ .header {
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    justify-content:center;
+    align-items:center;
+    background-color: #ff3399;
+    height:80px;
+}
+ .header .logo {
+    font-size: 25px;
+    line-height: 25px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+
+/*section1*/
+
+
+.random_candidate_container
+{
+    
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    justify-content:center;
+    align-items:center;
+    height:200px;
+    background-color: #cc99ff;
+    flex-grow:1;
+    
+  
+}
+
+.candidate
+{
+    
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    justify-content:center;
+    align-items:center;
+    height:200px;
+    background-color:#ccff99;
+    flex-grow:2;
+    
+}
+
+
+
+  
+/*section2*/
+ .article_candidate{
+    float:left;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    height:400px;
+ 
+    background-color:#663300;
+     
+}
+ .article_link{
+    
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    height:400px;
+ 
+    background-color:#663300;
+     
+}
+
+.article_flavor{
+    float:right;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    height:400px;
+ 
+    background-color:#663300;
+     
+}
+
+/*footer*/
+.footer{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    justify-content:center;
+    align-items:center;
+    height:100px;
+}
+
+
+
+
+

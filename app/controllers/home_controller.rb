@@ -194,10 +194,7 @@ class HomeController < ApplicationController
         puts i.inner_text
         puts i['href']
       end
-
     end
-
   end
-
 
 end
