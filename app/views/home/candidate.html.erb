@@ -11,11 +11,37 @@
   });
 </script>
 
-
-<h1>candidate's templete</h1>
-
-<%= @candidate.name %> <a href="<%= @candidate.link %>"><%= @candidate.link %></a>
-<div id="word_cloud" style="width: 550px; height: 350px;"></div>
-
-
-지지율 : <%= @rate %>%
+<div class="container">
+    <div id="inform_wrapper">
+        <div id="inform_content">
+            <div id="candidate_pic">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm8vOX_z0SoI7Lnh1YHaoImkUtZZatSUSYwir6EsDIn41cAYRuZXP7Er4"/>
+            </div>
+            <div id="candidate_inform">
+                <p><%= @candidate.name %>(지지율 0위 <%=@rate %>%)</p>
+                <p>소속: <%= @candidate.party %></p>
+                <p><a href="<%= @candidate.link %>"><%= @candidate.link %></a></p>
+            </div>
+        </div>
+    </div>
+    <div id="word_cloud" style="width: 550px; height: 350px;"></div>
+    <div id="article_wrapper">
+        <% @articles.each do |article| %>
+            <div class="each_article">
+                <div class="article_pic">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm8vOX_z0SoI7Lnh1YHaoImkUtZZatSUSYwir6EsDIn41cAYRuZXP7Er4"/>
+                </div>
+                <div class="article_content">
+                    <a href= "<%= article.link %>"><%=article.title%></a>
+                </div>
+                <div class="article_flavor2">
+                    <a href= "/home/like/<%=article.id%>">좋아요</a>(<%=article.like%>)
+                    <a href= "/home/unlike/<%=article.id%>">싫어요</a>(<%=article.unlike%>)
+                </div>
+            </div>
+        <% end %>
+    </div>
+    <div id="graph_wrapper">
+        그래프가 들어갈 자리입니다.
+    </div>
+</div>
