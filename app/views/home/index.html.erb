@@ -39,8 +39,9 @@
 <% end %>
 <!--=======-->
 
-   
- 
+
+
+
  
 <!--특정후보--> 
     <section>
@@ -130,14 +131,37 @@
      $(document).ready(function(){
       $('.carousel').carousel();
     });
-</script> 
- 
+    
 
-      
+
+
+</script>
+    
+<script src="/js/jquery-sakura.min.js"></script>
+
+<script>
+    // domReady
+    $(function() {
+        $('body').sakura();
+    });
+
+    // windowLoad
+    $(window).load(function() {
+        $('body').sakura();
+    });
+    
+    
+     $(function() {
+        
+        $('#stop_sakura').on('click', function() {
+    $('body').sakura('stop');
+});
+    });
     
    
+</script>
  
 
-   
+
 
 
