@@ -33,6 +33,9 @@ ActiveRecord::Schema.define(version: 20170312115023) do
     t.string   "link"
     t.text     "keyword"
     t.float    "rank"
+    t.float    "rank1ago"
+    t.float    "rank2ago"
+    t.float    "rank3ago"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
