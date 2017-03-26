@@ -100,3 +100,13 @@ a.socialIcon:hover, .socialHoverClass {
 a {
  background-color: #D3D3D3;   
 }
+
+
+/*section*/
+section {
+    margin-top:30px;
+}
+
+.section2 {
+    margin-top:30px;
+}
