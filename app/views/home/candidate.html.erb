@@ -1,3 +1,6 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+
 <script type="text/javascript">
   var word_array = [
     <% for i in 0...@texts.size %>
@@ -19,3 +22,58 @@
 
 
 지지율 : <%= @rate %>%
+<div id="container" style="width: 550px; height: 400px;"></div>
+<script language="JavaScript">
+$(document).ready(function() {
+   var title = {
+      text: '대선 후보 지지도'
+   };
+   var subtitle = {
+      text: '출처: 한국갤럽'
+   };
+   var xAxis = {
+      categories: ['3주 전', '2주 전', '1주 전', '이번 주']
+   };
+   var yAxis = {
+      title: {
+         text: '지지율 (%)'
+      },
+      plotLines: [{
+         value: 0,
+         width: 1,
+         color: '#808080'
+      }]
+   };
+
+   var tooltip = {
+      valueSuffix: '%'
+   }
+
+   var legend = {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle',
+      borderWidth: 0
+   };
+
+   var series =  [
+      {
+         name: '<%= @candidate.name %>',
+         data: [<%= @candidate.rank3ago %>, <%= @candidate.rank2ago %>, <%= @candidate.rank1ago %>, <%= @candidate.rank %>]
+      },
+   ];
+
+   var json = {};
+
+   json.title = title;
+   json.subtitle = subtitle;
+   json.xAxis = xAxis;
+   json.yAxis = yAxis;
+   json.tooltip = tooltip;
+   json.legend = legend;
+   json.series = series;
+
+   $('#container').highcharts(json);
+});
+</script>
+
