@@ -15,11 +15,13 @@ ActiveRecord::Schema.define(version: 20170312115023) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
+    t.string   "publisher"
     t.integer  "like"
     t.integer  "unlike"
     t.string   "link"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "article_date"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "articles_candidates", id: false, force: :cascade do |t|
@@ -31,6 +33,7 @@ ActiveRecord::Schema.define(version: 20170312115023) do
     t.string   "name"
     t.string   "party"
     t.string   "link"
+    t.string   "facebook"
     t.text     "keyword"
     t.float    "rank"
     t.float    "rank1ago"

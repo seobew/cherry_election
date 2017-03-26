@@ -5,6 +5,7 @@ class CreateCandidates < ActiveRecord::Migration
       t.string :name
       t.string :party
       t.string :link
+      t.string :facebook
       t.text :keyword
       t.float :rank
       t.float :rank1ago
