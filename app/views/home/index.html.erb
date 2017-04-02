@@ -1,5 +1,5 @@
 <!--<<<<<<< HEAD-->
-<h2>경희</h2>
+
 <% @articles.each do |article| %>
     <p>
         <a href= "<%= article.link %>"><%=article.title%></a>
@@ -39,84 +39,123 @@
 <% end %>
 <!--=======-->
 
-    <header class= "header">
-        <h1 class= "logo">벛꽃대선</h1>
-    </header>
+
+
+
  
-    <section class= "random_candidate">
+<!--특정후보--> 
+    <section>
+        
      <div class="container">
-      <div class="row" style="display:flex; flex-direction:row; flex-wrap: nowrap;">
-      
-        <div class="random_candidate_container">
-          <h2 class= "random_candidate_profile"></h2>
-                <% @candidates.each do |c| %>
-                <a href= "/home/candidate/<%=c.id%>"><%=c.name%></a>
-   
-        </div>
-       
-        <div class="candidate"> 
-            <h2 class="random_candidate_article"></h2>
-                <ul>
-                  <li><a class="grey-text text-lighten-3" href="/home/candidate/<%=c.link%>"><%=c.link%></a></li>
-                  <li><a class="grey-text text-lighten-3" href="/home/candidate/<%=c.link%>"><%=c.link%></a></li>
-                  <li><a class="grey-text text-lighten-3" href="/home/candidate/<%=c.link%>"><%=c.link%></a></li>
-                  <li><a class="grey-text text-lighten-3" href="/home/candidate/<%=c.link%>"><%=c.link%></a></li>
-                </ul>
-                <% end %>
-        </div>
-      </div>
-      </div> 
-    </section>
-<!-->>>>>>> 95ceace0d824c5ab55f5d3144a81e6fa6fa7a65f-->
-
-    
-    <scetion class= "article">
-      <div class="container">
-        <div class="row" style="display:flex; flex-direction:row; flex-wrap: nowrap;">
-            <div class="article_candidate" style="flex-basis:10%;">
-                <a href="#">후보자</a>
-            </div>
-            
-            <div class="article_link" style="flex-basis:70%;">
-               <h2 class= "article_link"></h2>
-                <% @articles.each do |article| %>
-                    <a href= "<%= article.link %>"><%=article.title%></a>
-            </div>
-            
-            <div class="article_flavor"  style="flex-basis:20%;">
-                <a href= "/home/like/<%=article.id%>">좋아요</a>(<%=article.like%>)
-                <a href= "/home/unlike/<%=article.id%>">싫어요</a>(<%=article.unlike%>)
-                <% end %>
-                
-            </div>
-        </div>
-      </div>
-    </section>
-    
-    <footer class="footer">
-          <div class="container">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-             
-                <h5 class="white-text">Links</h5>
-                <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-                </ul>
-             
+       <div class="row">
            
-          </div>
-          <div class="footer-copyright">
-            <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+           <div class="col l8 offset-l2 s12">
+             <div class="card horizontal">
+              <div class="card-image">
+                <img src="images/moon.jpg" alt="" class="circle responsive-img">
+                
+              </div>
+      
+              <div class="card-stacked">
+        
+                <div class="card-action">
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href=""></a>article</li>
+                  <li><a class="grey-text text-lighten-3" href=""></a>article</li>
+                  <li><a class="grey-text text-lighten-3" href=""></a>article</li>
+                  <li><a class="grey-text text-lighten-3" href=""></a>article</li>
+                </ul>
+                </div>
+              </div>
             </div>
           </div>
-        </footer>
+         
+       </div>
+      </div> 
+      
+    </section>
+    
+    
+    <div class="divider"></div>
+    
+<!-- >>>>>>> 95ceace0d824c5ab55f5d3144a81e6fa6fa7a65f-->
+
+    
+    <scetion>
+      <div class="container">
+        <div class="row">
+            <div class="col l2">
+            <div class="article_candidate">
+                <a class="section2" href="#">후보자</a>
+            </div>
+            </div>
+            
+            <div class="col l8">
+            <div class="article_link">
+               <a class="section2" href= "">링크</a>
+            </div>
+            </div>
+            
+            <div class="col l2">
+                <div class="row">
+                    <div class="col l2 offset-l8">
+                      
+                            <a class="section2" href= "">좋아요</a>
+                        </div>
+                     <div class="col l2">
+                          <a class="section2" href= "">싫어요</a>
+                    </div>
+                        
+                </div>
+            </div>
+            
+        </div>
+      </div>
+    </section>
+    
+ <div class="divider"></div>
  
-
+ <section>
+     
+    
+         
+                 <div class="candidate">
+                    <a class="candidate-item" href="#one!"><img class="circle responsive-img" src="http://lorempixel.com/250/250/nature/1" alt=""></a>
+                    <a class="candidate-item" href="#two!"><img class="circle responsive-img" src="http://lorempixel.com/250/250/nature/2"alt=""></a>
+                    <a class="candidate-item" href="#three!"><img class="circle responsive-img" src="http://lorempixel.com/250/250/nature/3" alt=""></a>
+                    <a class="candidate-item" href="#four!"><img class="circle responsive-img" src="http://lorempixel.com/250/250/nature/4" alt=""></a>
+                </div>
+            
+            
+         
    
+ </section>
+ 
+    
 
-</body>
+
+
+
+    
+<script src="/js/jquery-sakura.min.js"></script>
+
+<script>
+    // domReady
+    $(function() {
+        $('body').sakura();
+    });
+
+
+    // windowLoad
+    $(window).load(function() {
+        $('body').sakura();
+    });
+    
+    $('#stop_sakura').on('click', function() {
+    $('body').sakura('stop');
+});
+    
+   
+   
+</script>
+ 

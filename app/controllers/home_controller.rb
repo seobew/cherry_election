@@ -96,6 +96,7 @@ class HomeController < ApplicationController
   
   def candidate
     @candidate=Candidate.find(params[:candidate_id])
+    @articles = Article.all
     
     # wordcloud용 array
     @texts =[]
