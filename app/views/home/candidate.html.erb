@@ -56,15 +56,15 @@
 
   <div class="col s12 m8 offset-m2 l6 offset-l3">
     <div class="card-panel grey lighten-2 z-depth-1">
-      <div class="row valign-wrapper">
-        <div class="col s3">
+      <div class="flexbox valign-wrapper" style="justify-content: space-around;">
+        <div style="flex: 1;">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm8vOX_z0SoI7Lnh1YHaoImkUtZZatSUSYwir6EsDIn41cAYRuZXP7Er4" alt="" class="circle responsive-img" style="box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.60);"> <!-- notice the "circle" class -->
         </div>
-        <div class="col s7">
+        <div style="flex: 3;">
           <div id="candidate_inform">
-            <p class="black-text"><%= @candidate.name %>(지지율 0위 <%=@rate %>%)</p>
-            <p class="black-text">소속: <%= @candidate.party %></p>
-            <p class="black-text"><a href="<%= @candidate.link %>"><%= @candidate.link %></a></p>
+            <p class="candidate_content"><%= @candidate.name %>(지지율 0위 <%=@rate %>%)</p>
+            <p class="candidate_content">소속: <%= @candidate.party %></p>
+            <p class="candidate_content"><a href="<%= @candidate.link %>"><%= @candidate.link %></a></p>
           </div>
         </div>
       </div>
@@ -77,7 +77,7 @@
 
   <!--워드클라우드-->
   <div class="flexbox">
-    <div id="word_cloud" style="width: 550px; height: 350px;"></div>
+    <div id="word_cloud" style="flex:1; height: 350px;"></div>
   </div>
 
 
