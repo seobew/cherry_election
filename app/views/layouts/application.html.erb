@@ -1,24 +1,44 @@
 <!DOCTYPE html>
 <html lang= "ko-KR">
 <head>
-  <title>CherryElection</title>
+  <!--<title>CherryElection</title>-->
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <meta charset= "UTF-8">
-  <link rel="stylesheet" href="css/grid.css" type="text/css">
   
+<<<<<<< HEAD
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+=======
+  <%= stylesheet_link_tag "basis" %>
+  
+  
+
+ <!-- Compiled and minified CSS -->
+
+  <!-- Compiled and minified CSS -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--sakura effect -->
+  <link type="text/css" rel="stylesheet" media="screen" href="/css/jquery-sakura.min.css" />
+  
+  
+>>>>>>> 2e616e9b4236d1a5400709946f06fd36e3f639bf
 
 </head>
 
 <body>
-
+<%= render 'layouts/header'%>
 <%= yield %>
-
+<%= render 'layouts/footer'%>
 </body>
 </html>
