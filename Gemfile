@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-
+gem 'devise'
+gem "jqcloud-rails"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7.1'
 # Use sqlite3 as the database for Active Record
@@ -13,6 +14,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+
+#crontab 역할을 해주는 젬
+gem 'whenever', :require => false
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

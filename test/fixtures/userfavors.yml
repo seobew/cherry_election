@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  check_like: false
+  check_unlike: false
+
+two:
+  check_like: false
+  check_unlike: false
