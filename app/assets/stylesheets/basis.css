@@ -14,7 +14,6 @@ a {
 /*footer*/
 
 
-
 /*=========================
   Icons
  ================= */
@@ -172,4 +171,8 @@ background: #428bca;
 
 .carousel .carousel-item img {
   border-radius: 100px !important;
+}
+
+.btn{
+	padding:0 0.8rem !important;
 }
