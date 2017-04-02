@@ -38,6 +38,7 @@
 </script>
 
 <div class="container">
+<!--
   <div id="inform_wrapper">
     <div id="inform_content">
       <div id="candidate_pic">
@@ -50,26 +51,82 @@
       </div>
     </div>
   </div>
-  <!--워드클라우드-->
-  <div id="word_cloud" style="width: 550px; height: 350px;"></div>
-    <div id="article_wrapper">
-      <% @articles.each do |article| %>
-        <div class="each_article">
-          <div class="article_pic">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm8vOX_z0SoI7Lnh1YHaoImkUtZZatSUSYwir6EsDIn41cAYRuZXP7Er4"/>
+  -->
+
+
+  <div class="col s12 m8 offset-m2 l6 offset-l3">
+    <div class="card-panel grey lighten-2 z-depth-1">
+      <div class="row valign-wrapper">
+        <div class="col s3">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm8vOX_z0SoI7Lnh1YHaoImkUtZZatSUSYwir6EsDIn41cAYRuZXP7Er4" alt="" class="circle responsive-img" style="box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.60);"> <!-- notice the "circle" class -->
+        </div>
+        <div class="col s7">
+          <div id="candidate_inform">
+            <p class="black-text"><%= @candidate.name %>(지지율 0위 <%=@rate %>%)</p>
+            <p class="black-text">소속: <%= @candidate.party %></p>
+            <p class="black-text"><a href="<%= @candidate.link %>"><%= @candidate.link %></a></p>
           </div>
-          <div class="article_content">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <!--워드클라우드-->
+  <div class="flexbox">
+    <div id="word_cloud" style="width: 550px; height: 350px;"></div>
+  </div>
+
+
+
+
+
+  <% @articles.each do |article| %>
+  <div class="col s12 m8 offset-m2 l6 offset-l3">
+    <div class="card-panel white z-depth-1" style="padding: 10px;">
+      <div class="valign-wrapper">
+        <div class="article_pic col s2">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm8vOX_z0SoI7Lnh1YHaoImkUtZZatSUSYwir6EsDIn41cAYRuZXP7Er4" alt="" class="circle responsive-img" style="margin-left: 10px"> <!-- notice the "circle" class -->
+        </div>
+
+          <div class="article_content col s8">
             <a href= "<%= article.link %>"><%=article.title%></a>
           </div>
-          <div class="article_flavor2">
+          <div class="article_flavor2 col s2">
             <a href= "/home/like/<%=article.id%>">좋아요</a>(<%=article.like%>)
             <a href= "/home/unlike/<%=article.id%>">싫어요</a>(<%=article.unlike%>)
           </div>
-        </div>
-      <% end %>
+
+      </div>
     </div>
+  </div>
+
+      <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <div class="card-panel white z-depth-1" style="padding: 10px;">
+          <div class="valign-wrapper">
+            <div class="article_pic col s2">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm8vOX_z0SoI7Lnh1YHaoImkUtZZatSUSYwir6EsDIn41cAYRuZXP7Er4" alt="" class="circle responsive-img" style="margin-left: 10px"> <!-- notice the "circle" class -->
+            </div>
+
+            <div class="article_content col s8">
+              <a href= "<%= article.link %>"><%=article.title%></a>
+            </div>
+            <div class="article_flavor2 col s2">
+              <a href= "/home/like/<%=article.id%>">좋아요</a>(<%=article.like%>)
+              <a href= "/home/unlike/<%=article.id%>">싫어요</a>(<%=article.unlike%>)
+            </div>
+
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+
     <!--지지율 그래프-->
     <div id="graph_wrapper flex">
-      <div id="popularity_graph" style="flex: 1; height: 400px; margin-bottom: 40px;"></div>
+      <div id="popularity_graph" style="flex: 1; height: 400px; margin-top: 40px; margin-bottom: 40px;"></div>
     </div>
 </div>

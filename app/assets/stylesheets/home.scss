@@ -51,14 +51,36 @@
     vertical-align:middle;
 }
 
+
+.article_pic{
+  display:inline-block;
+  width:19%;
+  vertical-align:middle;
+}
+
+.article_pic img{
+  width:50px;
+  border-radius:50%;
+}
+
 #article_wrapper .article_pic img{
     width:50px;
     border-radius:50%;
 }
 
+.article_content{
+  display:inline-block;
+  width:60%;
+}
+
 #article_wrapper .article_content{
     display:inline-block;
     width:60%;
+}
+
+.article_flavor2{
+  display: inline-block;
+  width:19%;
 }
 
 #article_wrapper .article_flavor2{

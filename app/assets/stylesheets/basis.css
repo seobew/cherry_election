@@ -4,6 +4,8 @@
     margin:0;
 }
 
+
+
 a {
     text-decoration: none;
     color: inherit;
@@ -127,5 +129,12 @@ section {
 .flexbox{
     display: flex;
 }
+
+#inform_content {
+    padding: 50px;
+    background-color: rgb(224,224,224);
+}
+
+
 
 
