@@ -1,5 +1,3 @@
-<!--<<<<<<< HEAD-->
-
 <% @articles.each do |article| %>
     <p>
         <a href= "<%= article.link %>"><%=article.title%></a>
@@ -37,12 +35,7 @@
         <% end %>
     </p>
 <% end %>
-<!--=======-->
 
-
-
-
- 
 <!--특정후보--> 
     <section>
         
@@ -77,8 +70,6 @@
     
     
     <div class="divider"></div>
-    
-<!-- >>>>>>> 95ceace0d824c5ab55f5d3144a81e6fa6fa7a65f-->
 
     
     <scetion>
@@ -131,31 +122,13 @@
    
  </section>
  
-    
 
-
-
-
-    
 <script src="/js/jquery-sakura.min.js"></script>
-
 <script>
-    // domReady
-    $(function() {
+    $(document).ready(function() {
         $('body').sakura();
+        setTimeout(function() {
+            $('body').sakura('stop');
+        }, 5000);
     });
-
-
-    // windowLoad
-    $(window).load(function() {
-        $('body').sakura();
-    });
-    
-    $('#stop_sakura').on('click', function() {
-    $('body').sakura('stop');
-});
-    
-   
-   
 </script>
- 
