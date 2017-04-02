@@ -164,3 +164,12 @@ body{padding-top:0px;}
 background: #428bca;
 
 }
+
+.carousel .carousel-item {
+	opacity: 1 !important;
+	margin-left: 10% !important;
+}
+
+.carousel .carousel-item img {
+  border-radius: 100px !important;
+}
