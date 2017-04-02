@@ -4,6 +4,8 @@
     margin:0;
 }
 
+
+
 a {
     text-decoration: none;
     color: inherit;
@@ -115,19 +117,13 @@ section {
     
 }
 
-
-.candidate{
-	text-align: center;
+.carousel .carousel-item {   
+	opacity: 1 !important;
 }
 
-.candidate-item{
-	display:inline-block;
-	position:relative;
-	margin:0 auto 0 auto;
-	text-align:center;
-	padding:20px;
-	width: 15%;
-	
+#inform_content {
+    padding: 50px;
+    background-color: rgb(224,224,224);
 }
 
 

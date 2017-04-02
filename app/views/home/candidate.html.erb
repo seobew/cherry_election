@@ -1,20 +1,102 @@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 
-<script type="text/javascript">
-  var word_array = [
-    <% for i in 0...@texts.size %>
-      {text: "<%= @texts[i] %>", weight: <%= @weights[i] %>, link:"https://www.google.co.kr/webhp?hl=ko&sa=X&ved=0ahUKEwiEq9i91uLSAhVIwLwKHXB1BloQPAgD#q=<%= @candidate.name %>+<%=@texts[i]%>&newwindow=1&hl=ko&tbm=nws&*"},
+
+<div class="container main">
+  <div class="card_margin"></div>
+  <div class="card_content">
+    <div class="flexbox">
+      <div class="col s12 m8 offset-m2 l4 offset-l3 card_content">
+        <div class="card-panel grey lighten-2 z-depth-1">
+          <div class="flexbox valign-wrapper" style="justify-content: space-between;">
+            <div style="flex: 1; padding: 10px;">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm8vOX_z0SoI7Lnh1YHaoImkUtZZatSUSYwir6EsDIn41cAYRuZXP7Er4" alt="" class="circle responsive-img" style="box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.60);"> <!-- notice the "circle" class -->
+            </div>
+            <div style="flex: 3; margin-left: 10px;">
+              <div id="candidate_inform">
+                <p class="candidate_content"><strong style="font-size: 60px"><%= @candidate.name %> </strong>(지지율 0위 <%=@rate %>%)</p>
+                <p class="candidate_content"><strong >소속:</strong> <%= @candidate.party %></p>
+                <p class="candidate_content"><a href="<%= @candidate.link %>"><%= @candidate.link %></a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+    <!--워드클라우드-->
+    <div class="flexbox">
+      <div id="word_cloud" style="flex:1; height: 500px;"></div>
+    </div>
+
+
+
+
+
+    <% @articles.each do |article| %>
+        <div class="flexbox">
+          <div class="col s12 m8 offset-m2 l6 offset-l3 card_content">
+            <div class="card-panel white z-depth-1" style="padding: 10px;">
+              <div class="flexbox valign-wrapper">
+                <div class="article_pic" style="flex: 1;">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm8vOX_z0SoI7Lnh1YHaoImkUtZZatSUSYwir6EsDIn41cAYRuZXP7Er4" alt="" class="circle responsive-img" style="margin-left: 10px"> <!-- notice the "circle" class -->
+                </div>
+
+                <div class="article" style="flex: 6; padding-left: 5%;">
+                  <a href= "<%= article.link %>"><%=article.title%></a>
+                </div>
+                <div class="article_like" style="flex: 3;">
+                  <a href= "/home/like/<%=article.id%>">좋아요</a>(<%=article.like%>)
+                  <a href= "/home/unlike/<%=article.id%>">싫어요</a>(<%=article.unlike%>)
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="flexbox">
+          <div class="col s12 m8 offset-m2 l6 offset-l3 card_content">
+            <div class="card-panel white z-depth-1" style="padding: 10px;">
+              <div class="flexbox valign-wrapper">
+                <div class="article_pic" style="flex: 1;">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm8vOX_z0SoI7Lnh1YHaoImkUtZZatSUSYwir6EsDIn41cAYRuZXP7Er4" alt="" class="circle responsive-img" style="margin-left: 10px"> <!-- notice the "circle" class -->
+                </div>
+
+                <div class="article" style="flex: 6; padding-left: 5%;">
+                  <a href= "<%= article.link %>"><%=article.title%></a>
+                </div>
+                <div class="article_like" style="flex: 3;">
+                  <a href= "/home/like/<%=article.id%>">좋아요</a>(<%=article.like%>)
+                  <a href= "/home/unlike/<%=article.id%>">싫어요</a>(<%=article.unlike%>)
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
     <% end %>
-  ];
 
-  $(function() {
-    // When DOM is ready, select the container element and call the jQCloud method, passing the array of words as the first argument.
-    $("#word_cloud").jQCloud(word_array);
-  });
-</script>
 
-<div class="container">
+    <!--지지율 그래프-->
+    <div id="graph_wrapper flex">
+      <div id="popularity_graph" style="flex: 1; height: 400px; margin-top: 40px; margin-bottom: 40px;"></div>
+    </div>
+  </div>
+  <div class="card_margin"></div>
+<!--
   <div id="inform_wrapper">
     <div id="inform_content">
       <div id="candidate_pic">
@@ -27,80 +109,46 @@
       </div>
     </div>
   </div>
-  <div id="word_cloud" style="width: 550px; height: 350px;"></div>
-    <div id="article_wrapper">
-      <% @articles.each do |article| %>
-        <div class="each_article">
-          <div class="article_pic">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm8vOX_z0SoI7Lnh1YHaoImkUtZZatSUSYwir6EsDIn41cAYRuZXP7Er4"/>
-          </div>
-          <div class="article_content">
-            <a href= "<%= article.link %>"><%=article.title%></a>
-          </div>
-          <div class="article_flavor2">
-            <a href= "/home/like/<%=article.id%>">좋아요</a>(<%=article.like%>)
-            <a href= "/home/unlike/<%=article.id%>">싫어요</a>(<%=article.unlike%>)
-          </div>
-        </div>
-      <% end %>
-    </div>
-    <div id="graph_wrapper">
-      <!--지지율 그래프 그리기 시작-->
-       <div id="popularity_graph" style="width: 550px; height: 400px;"></div>
-       
-       <script language="JavaScript">
-       $(document).ready(function() {
-          var title = {
-             text: '대선 후보 지지도'
-          };
-          var subtitle = {
-             text: '출처: 한국갤럽'
-          };
-          var xAxis = {
-             categories: ['3주 전', '2주 전', '1주 전', '이번 주']
-          };
-          var yAxis = {
-             title: {
-                text: '지지율 (%)'
-             },
-             plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-             }]
-          };
-       
-          var tooltip = {
-             valueSuffix: '%'
-          }
-       
-          var legend = {
-             layout: 'vertical',
-             align: 'right',
-             verticalAlign: 'middle',
-             borderWidth: 0
-          };
-       
-          var series =  [
-             {
-                name: '<%= @candidate.name %>',
-                data: [<%= @candidate.rank3ago %>, <%= @candidate.rank2ago %>, <%= @candidate.rank1ago %>, <%= @candidate.rank %>]
-             },
-          ];
-       
-          var json = {};
-       
-          json.title = title;
-          json.subtitle = subtitle;
-          json.xAxis = xAxis;
-          json.yAxis = yAxis;
-          json.tooltip = tooltip;
-          json.legend = legend;
-          json.series = series;
-       
+  -->
+
+  <script type="text/javascript">
+      // word cloud
+      var word_array = [
+          <% for i in 0...@texts.size %>
+          {text: "<%= @texts[i] %>", weight: <%= @weights[i] %>, link:"https://www.google.co.kr/webhp?hl=ko&sa=X&ved=0ahUKEwiEq9i91uLSAhVIwLwKHXB1BloQPAgD#q=<%= @candidate.name %>+<%=@texts[i]%>&newwindow=1&hl=ko&tbm=nws&*"},
+          <% end %>
+      ];
+
+      // highchart
+      var title = { text: '대선 후보 지지도' };
+      var subtitle = { text: '출처: 한국갤럽' };
+      var xAxis = { categories: ['3주 전', '2주 전', '1주 전', '이번 주'] };
+      var yAxis = {
+          title: { text: '지지율 (%)' },
+          plotLines: [{ value: 0, width: 1, color: '#808080'}]
+      };
+      var tooltip = { valueSuffix: '%' }
+      var legend = { layout: 'vertical', align: 'right', verticalAlign: 'middle', borderWidth: 0 };
+
+      var series = [{
+          name: '<%= @candidate.name %>',
+          data: [<%= @candidate.rank3ago %>, <%= @candidate.rank2ago %>, <%= @candidate.rank1ago %>, <%= @candidate.rank %>]
+      },];
+      var json = {};
+      json.title = title;
+      json.subtitle = subtitle;
+      json.xAxis = xAxis;
+      json.yAxis = yAxis;
+      json.tooltip = tooltip;
+      json.legend = legend;
+      json.series = series;
+
+      $(document).ready(function() {
+          $("#word_cloud").jQCloud(word_array);
           $('#popularity_graph').highcharts(json);
-       });
-       </script>
-       <!--지지율 그래프 그리기 끝-->
-    </div>
+      });
+  </script>
+
+
+
 </div>
