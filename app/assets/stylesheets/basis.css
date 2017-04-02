@@ -4,6 +4,8 @@
     margin:0;
 }
 
+
+
 a {
     text-decoration: none;
     color: inherit;
@@ -123,5 +125,14 @@ section {
 	width: 15%;
 	
 }
+
+
+
+#inform_content {
+    padding: 50px;
+    background-color: rgb(224,224,224);
+}
+
+
 
 
