@@ -183,3 +183,8 @@ background: #428bca;
 	text-align: right;
 
 }
+
+.carousel_navigator{
+	display:flex;
+	justify-content:space-between;
+}
