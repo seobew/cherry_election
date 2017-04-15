@@ -44,20 +44,13 @@ ul.social-network li {
 .social-network a.icoFacebook:hover {
 	background-color:#3B5998;
 }
-.social-network a.icoTwitter:hover {
-	background-color:#33ccff;
-}
+
+
 .social-network a.icoGoogle:hover {
 	background-color:#BD3518;
 }
-.social-network a.icoVimeo:hover {
-	background-color:#0590B8;
-}
-.social-network a.icoLinkedin:hover {
-	background-color:#007bb7;
-}
- .social-network a.icoFacebook:hover i, .social-network a.icoTwitter:hover i,
-.social-network a.icoGoogle:hover i, .social-network a.icoVimeo:hover i, .social-network a.icoLinkedin:hover i {
+
+ .social-network a.icoFacebook:hover i, .social-network a.icoGoogle:hover i  {
 	color:#fff;
 }
 a.socialIcon:hover, .socialHoverClass {
@@ -178,3 +171,4 @@ background: #428bca;
 .btn{
 	padding:0 0.8rem !important;
 }
+

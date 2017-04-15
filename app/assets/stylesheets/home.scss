@@ -111,6 +111,16 @@
   flex:1;
 }
 
+.fa-angle-left {
+  float: left;
+  margin-top: 170px;
+}
+
+.fa-angle-right {
+  float: right;
+  margin-top: 170px;
+}
+
 @media screen and (min-width:800px) {
   .candidate_content{
     font-size: 20px;
