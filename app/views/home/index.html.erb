@@ -110,10 +110,13 @@
     <div class="row">
 		<div class="col-md-12">
       <div class="carousel">
+        <%= image_tag ('left-arrow.png'), :class => "fa-angle-left" %>
         <a class="carousel-item" href="/home/candidate/1"><img src="https://pbs.twimg.com/profile_images/798463233774350336/KlHqUNgL.jpg"></a>
         <a class="carousel-item" href="/home/candidate/2"><img src="https://pbs.twimg.com/profile_images/548709576015507456/M0n4vz9q.png"></a>
-        <a class="carousel-item" href="#three!"><img src="https://pbs.twimg.com/profile_images/838564290143539200/aaE3Jr0o.jpg"></a>
-        <a class="carousel-item" href="#four!"><img src="http://img.asiatoday.co.kr/webdata/content/2017y/03m/02d/20170302010000981_300_300.jpg"></a>
+        <a class="carousel-item" href="/home/candidate/3"><img src="https://pbs.twimg.com/profile_images/838564290143539200/aaE3Jr0o.jpg"></a>
+        <a class="carousel-item" href="/home/candidate/4"><img src="http://img.asiatoday.co.kr/webdata/content/2017y/03m/02d/20170302010000981_300_300.jpg"></a>
+         <%= image_tag ('right-arrow.png'), :class => "fa-angle-right" %>
+         
       </div>
 		</div>
 	</div>
@@ -126,16 +129,48 @@
 
 
 <script>
-$(document).ready(function() {
+/*$(document).ready(function() {
     $('.carousel').carousel({
           dist:0,
           duration: 50,
           padding:20,
+          
     });
     autoplay()   
     function autoplay() {
         $('.carousel').carousel('next');
         setTimeout(autoplay, 4500);
     }
-});
+});*/
+$('.carousel').carousel({
+        full_width:true,
+        time_constant: 100,
+        dist:0,
+        duration:50,
+        padding:20,
+      });
+
+      var carouselAutoplay = setInterval(function(){
+            $('.fa-angle-right').click();
+          }, 7000);
+
+      $('.fa-angle-right').click(function(){
+        $('.carousel').carousel('next');
+        clearInterval(carouselAutoplay);
+        carouselAutoplay = setInterval(function(){
+            $('.fa-angle-right').click();
+          }, 7000);
+      });
+      $('.fa-angle-left').click(function(){
+        $('.carousel').carousel('prev');
+        clearInterval(carouselAutoplay);
+        carouselAutoplay = setInterval(function(){
+            $('.fa-angle-left').click();
+          }, 7000);
+      });
 </script>
+
+
+<!--arrow button credit
+<div>Icons made by <a href="http://www.flaticon.com/authors/madebyoliver" title="Madebyoliver">Madebyoliver</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 
+title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->

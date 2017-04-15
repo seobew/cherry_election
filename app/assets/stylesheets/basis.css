@@ -178,3 +178,15 @@ background: #428bca;
 .btn{
 	padding:0 0.8rem !important;
 }
+
+.carousel .fa-angle-left {
+	
+	text-align: left;
+	
+}
+
+.carousel .fa-angle-right{
+   
+	text-align: right;
+
+}
