@@ -111,16 +111,18 @@ class HomeController < ApplicationController
     end
 
     # 지지율 크롤링
-    board = Nokogiri::HTML(open("http://www.gallup.co.kr/gallupdb/report.asp"))
-    # t = board.at('span:contains("2017")')
-    t = board.search "[text()*='지지도']"
-    link_text =  t.first.parent["href"]
-    board2 = Nokogiri::HTML(open("http://www.gallup.co.kr/gallupdb/#{link_text}"))
-    tt = board2.search "[text()*='대선 후보 지지도:']"
-    tt = tt.text
-    name_index = tt.index(@candidate.name)
-    ttt = tt[name_index+3..name_index+6]
-    @rate = ttt.to_i
+    # 크롤링 에러로 임시 주석처리, @rate에 임시 int값 하드코딩
+    # board = Nokogiri::HTML(open("http://www.gallup.co.kr/gallupdb/report.asp"))
+    # # t = board.at('span:contains("2017")')
+    # t = board.search "[text()*='지지도']"
+    # link_text =  t.first.parent["href"]
+    # board2 = Nokogiri::HTML(open("http://www.gallup.co.kr/gallupdb/#{link_text}"))
+    # tt = board2.search "[text()*='대선 후보 지지도:']"
+    # tt = tt.text
+    # name_index = tt.index(@candidate.name)
+    # ttt = tt[name_index+3..name_index+6]
+    # @rate = ttt.to_i
+    @rate = 34
   end
 
   def search
