@@ -29,77 +29,83 @@
 </section>
     
     
-    <div class="divider"></div>
+<div class="divider"></div>
 
-   <!-- 여기 두번째 section부분! 특히 모바일로 봣을때 배치 난리남 ㅠㅠ 원래 플랙스 안쓰기로 했는데
-   이섭이가 한번 써봐서 어케 건드려야 될 지 모르겟 -->
-    <scetion>
-      <div class="container">
-        <div class="row">
-            <% @articles.each do |article| %>
-            <div class="col l2">
-              <div class="article_candidate">
-                  <a class="section2" href="#">후보자</a>
-              </div>
-            </div>
-            <div class="col l7">
-              <div class="article_link">
-                 <a href= "<%= article.link %>" class="section2"><%=article.title%></a>
-              </div>
-            </div>
-            <div class="col l3">
-                <div class="row">
-                    <% userfavor = Userfavor.find_by(article_id: article.id,user_id: current_user) %>
-                    <% if userfavor && (userfavor.check_like || userfavor.check_unlike) %>
-                      <% if userfavor.check_like %>
-                        <div class="col s12 m6 l6">
-                        <%= form_tag("/article/like_cancel", method: "post") do %>
-                            <%= hidden_field_tag :article , article.id %>
-                            <%= submit_tag("좋아요 취소(#{article.like})", :class=>"btn waves-effect waves-light") %>
-                        <% end %>
-                        </div>
-                        <div class="col s12 m6 l6">
-                        <%= form_tag("/article/unlike", method: "post") do %>
-                            <%= hidden_field_tag :article , article.id %>
-                            <%= submit_tag("싫어요(#{article.unlike})", :class=>"btn waves-effect waves-light") %>
-                        <% end %>
-                        </div>
-                      <% else if userfavor.check_unlike %>
-                      <div class="col s12 m6 l6">
-                        <%= form_tag("/article/like", method: "post") do %>
-                            <%= hidden_field_tag :article , article.id %>
-                            <%= submit_tag("좋아요(#{article.like})", :class=>"btn waves-effect waves-light") %>
-                        <% end %>
-                        </div>
-                        <div class="col s12 m6 l6">
-                        <%= form_tag("/article/unlike_cancel", method: "post") do %>
-                            <%= hidden_field_tag :article , article.id %>
-                            <%= submit_tag("싫어요 취소(#{article.unlike})", :class=>"btn waves-effect waves-light") %>
-                        <% end %>
-                        </div>
-                      <% end %>
-                    <% end %>
-                    <% else %>
-                    <div class="col s12 m6 l6">
-                      <%= form_tag("/article/like", method: "post") do %>
-                        <%= hidden_field_tag :article , article.id %>
-                        <%= submit_tag("좋아요(#{article.like})", :class=>"btn waves-effect waves-light") %>
-                      <% end %>
-                      </div>
-                      <div class="col s12 m6 l6">
-                      <%= form_tag("/article/unlike", method: "post") do %>
-                        <%= hidden_field_tag :article , article.id %>
-                        <%= submit_tag("싫어요(#{article.unlike})", :class=>"btn waves-effect waves-light") %>
-                      <% end %>
-                    <% end %>
-                    </div>
-                        
-                </div>
-            </div>
-            <%end%>
+
+<scetion>
+  <div class="container">
+    <% @articles.each do |article| %>
+      <div class="row">
+      
+        <!--후보자 이름-->
+        <div class="col l2">
+          <div class="article_candidate">
+            <a class="section2" href="#">후보자</a>
+          </div>
         </div>
-      </div>
-    </section>
+        
+        <!--기사 제목-->
+        <div class="col l6">
+          <div class="article_link">
+            <a href= "<%= article.link %>" class="section2"><%=article.title%></a>
+          </div>
+        </div>
+        
+        <!--좋아요,싫어요 버튼-->
+          <% userfavor = Userfavor.find_by(article_id: article.id,user_id: current_user) %>
+          <!-- 이전 좋아요/싫어요 기록이 있으면 -->
+          <% if userfavor && (userfavor.check_like || userfavor.check_unlike) %> 
+          
+            <% if userfavor.check_like %>
+              <div class="col l2">
+                <%= form_tag("/article/like_cancel", method: "post") do %>
+                  <%= hidden_field_tag :article , article.id %>
+                  <%= submit_tag("좋아요 취소(#{article.like})", :class=>"btn waves-effect waves-light") %>
+                <% end %>
+              </div>
+              <div class="col l2">
+                <%= form_tag("/article/unlike", method: "post") do %>
+                  <%= hidden_field_tag :article , article.id %>
+                  <%= submit_tag("싫어요(#{article.unlike})", :class=>"btn waves-effect waves-light") %>
+                <% end %>
+              </div>
+              
+            <% else if userfavor.check_unlike %>
+              <div class="col l2">
+                <%= form_tag("/article/like", method: "post") do %>
+                  <%= hidden_field_tag :article , article.id %>
+                  <%= submit_tag("좋아요(#{article.like})", :class=>"btn waves-effect waves-light") %>
+                <% end %>
+              </div>
+              <div class="col l2">
+                <%= form_tag("/article/unlike_cancel", method: "post") do %>
+                  <%= hidden_field_tag :article , article.id %>
+                  <%= submit_tag("싫어요 취소(#{article.unlike})", :class=>"btn waves-effect waves-light") %>
+                <% end %>
+              </div>
+            <% end %>
+            
+          <% end %>
+              <!-- 이전 좋아요/싫어요 기록이 없으면 -->
+          <% else %> 
+          <div class="col l2">
+            <%= form_tag("/article/like", method: "post") do %>
+              <%= hidden_field_tag :article , article.id %>
+              <%= submit_tag("좋아요(#{article.like})", :class=>"btn waves-effect waves-light") %>
+            <% end %>
+          </div>
+          <div class="col l2">
+            <%= form_tag("/article/unlike", method: "post") do %>
+              <%= hidden_field_tag :article , article.id %>
+              <%= submit_tag("싫어요(#{article.unlike})", :class=>"btn waves-effect waves-light") %>
+            <% end %>
+            <% end %>
+          </div>
+          
+      </div> <!--end of row-->
+    <%end%> <!--end of for @articles.each-->
+  </div> <!--end of container-->
+</section>
     
  <div class="divider"></div>
  
