@@ -9,19 +9,18 @@
           <div class="flexbox valign-wrapper" style="justify-content: space-between;">
             <div style="flex: 1; padding: 10px;">
               <!--<img src="<%=@candidate.image %>" alt="" class="circle responsive-img" style="box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.60);"> <!-- notice the "circle" class -->
-              <%= image_tag (@candidate.image), :class => "circle responsive-img" %>
+              <%= image_tag (@candidate.image), :class => "circle responsive-img", :style =>"box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.60);" %>
               <!--여길 보세요!! 스타일은 css에서 따로 잡아주자-->
             </div>
             <div style="flex: 3; margin-left: 10px;">
               <div id="candidate_inform">
-                 <p class="candidate_content">기호<%= @candidate.number %>&nbsp;<strong><%=@candidate.name%></strong></p>
+                 <p class="candidate_content"><strong style="font-size: 40px"><a style="text-decorations:none; color:inherit;" href="/home/candidate/<%= @candidate.id %>"><%=@candidate.name%></a></strong>기호<%= @candidate.number %>&nbsp;(<%=@candidate.party %>)</p>
                   
+                  <% @articles.each do |article| %>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href=""></a>article</li>
-                  <li><a class="grey-text text-lighten-3" href=""></a>article</li>
-                  <li><a class="grey-text text-lighten-3" href=""></a>article</li>
-                  <li><a class="grey-text text-lighten-3" href=""></a>article</li>
+                  <li><a href= "<%= article.link %>"><%=article.title%></a></li>
                 </ul>
+                <%end%>
               </div>
             </div>
           </div>
