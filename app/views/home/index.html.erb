@@ -8,9 +8,7 @@
         <div class="card-panel grey lighten-2 z-depth-1">
           <div class="flexbox valign-wrapper" style="justify-content: space-between;">
             <div style="flex: 1; padding: 10px;">
-              <!--<img src="<%=@candidate.image %>" alt="" class="circle responsive-img" style="box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.60);"> <!-- notice the "circle" class -->
               <%= image_tag (@candidate.image), :class => "circle responsive-img", :style =>"box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.60);" %>
-              <!--여길 보세요!! 스타일은 css에서 따로 잡아주자-->
             </div>
             <div style="flex: 3; margin-left: 10px;">
               <div id="candidate_inform">
