@@ -1,39 +1,39 @@
 <!--특정후보--> 
-    <section>
-        
-     <div class="container">
-       <div class="row">
-           
-           <div class="col l8 offset-l2 s12">
-             <div class="card horizontal">
-              <div class="card-image">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm8vOX_z0SoI7Lnh1YHaoImkUtZZatSUSYwir6EsDIn41cAYRuZXP7Er4" alt="" class="circle responsive-img">
-                
-              </div>
-      
-              <div class="card-stacked">
-        
-                <div class="card-action">
+<section>
+        <div class="container main">
+  <div class="card_margin"></div>
+  <div class="card_content">
+    <div class="flexbox">
+      <div class="col s12 m8 offset-m2 l4 offset-l3 card_content">
+        <div class="card-panel grey lighten-2 z-depth-1">
+          <div class="flexbox valign-wrapper" style="justify-content: space-between;">
+            <div style="flex: 1; padding: 10px;">
+              <%= image_tag (@candidate.image), :class => "circle responsive-img", :style =>"box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.60);" %>
+            </div>
+            <div style="flex: 3; margin-left: 10px;">
+              <div id="candidate_inform">
+                 <p class="candidate_content"><strong style="font-size: 40px"><a style="text-decorations:none; color:inherit;" href="/home/candidate/<%= @candidate.id %>"><%=@candidate.name%></a></strong>기호<%= @candidate.number %>&nbsp;(<%=@candidate.party %>)</p>
+                  
+                  <% @articles.each do |article| %>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href=""></a>article</li>
-                  <li><a class="grey-text text-lighten-3" href=""></a>article</li>
-                  <li><a class="grey-text text-lighten-3" href=""></a>article</li>
-                  <li><a class="grey-text text-lighten-3" href=""></a>article</li>
+                  <li><a href= "<%= article.link %>"><%=article.title%></a></li>
                 </ul>
-                </div>
+                <%end%>
               </div>
             </div>
           </div>
-         
-       </div>
-      </div> 
-      
-    </section>
+        </div>
+      </div>
+
+    </div>
+  
+</section>
     
     
     <div class="divider"></div>
 
-    
+   <!-- 여기 두번째 section부분! 특히 모바일로 봣을때 배치 난리남 ㅠㅠ 원래 플랙스 안쓰기로 했는데
+   이섭이가 한번 써봐서 어케 건드려야 될 지 모르겟 -->
     <scetion>
       <div class="container">
         <div class="row">
@@ -109,15 +109,13 @@
     <div class="container">
     <div class="row">
 		<div class="col-md-12">
+		  <%= image_tag ('left-arrow.png'), :class => "fa-angle-left carou_arrow" %>
       <div class="carousel">
-        <%= image_tag ('left-arrow.png'), :class => "fa-angle-left" %> 
-        <a class="carousel-item" href="/home/candidate/1"><img src="https://pbs.twimg.com/profile_images/798463233774350336/KlHqUNgL.jpg"></a>
-        <a class="carousel-item" href="/home/candidate/2"><img src="https://pbs.twimg.com/profile_images/548709576015507456/M0n4vz9q.png"></a>
-        <a class="carousel-item" href="/home/candidate/3"><img src="https://pbs.twimg.com/profile_images/838564290143539200/aaE3Jr0o.jpg"></a>
-        <a class="carousel-item" href="/home/candidate/4"><img src="http://img.asiatoday.co.kr/webdata/content/2017y/03m/02d/20170302010000981_300_300.jpg"></a>
-        <%= image_tag ('right-arrow.png'), :class => "fa-angle-right" %>
-      </div>
-      
+        <% @candidates.each do |candidate| %>
+          <a class="carousel-item" href="/home/candidate/<%= candidate.id %>"><%= image_tag (candidate.image), :class => "circle responsive-img" %>
+        <% end %>
+        </div>
+      <%= image_tag ('right-arrow.png'), :class => "fa-angle-right carou_arrow" %>
 		</div>
 	</div>
 </div>
@@ -142,13 +140,25 @@
         setTimeout(autoplay, 4500);
     }
 });*/
+$(document).ready(function(){
 $('.carousel').carousel({
         full_width:true,
         time_constant: 100,
         dist:0,
         duration:50,
         padding:20,
+        nowrap:false
       });
+      
+
+// Next slide
+/*$('.carousel').carousel('next');
+$('.carousel').carousel('next', 3); // Move next n times.
+// Previous slide
+$('.carousel').carousel('prev');
+$('.carousel').carousel('prev', 4); // Move prev n times.
+// Set to nth slide
+$('.carousel').carousel('set', 4);*/
 
       var carouselAutoplay = setInterval(function(){
             $('.fa-angle-right').click();
@@ -168,6 +178,9 @@ $('.carousel').carousel({
             $('.fa-angle-left').click();
           }, 7000);
       });
+      
+});           
+      
 </script>
 
 

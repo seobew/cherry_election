@@ -166,9 +166,23 @@ background: #428bca;
 
 .carousel .carousel-item img {
   border-radius: 100px !important;
+  height: inherit !important;
 }
 
 .btn{
 	padding:0 0.8rem !important;
 }
 
+.carousel_nav{
+	display: flex;
+	justify-content: space-between;
+}
+
+.carousel{
+	width:88% !important;
+	display: inline-block !important;
+}
+
+.carou_arrow{
+	width:5%;	
+}

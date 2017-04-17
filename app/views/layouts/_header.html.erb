@@ -3,12 +3,33 @@
       <a href="/" class="brand-logo center">벚꽃대선</a>
     </div>
  </nav>
+ 
+<!-- 정보 버튼 넣기 -->
+ <div class="fixed-action-btn">
+       <a class="btn-floating btn-large waves-effect waves-light pink" href="#modal1"><i class="material-icons">info_outline</i></a>
+       </div>
+ <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>벚꽃대선이란?</h4>
+      <p>제 19대 대선 후보 15명의 관련 정보를 모아 놓은 싸이트입니다. <br>일부 정보나 의견을 듣고 
+      어떤 후보를 선택할지 결정하지 않고 <strong>여러 객관적인 정보</strong>
+      를 접하고<br> <strong>자신만의 합리적인 판단하</strong>에 제 19대 대통령을 결정하셨으면 좋겠습니다. </p>
+    </div>
+    <div class="modal-footer">
+      <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">돌아가기</a>
+    </div>
+  </div>
 
 
-<!--header 부분에만 사쿠라 흩날리기 -->
+<!--header 부분에만 사쿠라 흩날리기/인포정보 팝업버튼 -->
 <script>
     $(document).ready(function() {
         $('.nav-wrapper').sakura();
+        $('#modal1').modal();
         
     });
+    
+     
+     
 </script>
