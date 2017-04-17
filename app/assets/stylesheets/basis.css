@@ -171,6 +171,7 @@ background: #428bca;
 
 .btn{
 	padding:0 0.8rem !important;
+	width: 120px;
 }
 
 .carousel_nav{
