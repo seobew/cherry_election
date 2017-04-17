@@ -106,17 +106,18 @@
  
  <section>
      
-    <div class="container">
-    <div class="row">
+<div class="container">
+  <div class="row">
 		<div class="col-md-12">
 		  <%= image_tag ('left-arrow.png'), :class => "fa-angle-left carou_arrow" %>
       <div class="carousel">
         <% @candidates.each do |candidate| %>
-          <a class="carousel-item" href="/home/candidate/<%= candidate.id %>"><%= image_tag (candidate.image), :class => "circle responsive-img" %>
+          <a class="carousel-item" href="/home/candidate/<%= candidate.id %>"><%= image_tag (candidate.image), :class => "circle responsive-img" %></a>
         <% end %>
-        </div>
+      </div>
       <%= image_tag ('right-arrow.png'), :class => "fa-angle-right carou_arrow" %>
 		</div>
+		
 	</div>
 </div>
 
@@ -160,9 +161,9 @@ $('.carousel').carousel('prev', 4); // Move prev n times.
 // Set to nth slide
 $('.carousel').carousel('set', 4);*/
 
-      var carouselAutoplay = setInterval(function(){
-            $('.fa-angle-right').click();
-          }, 7000);
+      // var carouselAutoplay = setInterval(function(){
+      //       $('.fa-angle-right').click();
+      //     }, 7000);
 
       $('.fa-angle-right').click(function(){
         $('.carousel').carousel('next');
