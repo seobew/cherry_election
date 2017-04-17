@@ -8,11 +8,13 @@
         <div class="card-panel grey lighten-2 z-depth-1">
           <div class="flexbox valign-wrapper" style="justify-content: space-between;">
             <div style="flex: 1; padding: 10px;">
-              <img src="/" alt="" class="circle responsive-img" style="box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.60);"> <!-- notice the "circle" class -->
+              <!--<img src="<%=@candidate.image %>" alt="" class="circle responsive-img" style="box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.60);"> <!-- notice the "circle" class -->
+              <%= image_tag (@candidate.image), :class => "circle responsive-img" %>
+              <!--여길 보세요!! 스타일은 css에서 따로 잡아주자-->
             </div>
             <div style="flex: 3; margin-left: 10px;">
               <div id="candidate_inform">
-                 <p class="candidate_content">이름</p>
+                 <p class="candidate_content"><%=@candidate.name%></p>
                 <ul>
                   <li><a class="grey-text text-lighten-3" href=""></a>article</li>
                   <li><a class="grey-text text-lighten-3" href=""></a>article</li>
@@ -32,7 +34,8 @@
     
     <div class="divider"></div>
 
-    
+   <!-- 여기 두번째 section부분! 특히 모바일로 봣을때 배치 난리남 ㅠㅠ 원래 플랙스 안쓰기로 했는데
+   이섭이가 한번 써봐서 어케 건드려야 될 지 모르겟 -->
     <scetion>
       <div class="container">
         <div class="row">
@@ -108,29 +111,13 @@
     <div class="container">
     <div class="row">
 		<div class="col-md-12">
+		  <%= image_tag ('left-arrow.png'), :class => "fa-angle-left carou_arrow" %>
       <div class="carousel">
-        <%= image_tag ('left-arrow.png'), :class => "fa-angle-left" %> 
-        
-        <a class="carousel-item" href="/home/candidate/1"><img src="https://pbs.twimg.com/profile_images/798463233774350336/KlHqUNgL.jpg"></a>
-        <a class="carousel-item" href="/home/candidate/2"><img src="https://jmagazine.joins.com/_data/photo/2015/01/3731681140_FAsWGfOL_5-r.jpg"></a>
-        <a class="carousel-item" href="/home/candidate/3"><img src="http://pds.joins.com/news/component/htmlphoto_mmdata/201311/28/htm_201311281551720103011.jpg"></a>
-        <a class="carousel-item" href="/home/candidate/4"><img src="https://jmagazine.joins.com/_data/photo/2015/12/3696639864_O1Vx95sw_88.jpg"></a>
-        <a class="carousel-item" href="/home/candidate/5"><img src="https://cdn.mirror.wiki/http://info.nec.go.kr/photo_20160413/Sd4100/Gsg4120/Sgg2412001/Hb100120137/gicho/100120137.jpg"></a>
-        <a class="carousel-item" href="/home/candidate/6"><img src="http://ph.kyongbuk.co.kr/news/photo/201607/966504_244605_0008.jpg"></a>
-        <a class="carousel-item" href="/home/candidate/7"><img src="https://search.pstatic.net/common?type=mfullfill&size=96x120&quality=100&direct=true&src=http%3A%2F%2Fdbscthumb.phinf.naver.net%2F4864_000_1%2F20170416211317604_K823T3SRT.png%2F07.png%3Ftype%3Dm96_120%26ts%3D1"></a>
-        <a class="carousel-item" href="/home/candidate/8"><img src="https://search.pstatic.net/common?type=mfullfill&size=96x120&quality=100&direct=true&src=http%3A%2F%2Fdbscthumb.phinf.naver.net%2F4864_000_1%2F20170416211309187_REP072FNA.png%2F06%2525EC%25259E%2525A.png%3Ftype%3Dm96_120%26ts%3D1"></a>
-        <a class="carousel-item" href="/home/candidate/9"><img src="http://ph.kyeonggi.com/news/photo/201206/584954_493680_5745.jpg"></a>
-        <a class="carousel-item" href="/home/candidate/10"><img src="http://www.joseilbo.co.kr/gisa_img/20110427225812.jpg"></a>
-        <a class="carousel-item" href="/home/candidate/11"><img src="https://pbs.twimg.com/media/C7_nMIOVUAAdNru.jpg"></a>
-        <a class="carousel-item" href="/home/candidate/12"><img src="https://search.pstatic.net/common?type=mfullfill&size=96x120&quality=100&direct=true&src=http%3A%2F%2Fdbscthumb.phinf.naver.net%2F4864_000_1%2F20170416211309171_UQXKBYAAA.png%2F09%2525EC%25259D%2525B.png%3Ftype%3Dm96_120%26ts%3D1"></a>
-        <a class="carousel-item" href="/home/candidate/13"><img src="https://search.pstatic.net/common?type=mfullfill&size=96x120&quality=100&direct=true&src=http%3A%2F%2Fdbscthumb.phinf.naver.net%2F4864_000_1%2F20170416211309203_DJY5UF6CR.png%2F10%2525EA%2525B9%25258.png%3Ftype%3Dm96_120%26ts%3D1"></a>
-        <a class="carousel-item" href="/home/candidate/14"><img src="https://search.pstatic.net/common?type=mfullfill&size=96x120&quality=100&direct=true&src=http%3A%2F%2Fdbscthumb.phinf.naver.net%2F4864_000_1%2F20170416211317448_MQFTOIQ65.png%2F21%2525EC%25259C%2525A.png%3Ftype%3Dm96_120%26ts%3D1"></a>
-        <a class="carousel-item" href="/home/candidate/15"><img src="https://search.pstatic.net/common?type=mfullfill&size=96x120&quality=100&direct=true&src=http%3A%2F%2Fdbscthumb.phinf.naver.net%2F4864_000_1%2F20170416211309224_4J173Z7LN.png%2F14%2525EA%2525B9%25258.png%3Ftype%3Dm96_120%26ts%3D1"></a>
-       
-        
-        <%= image_tag ('right-arrow.png'), :class => "fa-angle-right" %>
-      </div>
-      
+        <% @candidates.each do |candidate| %>
+          <a class="carousel-item" href="/home/candidate/<%= candidate.id %>"><img src=<%=candidate.image%>></a>
+        <% end %>
+        </div>
+      <%= image_tag ('right-arrow.png'), :class => "fa-angle-right carou_arrow" %>
 		</div>
 	</div>
 </div>
@@ -175,12 +162,11 @@ $('.carousel').carousel('prev', 4); // Move prev n times.
 // Set to nth slide
 $('.carousel').carousel('set', 4);*/
 
-      // var carouselAutoplay = setInterval(function(){
-      //       $('.fa-angle-right').click();
-      //     }, 7000);
+      var carouselAutoplay = setInterval(function(){
+            $('.fa-angle-right').click();
+          }, 7000);
 
       $('.fa-angle-right').click(function(){
-        alert('clicked_right');
         $('.carousel').carousel('next');
         clearInterval(carouselAutoplay);
         carouselAutoplay = setInterval(function(){
@@ -188,7 +174,6 @@ $('.carousel').carousel('set', 4);*/
           }, 7000);
       });
       $('.fa-angle-left').click(function(){
-        alert('clicked_left');
         $('.carousel').carousel('prev');
         clearInterval(carouselAutoplay);
         carouselAutoplay = setInterval(function(){
