@@ -114,7 +114,7 @@
 		  <%= image_tag ('left-arrow.png'), :class => "fa-angle-left carou_arrow" %>
       <div class="carousel">
         <% @candidates.each do |candidate| %>
-          <a class="carousel-item" href="/home/candidate/<%= candidate.id %>"><img src=<%=candidate.image%>></a>
+          <a class="carousel-item" href="/home/candidate/<%= candidate.id %>"><%= image_tag (candidate.image), :class => "circle responsive-img" %>
         <% end %>
         </div>
       <%= image_tag ('right-arrow.png'), :class => "fa-angle-right carou_arrow" %>

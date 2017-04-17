@@ -9,7 +9,7 @@
         <div class="card-panel grey lighten-2 z-depth-1">
           <div class="flexbox valign-wrapper" style="justify-content: space-between;">
             <div style="flex: 1; padding: 10px;">
-              <img src="<%=@candidate.image %>" alt="" class="circle responsive-img" style="box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.60);"> <!-- notice the "circle" class -->
+              <%= image_tag (@candidate.image), :class => "circle responsive-img",:style =>"box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.60);" %> <!-- notice the "circle" class -->
             </div>
             <div style="flex: 3; margin-left: 10px;">
               <div id="candidate_inform">
@@ -45,7 +45,8 @@
             <div class="card-panel white z-depth-1" style="padding: 10px;">
               <div class="flexbox valign-wrapper">
                 <div class="article_pic" style="flex: 1;">
-                  <img src="<%=@candidate.image %>" alt="" class="circle responsive-img" style="margin-left: 10px"> <!-- notice the "circle" class -->
+                  <%= image_tag (@candidate.image), :class => "circle responsive-img",:style =>"margin-left: 10px" %>
+              
                 </div>
 
                 <div class="article" style="flex: 6; padding-left: 5%;">
@@ -70,7 +71,7 @@
             <div class="card-panel white z-depth-1" style="padding: 10px;">
               <div class="flexbox valign-wrapper">
                 <div class="article_pic" style="flex: 1;">
-                  <img src="<%=@candidate.image %>" alt="" class="circle responsive-img" style="margin-left: 10px"> <!-- notice the "circle" class -->
+                  <%= image_tag (@candidate.image), :class => "circle responsive-img",:style =>"margin-left: 10px" %>
                 </div>
 
                 <div class="article" style="flex: 6; padding-left: 5%;">
