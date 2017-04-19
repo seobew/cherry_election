@@ -112,6 +112,7 @@ section {
 
 .carousel .carousel-item {   
 	opacity: 1 !important;
+
 }
 
 #inform_content {
@@ -122,15 +123,16 @@ section {
 
 /*section3*/
 
-body{padding-top:0px;}
+/*body{padding-top:0px;}
 #carousel {
     margin-bottom: 0;
-    padding: 0 40px 30px 40px;
+    padding: 0 40px 30px 60px;
     display:inline-block;
+    
     
 }
 
-/* The controlsy */
+/* The controlsy 
 .carousel-control {
 	left: -12px;
     height: 40px;
@@ -143,14 +145,14 @@ body{padding-top:0px;}
 .carousel-control.right {
 	right: -12px;
 }
-/* The indicators */
+ The indicators 
 .carousel-indicators {
 	right: 50%;
 	top: auto;
 	bottom: -10px;
 	margin-right: -19px;
 }
-/* The colour of the indicators */
+/* The colour of the indicators 
 .carousel-indicators li {
 	background: #cecece;
 }
@@ -171,8 +173,7 @@ background: #428bca;
 
 .btn{
 	padding:0 0.8rem !important;
-	width: 120px;
-}
+}*/
 
 .carousel_nav{
 	display: flex;
@@ -182,6 +183,7 @@ background: #428bca;
 .carousel{
 	width:88% !important;
 	display: inline-block !important;
+	
 }
 
 .carou_arrow{
