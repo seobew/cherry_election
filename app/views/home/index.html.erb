@@ -61,7 +61,7 @@
                 
                 <%= form_tag("/article/like_cancel", method: "post") do %>
                   <%= hidden_field_tag :article , article.id %>
-                  <%= submit_tag("좋아요 취소(#{article.like})", :class=>"btn waves-effect waves-light") %>
+                  <%= submit_tag("좋아요 취소(#{article.like})", :class =>"btn waves-effect waves-light") %>
                 <% end %>
                 </div>
           
@@ -69,7 +69,7 @@
         
                 <%= form_tag("/article/unlike", method: "post") do %>
                   <%= hidden_field_tag :article , article.id %>
-                  <%= submit_tag("싫어요(#{article.unlike})", :class=>"btn waves-effect waves-light") %>
+                  <%= submit_tag("싫어요(#{article.unlike})", :class =>"btn waves-effect waves-light") %>
                 <% end %>
               </div>
               
@@ -78,14 +78,14 @@
           
                 <%= form_tag("/article/like", method: "post") do %>
                   <%= hidden_field_tag :article , article.id %>
-                  <%= submit_tag("좋아요(#{article.like})", :class=>"btn waves-effect waves-light") %>
+                  <%= submit_tag("좋아요(#{article.like})", :class =>"btn waves-effect waves-light") %>
                 <% end %>
               </div>
            <div class="col s2 l2">
           
                 <%= form_tag("/article/unlike_cancel", method: "post") do %>
                   <%= hidden_field_tag :article , article.id %>
-                  <%= submit_tag("싫어요 취소(#{article.unlike})", :class=>"btn waves-effect waves-light") %>
+                  <%= submit_tag("싫어요 취소(#{article.unlike})", :class =>"btn waves-effect waves-light") %>
                 <% end %>
               </div>
             <% end %>
@@ -97,7 +97,7 @@
     
             <%= form_tag("/article/like", method: "post") do %>
               <%= hidden_field_tag :article , article.id %>
-              <%= submit_tag("좋아요(#{article.like})", :class=>"btn waves-effect waves-light") %>
+              <%= submit_tag("좋아요(#{article.like})", :class =>"btn waves-effect waves-light") %>
             <% end %>
           
         </div>
@@ -105,7 +105,7 @@
           
             <%= form_tag("/article/unlike", method: "post") do %>
               <%= hidden_field_tag :article , article.id %>
-              <%= submit_tag("싫어요(#{article.unlike})", :class=>"btn waves-effect waves-light") %>
+              <%= submit_tag("싫어요(#{article.unlike})", :class =>"btn waves-effect waves-light") %>
             <% end %>
             <% end %>
           </div>
