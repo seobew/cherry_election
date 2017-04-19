@@ -120,9 +120,9 @@
  
 <section>
      
-    <div class="container">
+    <div class="container col s12 m12 l12">
       <div class="row">
-    		<div class="col s12 m12 l12">
+    	
     		  <%= image_tag ('left-arrow.png'), :class => "fa-angle-left carou_arrow" %>
           <div class="carousel">
             <% @candidates.each do |candidate| %>
@@ -130,7 +130,7 @@
             <% end %>
           </div>
           <%= image_tag ('right-arrow.png'), :class => "fa-angle-right carou_arrow" %>
-    		</div>
+
     		
     	</div>
     </div>
@@ -166,21 +166,21 @@ $('.carousel').carousel('set', 4);*/
 
       var carouselAutoplay = setInterval(function(){
             $('.fa-angle-right').click();
-          }, 7000);
+          }, 8000);
 
       $('.fa-angle-right').click(function(){
         $('.carousel').carousel('next');
         clearInterval(carouselAutoplay);
         carouselAutoplay = setInterval(function(){
             $('.fa-angle-right').click();
-          }, 7000);
+          }, 8000);
       });
       $('.fa-angle-left').click(function(){
         $('.carousel').carousel('prev');
         clearInterval(carouselAutoplay);
         carouselAutoplay = setInterval(function(){
             $('.fa-angle-left').click();
-          }, 7000);
+          }, 8000);
       });
       
 });           
