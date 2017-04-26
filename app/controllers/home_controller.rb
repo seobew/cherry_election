@@ -127,25 +127,25 @@ class HomeController < ApplicationController
   end
 
   def search
-    article = Article.new
+
 
     candi_name = ["문재인", "홍준표", "안철수", "유승민", "심상정", "조원진", "오영국", "장성민", "이재오", "김선동", "남재준", "이경희", "이경희", "김정선", "윤홍식", "김민찬"]
 
     #name = 검색할 후보자 이름
-
-
 
     #num = 페이지 수
     num = 0
 
     #post = 신문사 번호
     #0 : 한겨레, 1 : 조선일보, 2 : 중앙일보, 3 : 동아일보, 4 : 경향신문, 5 : 서울신문, 6 : jtbc
-    post = 6
+    #post = 6
 
 
     for name in candi_name
 
       for post in 0..6
+        article = Article.new
+
         cand = Candidate.where(name: name)
         de_name = CGI::escape(name)
 
