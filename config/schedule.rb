@@ -17,4 +17,8 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
+every :day, :at => '06:00am' do
+  rake "db_article:article_task"
+end
+
 # Learn more: http://github.com/javan/whenever
