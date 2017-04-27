@@ -129,7 +129,10 @@
     		  <%= image_tag ('left-arrow.png'), :class => "fa-angle-left carou_arrow" %>
           <div class="carousel">
             <% @candidates.each do |candidate| %>
-              <a class="carousel-item" href="/home/candidate/<%= candidate.id %>"><%= image_tag (candidate.image), :class => "circle responsive-img" %></a>
+              <a class="carousel-item" href="/home/candidate/<%= candidate.id %>">
+                <%= image_tag (candidate.image), :class => "circle responsive-img" %>
+                <div class="circle_number_name">기호 <%=candidate.id%> <%=candidate.name%></div>
+              </a>
             <% end %>
           </div>
           <%= image_tag ('right-arrow.png'), :class => "fa-angle-right carou_arrow" %>

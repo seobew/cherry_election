@@ -192,3 +192,17 @@ background: #428bca;
 .carou_arrow{
 	width:5%;	
 }
+
+.circle_number_name{
+	display: flex;
+	justify-content: center;
+}
+
+#header_nav{
+	float:right;
+	margin-right:3%;
+}
+
+.menu_btn{
+	margin-right:20px;
+}
