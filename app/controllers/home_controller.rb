@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   def index
     @message = params[:message]
     @candidates = Candidate.all
-    @candidate = @candidates.order("RANDOM()").first
+    @candidate = @candidates.sample
     @articles = Article.all
   end
   
