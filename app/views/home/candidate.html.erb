@@ -21,14 +21,8 @@
           </div>
         </div>
       </div>
-
     </div>
-
-
-
-
-
-
+    
 
     <!--워드클라우드-->
     <div class="flexbox">
@@ -36,9 +30,7 @@
     </div>
 
 
-
-
-
+    <!--해당후보 기사들-->
     <% @articles.each do |article| %>
         <div class="flexbox">
           <div class="col s12 m8 offset-m2 l6 offset-l3 card_content">
@@ -46,48 +38,19 @@
               <div class="flexbox valign-wrapper">
                 <div class="article_pic" style="flex: 1;">
                   <%= image_tag (@candidate.image), :class => "circle responsive-img",:style =>"margin-left: 10px" %>
-              
                 </div>
-
                 <div class="article" style="flex: 6; padding-left: 5%;">
                   <a href= "<%= article.link %>"><%=article.title%></a>
                 </div>
                 <div class="article_like" style="flex: 3;">
-                  <a href= "/home/like/<%=article.id%>">좋아요</a>(<%=article.like%>)
-                  <a href= "/home/unlike/<%=article.id%>">싫어요</a>(<%=article.unlike%>)
+                  <a href= "/home/like/<%=article.id%>">좋아요</a>(<%=article.like || 0%>)
+                  <a href= "/home/unlike/<%=article.id%>">싫어요</a>(<%=article.unlike || 0%>)
                 </div>
 
               </div>
             </div>
           </div>
         </div>
-
-
-
-
-
-        <div class="flexbox">
-          <div class="col s12 m8 offset-m2 l6 offset-l3 card_content">
-            <div class="card-panel white z-depth-1" style="padding: 10px;">
-              <div class="flexbox valign-wrapper">
-                <div class="article_pic" style="flex: 1;">
-                  <%= image_tag (@candidate.image), :class => "circle responsive-img",:style =>"margin-left: 10px" %>
-                </div>
-
-                <div class="article" style="flex: 6; padding-left: 5%;">
-                  <a href= "<%= article.link %>"><%=article.title%></a>
-                </div>
-                <div class="article_like" style="flex: 3;">
-                  <a href= "/home/like/<%=article.id%>">좋아요</a>(<%=article.like%>)
-                  <a href= "/home/unlike/<%=article.id%>">싫어요</a>(<%=article.unlike%>)
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-
     <% end %>
 
 
