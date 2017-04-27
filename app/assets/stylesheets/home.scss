@@ -34,6 +34,14 @@
   text-align: center;
 }
 
+.carousel {
+  height:60px !important;
+}
+
+.carousel .carousel-item {
+  width: 140px !important;
+  height: 40px !important;
+}
 
 #inform_wrapper{
     width:100%;
@@ -140,12 +148,12 @@
 
 .fa-angle-left {
   float: left;
-  margin-top: 170px;
+  margin-top: 97px;
 }
 
 .fa-angle-right {
   float: right;
-  margin-top: 170px;
+  margin-top: 97px;
 }
 
 @media screen and (min-width:800px) {

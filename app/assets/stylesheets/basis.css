@@ -102,11 +102,6 @@ section {
     
 }
 
-.carousel .carousel-item {   
-	opacity: 1 !important;
-
-}
-
 #inform_content {
     padding: 50px;
     background-color: rgb(224,224,224);
@@ -156,8 +151,9 @@ background: #428bca;
 
 .carousel .carousel-item {
 	opacity: 1 !important;
-	margin-left: 11% !important;
-	
+	/*margin-left: 11% !important; */
+	color: #000000;
+	font-size: 25px;
 }
 
 .carousel .carousel-item img {
@@ -178,13 +174,12 @@ background: #428bca;
 }
 
 .carousel{
-	width:90% !important;
 	display: inline-block !important;
 	
 }
 
 .carou_arrow{
-	width:5%;	
+	width:3%;	
 }
 
 
