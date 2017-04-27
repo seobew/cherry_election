@@ -2,10 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/stylesheets/NotoSansKR-Hestia.css);
+@import url(http://fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
 
 *{
-    margin:0;
-  font-family:'Noto Sans Korean';
+  margin:0;
+  font-family: 'Nanum Myeongjo', serif;
 }
 
 #inform_wrapper{
