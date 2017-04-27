@@ -1,8 +1,11 @@
-<nav>
-    <div class="nav-wrapper #f06292 pink lighten-2">
-      <a href="/" class="brand-logo center">벚꽃대선</a>
+<nav id="header-nav">
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo center">
+        <%= image_tag ("sakura_logo_text.png"), :id => "sakura_logo_text"%>
+      </a>
+      <!--<a href="/" class="brand-logo center">벚꽃대선</a>-->
     </div>
- </nav>
+</nav>
  
 <!-- 정보 버튼 넣기 -->
  <div class="fixed-action-btn">
@@ -23,12 +26,9 @@
 
 <!--header 부분에만 사쿠라 흩날리기/인포정보 팝업버튼 -->
 <script>
-    $(document).ready(function() {
-        $('.nav-wrapper').sakura();
-        $('#modal1').modal();
+    // $(document).ready(function() {
+    //     $('.nav-wrapper').sakura();
+    //     $('#modal1').modal();
         
-    });
-    
-     
-     
+    // });
 </script>
