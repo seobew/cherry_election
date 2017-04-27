@@ -9,6 +9,8 @@
   font-family: 'Nanum Myeongjo', serif;
 }
 
+// 헤더 부분
+
 #header-nav {
   height: 320px;
   box-shadow: none;
@@ -25,6 +27,11 @@
 #sakura_logo_text {
   height: 150px;
   margin: 75px auto;
+}
+
+// 인덱스 부분(첫페이지)
+.random_candidate {
+  text-align: center;
 }
 
 

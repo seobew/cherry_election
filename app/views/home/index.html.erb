@@ -1,25 +1,28 @@
 <!--특정후보--> 
-<section>
-<div class="container main">
+<section class="random_candidate">
+
+<a href="/home/candidate/<%= @candidate.id %>"><%= image_tag ("kimminchan_profile.png"), :style =>"width: 50%;" %></a>
+
+
+<!--<div class="container main">-->
   
-  <div class="card_content">
-    <div class="flexbox" style="margin-top:-10px; margin-bottom:20px">
-      <div class="col s12 m8 offset-m2 l8 offset-l2 card_content">
-        <div class="card-panel grey lighten-2 z-depth-1">
-          <div class="flexbox valign-wrapper" style="justify-content: space-between;">
-            <div style="flex: 1; padding: 10px;">
-              <%= image_tag (@candidate.image), :class => "circle responsive-img", :style =>"box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.60);" %>
-            </div>
-            <div style="flex: 3; margin-left: 10px;">
-              <div id="candidate_inform">
-                 <p class="candidate_content"><strong style="font-size: 40px"><a style="text-decorations:none; color:inherit;" href="/home/candidate/<%= @candidate.id %>"><%=@candidate.name%></a></strong>기호<%= @candidate.number %>&nbsp;(<%=@candidate.party %>)</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-   
+<!--  <div class="card_content">-->
+<!--    <div class="flexbox" style="margin-top:-10px; margin-bottom:20px">-->
+<!--      <div class="col s12 m8 offset-m2 l8 offset-l2 card_content">-->
+<!--        <div class="card-panel grey lighten-2 z-depth-1">-->
+<!--          <div class="flexbox valign-wrapper" style="justify-content: space-between;">-->
+<!--            <div style="flex: 1; padding: 10px;">-->
+<!--              <%= image_tag (@candidate.image), :class => "circle responsive-img", :style =>"box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.60);" %>-->
+<!--            </div>-->
+<!--            <div style="flex: 3; margin-left: 10px;">-->
+<!--              <div id="candidate_inform">-->
+<!--                 <p class="candidate_content"><strong style="font-size: 40px"><a style="text-decorations:none; color:inherit;" href="/home/candidate/<%= @candidate.id %>"><%=@candidate.name%></a></strong>기호<%= @candidate.number %>&nbsp;(<%=@candidate.party %>)</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
 </section>
     
     
