@@ -122,13 +122,13 @@
     <div class="container col s12 m12 l12">
       <div class="row">
     	
-    		  <%= image_tag ('left-arrow.png'), :class => "fa-angle-left carou_arrow" %>
-          <div class="carousel">
+    	 <%= image_tag ('left-arrow.png'), :class => "fa-angle-left carou_arrow" %>
+          <div class="carousel" >
             <% @candidates.each do |candidate| %>
               <a class="carousel-item" href="/home/candidate/<%= candidate.id %>"><%= image_tag (candidate.image), :class => "circle responsive-img" %></a>
             <% end %>
           </div>
-          <%= image_tag ('right-arrow.png'), :class => "fa-angle-right carou_arrow" %>
+        <%= image_tag ('right-arrow.png'), :class => "fa-angle-right carou_arrow" %> 
 
     		
     	</div>
@@ -150,6 +150,7 @@ $('.carousel').carousel({
         duration:50,
         padding:20,
         nowrap:false,
+        indicators:true,
         
       });
       
@@ -161,7 +162,7 @@ $('.carousel').carousel('next', 3); // Move next n times.
 $('.carousel').carousel('prev');
 $('.carousel').carousel('prev', 4); // Move prev n times.
 // Set to nth slide
-$('.carousel').carousel('set', 4);*/
+$('.carousel').carousel('set', 4);
 
       var carouselAutoplay = setInterval(function(){
             $('.fa-angle-right').click();
@@ -180,7 +181,7 @@ $('.carousel').carousel('set', 4);*/
         carouselAutoplay = setInterval(function(){
             $('.fa-angle-left').click();
           }, 8000);
-      });
+      }); */
       
 });           
       
