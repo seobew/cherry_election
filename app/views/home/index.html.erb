@@ -34,7 +34,9 @@
         <!--후보자 이름-->
         <div class="col s2 l2">
           <div class="article_candidate">
-            <a class="section2" href="#">후보자</a>
+            <% article.candidates.each do |candi| %>
+              <a class="section2" href="https://cherry-election-kanghyeongmin.c9users.io/home/candidate/<%=candi.id%>"><%= candi.name %></a>
+            <% end %>
           </div>
        </div>
         
