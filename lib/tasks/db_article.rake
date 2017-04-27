@@ -8,7 +8,7 @@ namespace :db_article do
   task article_task: :environment do
 
 
-    candi_name = ["문재인", "홍준표", "안철수", "유승민", "심상정", "조원진", "오영국", "장성민", "이재오", "김선동", "남재준", "이경희", "이경희", "김정선", "윤홍식", "김민찬"]
+    candi_name = ["문재인", "홍준표", "안철수", "유승민", "심상정", "조원진", "오영국", "장성민", "이재오", "김선동", "남재준", "이경희", "이경희", "윤홍식", "김민찬"]
 
     #name = 검색할 후보자 이름
 
@@ -23,6 +23,7 @@ namespace :db_article do
     for name in candi_name
 
       desc "start #{name}"
+      puts "start #{name}"
 
       for post in 0..6
         article = Article.new
@@ -31,6 +32,7 @@ namespace :db_article do
         de_name = CGI::escape(name)
 
         desc "#{name} - #{post}"
+        puts "#{name} - #{post}"
 
         if post == 0
           one = Nokogiri::HTML(open("http://search.hani.co.kr/Search?command=query&keyword=#{de_name}&media=news&sort=d&period=all&pageseq=#{num}"))
@@ -38,7 +40,7 @@ namespace :db_article do
           t.each do |i|
             article.title =  i.inner_text
             article.publisher = "한겨레"
-            article.link = puts i['href']
+            article.link = i['href']
             article.candidates = cand
             article.save
           end
@@ -49,7 +51,7 @@ namespace :db_article do
           t.each do |i|
             article.title =  i.inner_text
             article.publisher = "조선일보"
-            article.link = puts i['href']
+            article.link = i['href']
             article.candidates = cand
             article.save
           end
@@ -59,7 +61,7 @@ namespace :db_article do
           t.each do |i|
             article.title =  i.inner_text
             article.publisher = "중앙일보"
-            article.link = puts i['href']
+            article.link = i['href']
             article.candidates = cand
             article.save
           end
@@ -70,7 +72,7 @@ namespace :db_article do
           t.each do |i|
             article.title =  i.inner_text
             article.publisher = "동아일보"
-            article.link = puts i['href']
+            article.link = i['href']
             article.candidates = cand
             article.save
           end
@@ -81,7 +83,7 @@ namespace :db_article do
           t.each do |i|
             article.title =  i.inner_text
             article.publisher = "경향신문"
-            article.link = puts i['href']
+            article.link = i['href']
             article.candidates = cand
             article.save
           end
@@ -92,7 +94,7 @@ namespace :db_article do
           t.each do |i|
             article.title =  i.inner_text
             article.publisher = "서울일보"
-            article.link = puts i['href']
+            article.link = i['href']
             article.candidates = cand
             article.save
           end
@@ -103,7 +105,7 @@ namespace :db_article do
           t.each do |i|
             article.title =  i.inner_text
             article.publisher = "JTBC"
-            article.link = puts i['href']
+            article.link = i['href']
             article.candidates = cand
             article.save
           end
@@ -111,6 +113,9 @@ namespace :db_article do
       end
 
     end
+
+    desc "finish!"
+    puts "finish!"
 
   end
 
