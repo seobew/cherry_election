@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   def index
     @message = params[:message]
     @candidates = Candidate.all
-    @candidate = @candidates.order("RANDOM()").first
+    @candidate = @candidates.sample
     @articles = Article.all
   end
   
@@ -128,7 +128,7 @@ class HomeController < ApplicationController
 
   def search
 
-    candi_name = ["문재인", "홍준표", "안철수", "유승민", "심상정", "조원진", "오영국", "장성민", "이재오", "김선동", "남재준", "이경희", "이경희", "김정선", "윤홍식", "김민찬"]
+    candi_name = ["문재인", "홍준표", "안철수", "유승민", "심상정", "조원진", "오영국", "장성민", "이재오", "김선동", "남재준", "이경희", "이경희", "윤홍식", "김민찬"]
 
     #name = 검색할 후보자 이름
 
