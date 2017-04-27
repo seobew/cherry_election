@@ -13,12 +13,6 @@
             <div style="flex: 3; margin-left: 10px;">
               <div id="candidate_inform">
                  <p class="candidate_content"><strong style="font-size: 40px"><a style="text-decorations:none; color:inherit;" href="/home/candidate/<%= @candidate.id %>"><%=@candidate.name%></a></strong>기호<%= @candidate.number %>&nbsp;(<%=@candidate.party %>)</p>
-                  
-                  <% @articles.each do |article| %>
-                <ul>
-                  <li><a href= "<%= article.link %>"><%=article.title%></a></li>
-                </ul>
-                <%end%>
               </div>
             </div>
           </div>
