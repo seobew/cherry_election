@@ -1,11 +1,3 @@
-
-
-*{
-    margin:0;
-}
-
-
-
 a {
     text-decoration: none;
     color: inherit;
@@ -110,11 +102,6 @@ section {
     
 }
 
-.carousel .carousel-item {   
-	opacity: 1 !important;
-
-}
-
 #inform_content {
     padding: 50px;
     background-color: rgb(224,224,224);
@@ -153,8 +140,9 @@ body{padding-top:0px;}
 	margin-right: -19px;
 }
  The colour of the indicators 
+ 
 .carousel-indicators li {
-	background: #cecece;
+	background: rgba(111, 54, 54, 0.5) !important;
 }
 .carousel-indicators .active {
 background: #428bca;
@@ -163,8 +151,9 @@ background: #428bca;
 
 .carousel .carousel-item {
 	opacity: 1 !important;
-	margin-left: 11% !important;
-	
+	/*margin-left: 11% !important; */
+	color: #000000;
+	font-size: 25px;
 }
 
 .carousel .carousel-item img {
@@ -175,7 +164,11 @@ background: #428bca;
 
 .btn{
 	padding:0 0.8rem !important;
-	width: 120px;
+	border-radius: 10px !important;
+	width: 80%;
+	box-shadow: none !important;
+	margin-bottom: 4px;
+	color: rgba(0,0,0,0.5) !important;
 }
 
 .carousel_nav{
@@ -184,12 +177,12 @@ background: #428bca;
 }
 
 .carousel{
-	width:88% !important;
 	display: inline-block !important;
 	
 }
 
 .carou_arrow{
+<<<<<<< HEAD
 	width:5%;	
 }
 
@@ -206,3 +199,17 @@ background: #428bca;
 .menu_btn{
 	margin-right:20px;
 }
+=======
+	width:3%;	
+}
+
+
+.carousel .indicators .indicator-item {
+  background-color: #f06292;
+ 
+}
+
+.carousel .indicators .indicator-item.active {
+  background-color: #f8bbd0;
+}
+>>>>>>> iseob_facebook

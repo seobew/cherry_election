@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   def index
     @message = params[:message]
     @candidates = Candidate.all
-    @candidate = @candidates.order("RANDOM()").first
+    @candidate = @candidates.sample
     @articles = Article.all
   end
   
@@ -97,6 +97,8 @@ class HomeController < ApplicationController
   
   def candidate
     @candidate=Candidate.find(params[:candidate_id])
+    @rank_in_order = Candidate.order(:rank).reverse.index(@candidate) + 1
+    @rate = @candidate.rank
     @articles = Article.all
     
     # wordcloud용 array
@@ -110,25 +112,11 @@ class HomeController < ApplicationController
         @weights.push(s.split(":")[1].to_i)
       end
     end
-
-    # 지지율 크롤링
-    # 크롤링 에러로 임시 주석처리, @rate에 임시 int값 하드코딩
-    # board = Nokogiri::HTML(open("http://www.gallup.co.kr/gallupdb/report.asp"))
-    # # t = board.at('span:contains("2017")')
-    # t = board.search "[text()*='지지도']"
-    # link_text =  t.first.parent["href"]
-    # board2 = Nokogiri::HTML(open("http://www.gallup.co.kr/gallupdb/#{link_text}"))
-    # tt = board2.search "[text()*='대선 후보 지지도:']"
-    # tt = tt.text
-    # name_index = tt.index(@candidate.name)
-    # ttt = tt[name_index+3..name_index+6]
-    # @rate = ttt.to_i
-    @rate = 34
   end
 
   def search
 
-    candi_name = ["문재인", "홍준표", "안철수", "유승민", "심상정", "조원진", "오영국", "장성민", "이재오", "김선동", "남재준", "이경희", "이경희", "김정선", "윤홍식", "김민찬"]
+    candi_name = ["문재인", "홍준표", "안철수", "유승민", "심상정", "조원진", "오영국", "장성민", "이재오", "김선동", "남재준", "이경희", "이경희", "윤홍식", "김민찬"]
 
     #name = 검색할 후보자 이름
 

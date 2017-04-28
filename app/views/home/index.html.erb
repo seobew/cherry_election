@@ -1,58 +1,54 @@
 <!--특정후보--> 
-<section>
-<div class="container main">
-  
-  <div class="card_content">
-    <div class="flexbox" style="margin-top:-10px; margin-bottom:20px">
-      <div class="col s12 m8 offset-m2 l8 offset-l2 card_content">
-        <div class="card-panel grey lighten-2 z-depth-1">
-          <div class="flexbox valign-wrapper" style="justify-content: space-between;">
-            <div style="flex: 1; padding: 10px;">
-              <%= image_tag (@candidate.image), :class => "circle responsive-img", :style =>"box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.60);" %>
-            </div>
-            <div style="flex: 3; margin-left: 10px;">
-              <div id="candidate_inform">
-                 <p class="candidate_content"><strong style="font-size: 40px"><a style="text-decorations:none; color:inherit;" href="/home/candidate/<%= @candidate.id %>"><%=@candidate.name%></a></strong>기호<%= @candidate.number %>&nbsp;(<%=@candidate.party %>)</p>
-                  
-                  <% @articles.each do |article| %>
-                <ul>
-                  <li><a href= "<%= article.link %>"><%=article.title%></a></li>
-                </ul>
-                <%end%>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+<section class="random_candidate">
+  <div class="row">
+    <div class="col offset-m1 m10 offset-l3 l6">
+      <a href="/home/candidate/<%= @candidate.id %>"><%= image_tag ("kimminchan_profile.png"), :style =>"width: 100%;" %></a>
     </div>
-   
+  </div>
 </section>
     
     
-<div class="divider"></div>
+<!--텍스트 카로우셀-->
+<section>
+  <div class="row">
+    <div class="col offset-m1 m10 offset-l2 l8">
+      <div class="carousel" >
+        <% @candidates.each do |candidate| %>
+          <a class="carousel-item" href="/home/candidate/<%= candidate.id %>"><%=candidate.number%>.<%=candidate.name%></a>
+        <% end %>
+      </div>
+  	</div>
+  </div>  
+</section>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <scetion>
-  <div class="container" style="padding-top:15px;">
+  <div class="container">
     <% @articles.each do |article| %>
       <div class="row">
-      
+        <hr class="article-border">
         <!--후보자 이름-->
         <div class="col s2 l2">
           <div class="article_candidate">
-            <a class="section2" href="#">후보자</a>
+            <% article.candidates.each do |candi| %>
+              <a class="section2" href="https://cherry-election-kanghyeongmin.c9users.io/home/candidate/<%=candi.id%>"><%= candi.name %></a>
+            <% end %>
           </div>
-       </div>
+        </div>
         
         <!--기사 제목-->
-      <div class="col s6 l6">
-          <div class="article_link">
-            <a href= "<%= article.link %>" class="section2"><%=article.title%></a>
-            <br><p><%=article.publisher %>(<%=article.article_date %>)</p>
-            
-            
+        <div class="col s8 l8">
+          <div class="article_title">
+            <a href= "<%= article.link %>" class="section2">[<%=article.publisher %>] <%=article.title%></a>
+            <br><p>(<%=article.article_date %>)</p>
           </div>
-      </div>
+        </div>
         
         <!--좋아요,싫어요 버튼-->
           <% userfavor = Userfavor.find_by(article_id: article.id,user_id: current_user) %>
@@ -64,7 +60,7 @@
                 
                 <%= form_tag("/article/like_cancel", method: "post") do %>
                   <%= hidden_field_tag :article , article.id %>
-                  <%= submit_tag("좋아요 취소(#{article.like})", :class =>"btn waves-effect waves-light") %>
+                  <%= submit_tag("좋아요 취소(#{article.like || 0})", :class =>"btn waves-effect waves-red") %>
                 <% end %>
                 </div>
           
@@ -72,7 +68,7 @@
         
                 <%= form_tag("/article/unlike", method: "post") do %>
                   <%= hidden_field_tag :article , article.id %>
-                  <%= submit_tag("싫어요(#{article.unlike})", :class =>"btn waves-effect waves-light") %>
+                  <%= submit_tag("싫어요(#{article.unlike || 0})", :class =>"btn waves-effect") %>
                 <% end %>
               </div>
               
@@ -81,14 +77,14 @@
           
                 <%= form_tag("/article/like", method: "post") do %>
                   <%= hidden_field_tag :article , article.id %>
-                  <%= submit_tag("좋아요(#{article.like})", :class =>"btn waves-effect waves-light") %>
+                  <%= submit_tag("좋아요(#{article.like || 0})", :class =>"btn waves-effect waves-red") %>
                 <% end %>
               </div>
            <div class="col s2 l2">
           
                 <%= form_tag("/article/unlike_cancel", method: "post") do %>
                   <%= hidden_field_tag :article , article.id %>
-                  <%= submit_tag("싫어요 취소(#{article.unlike})", :class =>"btn waves-effect waves-light") %>
+                  <%= submit_tag("싫어요 취소(#{article.unlike || 0})", :class =>"btn waves-effect") %>
                 <% end %>
               </div>
             <% end %>
@@ -100,7 +96,7 @@
     
             <%= form_tag("/article/like", method: "post") do %>
               <%= hidden_field_tag :article , article.id %>
-              <%= submit_tag("좋아요(#{article.like})", :class =>"btn waves-effect waves-light") %>
+              <%= submit_tag("좋아요(#{article.like || 0})", :class =>"btn red lighten-4 waves-effect") %>
             <% end %>
           
         </div>
@@ -108,7 +104,7 @@
           
             <%= form_tag("/article/unlike", method: "post") do %>
               <%= hidden_field_tag :article , article.id %>
-              <%= submit_tag("싫어요(#{article.unlike})", :class =>"btn waves-effect waves-light") %>
+              <%= submit_tag("싫어요(#{article.unlike || 0})", :class =>"btn grey lighten-1 waves-effect") %>
             <% end %>
             <% end %>
           </div>
@@ -116,9 +112,9 @@
       </div> <!--end of row-->
     <%end%> <!--end of for @articles.each-->
   </div> <!--end of container-->
-  
 </section>
 
+<<<<<<< HEAD
  <div class="divider"></div>
  
 <section>
@@ -146,9 +142,10 @@
  
 
 
+=======
+>>>>>>> iseob_facebook
 
 <script>
-
 $(document).ready(function(){
 $('.carousel').carousel({
         full_width:true,
@@ -157,6 +154,7 @@ $('.carousel').carousel({
         duration:50,
         padding:20,
         nowrap:false,
+        indicators:true,
         
       });
       
@@ -168,7 +166,7 @@ $('.carousel').carousel('next', 3); // Move next n times.
 $('.carousel').carousel('prev');
 $('.carousel').carousel('prev', 4); // Move prev n times.
 // Set to nth slide
-$('.carousel').carousel('set', 4);*/
+$('.carousel').carousel('set', 4);
 
       var carouselAutoplay = setInterval(function(){
             $('.fa-angle-right').click();
@@ -187,7 +185,7 @@ $('.carousel').carousel('set', 4);*/
         carouselAutoplay = setInterval(function(){
             $('.fa-angle-left').click();
           }, 8000);
-      });
+      }); */
       
 });           
       

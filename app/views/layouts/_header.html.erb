@@ -1,16 +1,12 @@
-<nav>
-    <div class="nav-wrapper #f06292 pink lighten-2">
-      <a href="/" class="brand-logo center">벚꽃대선</a>
-      <div id="header_nav">
-          <% if current_user %>
-              <%= link_to "로그아웃", destroy_user_session_path, class: "menu_btn", method: 'delete' %>
-          <% else %>
-              <%= link_to "회원가입", new_user_registration_path, class: "menu_btn" %>
-              <%= link_to "로그인", new_user_session_path, class: "menu_btn" %>
-          <% end %>
-      </div>
+<nav id="header-nav">
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo center">
+        <%= image_tag ("sakura_logo_text.png"), :id => "sakura_logo_text"%>
+      </a>
+      <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+      <!--<a href="/" class="brand-logo center">벚꽃대선</a>-->
     </div>
- </nav>
+</nav>
  
 <!-- 정보 버튼 넣기 -->
  <div class="fixed-action-btn">
@@ -20,9 +16,8 @@
   <div id="modal1" class="modal">
     <div class="modal-content">
       <h4>벚꽃대선이란?</h4>
-      <p>제 19대 대선 후보 15명의 관련 정보를 모아 놓은 싸이트입니다. <br>일부 정보나 의견을 듣고 
-      어떤 후보를 선택할지 결정하지 않고 <strong>여러 객관적인 정보</strong>
-      를 접하고 <strong>자신만의 합리적인 판단하</strong>에 제 19대 대통령을 결정하셨으면 좋겠습니다. </p>
+      <p>제 19대 대선 후보 15명의 관련 정보와 기사를 모아 놓은 사이트입니다. <br>
+      일부 정보나 의견만으로 후보를 선택하지 않고 <strong>여러 객관적인 정보</strong>와 <strong>자신만의 합리적인 판단</strong> 하에 제 19대 대통령을 결정하셨으면 좋겠습니다. </p>
     </div>
     <div class="modal-footer">
       <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">돌아가기</a>
@@ -37,7 +32,4 @@
         $('#modal1').modal();
         
     });
-    
-     
-     
 </script>
