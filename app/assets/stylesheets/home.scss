@@ -35,12 +35,34 @@
 }
 
 .carousel {
-  height:60px !important;
+  height: 60px !important;
 }
 
 .carousel .carousel-item {
   width: 140px !important;
   height: 40px !important;
+}
+
+.article-border {
+  margin-left: 17%;
+  margin-bottom: 30px;
+  width: 79%;
+}
+
+.article_candidate {
+  margin-top: 20px;
+}
+
+.article_candidate a {
+  font-size: 25px;
+  color: black;
+  border: thin solid black;
+  padding: 20px 10px;
+}
+
+.article_title a {
+  font-size: 25px;
+  color: black;
 }
 
 #inform_wrapper{

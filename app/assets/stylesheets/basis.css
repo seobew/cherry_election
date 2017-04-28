@@ -164,8 +164,11 @@ background: #428bca;
 
 .btn{
 	padding:0 0.8rem !important;
-	width: 120px;
-   
+	border-radius: 10px !important;
+	width: 80%;
+	box-shadow: none !important;
+	margin-bottom: 4px;
+	color: black !important;
 }
 
 .carousel_nav{

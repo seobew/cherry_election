@@ -21,12 +21,18 @@
   </div>  
 </section>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <scetion>
-  <div class="container" style="padding-top:15px;">
+  <div class="container">
     <% @articles.each do |article| %>
       <div class="row">
-      
+        <hr class="article-border">
         <!--후보자 이름-->
         <div class="col s2 l2">
           <div class="article_candidate">
@@ -34,17 +40,15 @@
               <a class="section2" href="https://cherry-election-kanghyeongmin.c9users.io/home/candidate/<%=candi.id%>"><%= candi.name %></a>
             <% end %>
           </div>
-       </div>
+        </div>
         
         <!--기사 제목-->
-      <div class="col s6 l6">
-          <div class="article_link">
-            <a href= "<%= article.link %>" class="section2"><%=article.title%></a>
-            <br><p><%=article.publisher %>(<%=article.article_date %>)</p>
-            
-            
+        <div class="col s8 l8">
+          <div class="article_title">
+            <a href= "<%= article.link %>" class="section2">[<%=article.publisher %>] <%=article.title%></a>
+            <br><p>(<%=article.article_date %>)</p>
           </div>
-      </div>
+        </div>
         
         <!--좋아요,싫어요 버튼-->
           <% userfavor = Userfavor.find_by(article_id: article.id,user_id: current_user) %>
@@ -56,7 +60,7 @@
                 
                 <%= form_tag("/article/like_cancel", method: "post") do %>
                   <%= hidden_field_tag :article , article.id %>
-                  <%= submit_tag("좋아요 취소(#{article.like || 0})", :class =>"btn waves-effect waves-light") %>
+                  <%= submit_tag("좋아요 취소(#{article.like || 0})", :class =>"btn waves-effect waves-red") %>
                 <% end %>
                 </div>
           
@@ -64,7 +68,7 @@
         
                 <%= form_tag("/article/unlike", method: "post") do %>
                   <%= hidden_field_tag :article , article.id %>
-                  <%= submit_tag("싫어요(#{article.unlike || 0})", :class =>"btn waves-effect waves-light") %>
+                  <%= submit_tag("싫어요(#{article.unlike || 0})", :class =>"btn waves-effect") %>
                 <% end %>
               </div>
               
@@ -73,14 +77,14 @@
           
                 <%= form_tag("/article/like", method: "post") do %>
                   <%= hidden_field_tag :article , article.id %>
-                  <%= submit_tag("좋아요(#{article.like || 0})", :class =>"btn waves-effect waves-light") %>
+                  <%= submit_tag("좋아요(#{article.like || 0})", :class =>"btn waves-effect waves-red") %>
                 <% end %>
               </div>
            <div class="col s2 l2">
           
                 <%= form_tag("/article/unlike_cancel", method: "post") do %>
                   <%= hidden_field_tag :article , article.id %>
-                  <%= submit_tag("싫어요 취소(#{article.unlike || 0})", :class =>"btn waves-effect waves-light") %>
+                  <%= submit_tag("싫어요 취소(#{article.unlike || 0})", :class =>"btn waves-effect") %>
                 <% end %>
               </div>
             <% end %>
@@ -92,7 +96,7 @@
     
             <%= form_tag("/article/like", method: "post") do %>
               <%= hidden_field_tag :article , article.id %>
-              <%= submit_tag("좋아요(#{article.like || 0})", :class =>"btn waves-effect waves-light") %>
+              <%= submit_tag("좋아요(#{article.like || 0})", :class =>"btn red lighten-4 waves-effect") %>
             <% end %>
           
         </div>
@@ -100,7 +104,7 @@
           
             <%= form_tag("/article/unlike", method: "post") do %>
               <%= hidden_field_tag :article , article.id %>
-              <%= submit_tag("싫어요(#{article.unlike || 0})", :class =>"btn waves-effect waves-light") %>
+              <%= submit_tag("싫어요(#{article.unlike || 0})", :class =>"btn grey lighten-1 waves-effect") %>
             <% end %>
             <% end %>
           </div>
@@ -108,36 +112,10 @@
       </div> <!--end of row-->
     <%end%> <!--end of for @articles.each-->
   </div> <!--end of container-->
-  
 </section>
-
- <div class="divider"></div>
- 
-<section>
-     
-    <div class="container col s12 m12 l12">
-      <div class="row">
-    	
-    	 <%= image_tag ('left-arrow.png'), :class => "fa-angle-left carou_arrow" %>
-          <div class="carousel" >
-            <% @candidates.each do |candidate| %>
-              <a class="carousel-item" href="/home/candidate/<%= candidate.id %>"><%= image_tag (candidate.image), :class => "circle responsive-img" %></a>
-            <% end %>
-          </div>
-        <%= image_tag ('right-arrow.png'), :class => "fa-angle-right carou_arrow" %> 
-
-    		
-    	</div>
-    </div>
-
-         
-</section>
- 
-
 
 
 <script>
-
 $(document).ready(function(){
 $('.carousel').carousel({
         full_width:true,
