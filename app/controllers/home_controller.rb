@@ -99,7 +99,10 @@ class HomeController < ApplicationController
     @candidate=Candidate.find(params[:candidate_id])
     @rank_in_order = Candidate.order(:rank).reverse.index(@candidate) + 1
     @rate = @candidate.rank
-    @articles = Article.all
+    
+    #@articles = Article.all
+    #@articles = Article.find_by(candidate_id: params[:candidate_id])
+    @articles = @candidate.articles
     
     # wordcloud용 array
     @texts =[]
