@@ -185,6 +185,29 @@ background: #428bca;
 	width:3%;	
 }
 
+.circle_number_name{
+	display: flex;
+	justify-content: center;
+}
+
+#header_nav{
+	float:right;
+	margin-right:3%;
+}
+
+.menu_btn{
+	margin-right:20px;
+}
+
+#login_nav{
+	display: flex;
+	flex-direction: row-reverse;
+	margin-right:3%;
+}
+
+#login_nav a{
+	margin-left:2%;
+}
 
 .carousel .indicators .indicator-item {
   background-color: #f06292;
@@ -194,3 +217,4 @@ background: #428bca;
 .carousel .indicators .indicator-item.active {
   background-color: #f8bbd0;
 }
+

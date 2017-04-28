@@ -3,6 +3,15 @@
       <a href="/" class="brand-logo center">
         <%= image_tag ("sakura_logo_text.png"), :id => "sakura_logo_text"%>
       </a>
+      <div id="login_nav">
+          <% if user_signed_in? %>
+              <%= link_to "로그아웃", destroy_user_session_path, method: "delete" %>
+          <% else %>
+              <%= link_to "회원가입", new_user_registration_path %>
+              <%= link_to "로그인", new_user_session_path %>
+              <%= link_to "페이스북으로 로그인", user_facebook_omniauth_authorize_path %>
+          <% end %>
+      </div>
       <!--<a href="/" class="brand-logo center">벚꽃대선</a>-->
     </div>
 </nav>

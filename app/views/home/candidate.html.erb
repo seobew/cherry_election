@@ -97,7 +97,9 @@
 
       $(document).ready(function() {
           $("#word_cloud").jQCloud(word_array);
+          if(json){
           $('#popularity_graph').highcharts(json);
+          }
       });
   </script>
 

@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170417104539) do
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20170427123852) do
+=======
+ActiveRecord::Schema.define(version: 20170428015023) do
+>>>>>>> iseob_facebook
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -67,6 +71,15 @@ ActiveRecord::Schema.define(version: 20170417104539) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+<<<<<<< HEAD
+    t.string   "name"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "image"
+=======
+    t.string   "provider"
+    t.string   "uid"
+>>>>>>> iseob_facebook
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
