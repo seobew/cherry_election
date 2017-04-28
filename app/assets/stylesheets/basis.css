@@ -168,7 +168,7 @@ background: #428bca;
 	width: 80%;
 	box-shadow: none !important;
 	margin-bottom: 4px;
-	color: black !important;
+	color: rgba(0,0,0,0.5) !important;
 }
 
 .carousel_nav{
