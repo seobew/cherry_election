@@ -42,6 +42,8 @@ namespace :db_article do
             article.publisher = "한겨레"
             article.link = i['href']
             article.candidates = cand
+            article.like = 0
+            article.unlike = 0
             article.save
           end
 
@@ -53,6 +55,8 @@ namespace :db_article do
             article.publisher = "조선일보"
             article.link = i['href']
             article.candidates = cand
+            article.like = 0
+            article.unlike = 0
             article.save
           end
         elsif post == 2
@@ -63,6 +67,8 @@ namespace :db_article do
             article.publisher = "중앙일보"
             article.link = i['href']
             article.candidates = cand
+            article.like = 0
+            article.unlike = 0
             article.save
           end
         elsif post == 3
@@ -74,6 +80,8 @@ namespace :db_article do
             article.publisher = "동아일보"
             article.link = i['href']
             article.candidates = cand
+            article.like = 0
+            article.unlike = 0
             article.save
           end
         elsif post == 4
@@ -85,6 +93,8 @@ namespace :db_article do
             article.publisher = "경향신문"
             article.link = i['href']
             article.candidates = cand
+            article.like = 0
+            article.unlike = 0
             article.save
           end
         elsif post == 5
@@ -96,6 +106,8 @@ namespace :db_article do
             article.publisher = "서울일보"
             article.link = i['href']
             article.candidates = cand
+            article.like = 0
+            article.unlike = 0
             article.save
           end
         elsif post == 6
@@ -107,6 +119,8 @@ namespace :db_article do
             article.publisher = "JTBC"
             article.link = i['href']
             article.candidates = cand
+            article.like = 0
+            article.unlike = 0
             article.save
           end
         end
