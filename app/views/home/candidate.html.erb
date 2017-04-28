@@ -1,66 +1,105 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 
-
-<div class="container main">
-  <div class="card_margin"></div>
-  <div class="card_content">
-    <div class="flexbox" style="margin-top:20px;">
-      <div class="col s12 m8 offset-m2 l4 offset-l3 card_content">
-        <div class="card-panel grey lighten-2 z-depth-1">
-          <div class="flexbox valign-wrapper" style="justify-content: space-between;">
-            <div style="flex: 1; padding: 10px;">
-              <%= image_tag (@candidate.image), :class => "circle responsive-img",:style =>"box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.60);" %> <!-- notice the "circle" class -->
-            </div>
-            <div style="flex: 3; margin-left: 10px;">
-              <div id="candidate_inform">
-                <p class="candidate_content"><strong style="font-size: 60px"><%= @candidate.name %> </strong>기호<%= @candidate.number %>&nbsp;(현재 지지율 <%=@rank_in_order%>위 <%=@rate %>%)</p>
-                <p class="candidate_content"><strong >소속:</strong> <%= @candidate.party %></p>
-                <p class="candidate_content"><a href="<%= @candidate.link %>">대선공약 확인</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+<section class="candidate_main">
+  <div class="row">
+    <div class="col offset-m1 m10 offset-l3 l6">
+      <%= image_tag ("kimminchan_profile.png"), :style =>"width: 100%;" %>
     </div>
-    
+  </div>
+</section>
 
     <!--워드클라우드-->
     <div class="flexbox">
       <div id="word_cloud" style="flex:1; height: 500px;"></div>
     </div>
 
-
-    <!--해당후보 기사들-->
+  <div class="container">
     <% @articles.each do |article| %>
-        <div class="flexbox">
-          <div class="col s12 m8 offset-m2 l6 offset-l3 card_content">
-            <div class="card-panel white z-depth-1" style="padding: 10px;">
-              <div class="flexbox valign-wrapper">
-                <div class="article_pic" style="flex: 1;">
-                  <%= image_tag (@candidate.image), :class => "circle responsive-img",:style =>"margin-left: 10px" %>
-                </div>
-                <div class="article" style="flex: 6; padding-left: 5%;">
-                  <a href= "<%= article.link %>"><%=article.title%></a>
-                </div>
-                <div class="article_like" style="flex: 3;">
-                  <a href= "/home/like/<%=article.id%>">좋아요</a>(<%=article.like || 0%>)
-                  <a href= "/home/unlike/<%=article.id%>">싫어요</a>(<%=article.unlike || 0%>)
-                </div>
-
-              </div>
-            </div>
+      <div class="row">
+        <hr class="article-border">
+        <!--후보자 이름-->
+        <div class="col s2 l2">
+          <div class="article_candidate">
+            <% article.candidates.each do |candi| %>
+              <a class="section2" href="https://cherry-election-kanghyeongmin.c9users.io/home/candidate/<%=candi.id%>"><%= candi.name %></a>
+            <% end %>
           </div>
         </div>
-    <% end %>
-
-
+        
+        <!--기사 제목-->
+        <div class="col s8 l8">
+          <div class="article_title">
+            <a href= "<%= article.link %>" class="section2">[<%=article.publisher %>] <%=article.title%></a>
+            <br><p>(<%=article.article_date %>)</p>
+          </div>
+        </div>
+        
+        <!--좋아요,싫어요 버튼-->
+          <% userfavor = Userfavor.find_by(article_id: article.id,user_id: current_user) %>
+          <!-- 이전 좋아요/싫어요 기록이 있으면 -->
+          <% if userfavor && (userfavor.check_like || userfavor.check_unlike) %> 
+          
+            <% if userfavor.check_like %>
+            <div class="col s2 l2">
+                
+                <%= form_tag("/article/like_cancel", method: "post") do %>
+                  <%= hidden_field_tag :article , article.id %>
+                  <%= submit_tag("좋아요 취소(#{article.like || 0})", :class =>"btn waves-effect waves-red") %>
+                <% end %>
+                </div>
+          
+             <div class="col s2 l2">
+        
+                <%= form_tag("/article/unlike", method: "post") do %>
+                  <%= hidden_field_tag :article , article.id %>
+                  <%= submit_tag("싫어요(#{article.unlike || 0})", :class =>"btn waves-effect") %>
+                <% end %>
+              </div>
+              
+            <% else if userfavor.check_unlike %>
+            <div class="col s2 l2">
+          
+                <%= form_tag("/article/like", method: "post") do %>
+                  <%= hidden_field_tag :article , article.id %>
+                  <%= submit_tag("좋아요(#{article.like || 0})", :class =>"btn waves-effect waves-red") %>
+                <% end %>
+              </div>
+           <div class="col s2 l2">
+          
+                <%= form_tag("/article/unlike_cancel", method: "post") do %>
+                  <%= hidden_field_tag :article , article.id %>
+                  <%= submit_tag("싫어요 취소(#{article.unlike || 0})", :class =>"btn waves-effect") %>
+                <% end %>
+              </div>
+            <% end %>
+            
+          <% end %>
+              <!-- 이전 좋아요/싫어요 기록이 없으면 -->
+          <% else %> 
+        <div class="col s2 l2">
+    
+            <%= form_tag("/article/like", method: "post") do %>
+              <%= hidden_field_tag :article , article.id %>
+              <%= submit_tag("좋아요(#{article.like || 0})", :class =>"btn red lighten-4 waves-effect") %>
+            <% end %>
+          
+        </div>
+        <div class="col s2 l2">
+          
+            <%= form_tag("/article/unlike", method: "post") do %>
+              <%= hidden_field_tag :article , article.id %>
+              <%= submit_tag("싫어요(#{article.unlike || 0})", :class =>"btn grey lighten-1 waves-effect") %>
+            <% end %>
+            <% end %>
+          </div>
+      
+      </div> <!--end of row-->
+    <%end%> <!--end of for @articles.each-->
     <!--지지율 그래프-->
     <div id="graph_wrapper flex">
       <div id="popularity_graph" style="flex: 1; height: 400px; margin-top: 40px; margin-bottom: 40px;"></div>
     </div>
-  </div>
-  <div class="card_margin"></div>
-
+  </div> <!--end of container-->
 
   <!--자바스크립트 부분-->
   <script type="text/javascript">
