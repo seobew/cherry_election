@@ -2,10 +2,67 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/stylesheets/NotoSansKR-Hestia.css);
+@import url(http://fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
 
 *{
-    margin:0;
-  font-family:'Noto Sans Korean';
+  margin:0;
+  font-family: 'Nanum Myeongjo', serif;
+}
+
+// 헤더 부분
+
+#header-nav {
+  height: 320px;
+  box-shadow: none;
+}
+
+#header-nav div {
+  background-color: #F7F7F9;
+}
+
+#header-nav div a {
+  color: #000000;
+}
+
+#sakura_logo_text {
+  height: 150px;
+  margin: 75px auto;
+}
+
+// 인덱스 부분(첫페이지)
+.random_candidate {
+  text-align: center;
+}
+
+.carousel {
+  height: 60px !important;
+}
+
+.carousel .carousel-item {
+  width: 140px !important;
+  height: 40px !important;
+}
+
+.article-border {
+  margin-left: 17%;
+  margin-bottom: 30px;
+  width: 79%;
+}
+
+.article_candidate {
+  margin-top: 20px;
+}
+
+.article_candidate a {
+  font-size: 25px;
+  color: black;
+  border: thin solid black;
+  padding: 20px 10px;
+}
+
+.article_title a {
+  font-size: 25px;
+  color: black;
 }
 
 #inform_wrapper{
@@ -113,12 +170,12 @@
 
 .fa-angle-left {
   float: left;
-  margin-top: 170px;
+  margin-top: 97px;
 }
 
 .fa-angle-right {
   float: right;
-  margin-top: 170px;
+  margin-top: 97px;
 }
 
 @media screen and (min-width:800px) {

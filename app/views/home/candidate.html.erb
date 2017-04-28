@@ -13,7 +13,7 @@
             </div>
             <div style="flex: 3; margin-left: 10px;">
               <div id="candidate_inform">
-                <p class="candidate_content"><strong style="font-size: 60px"><%= @candidate.name %> </strong>기호<%= @candidate.number %>&nbsp;(지지율 0위 <%=@rate %>%)</p>
+                <p class="candidate_content"><strong style="font-size: 60px"><%= @candidate.name %> </strong>기호<%= @candidate.number %>&nbsp;(현재 지지율 <%=@rank_in_order%>위 <%=@rate %>%)</p>
                 <p class="candidate_content"><strong >소속:</strong> <%= @candidate.party %></p>
                 <p class="candidate_content"><a href="<%= @candidate.link %>">대선공약 확인</a></p>
               </div>
@@ -21,14 +21,8 @@
           </div>
         </div>
       </div>
-
     </div>
-
-
-
-
-
-
+    
 
     <!--워드클라우드-->
     <div class="flexbox">
@@ -36,9 +30,7 @@
     </div>
 
 
-
-
-
+    <!--해당후보 기사들-->
     <% @articles.each do |article| %>
         <div class="flexbox">
           <div class="col s12 m8 offset-m2 l6 offset-l3 card_content">
@@ -46,48 +38,19 @@
               <div class="flexbox valign-wrapper">
                 <div class="article_pic" style="flex: 1;">
                   <%= image_tag (@candidate.image), :class => "circle responsive-img",:style =>"margin-left: 10px" %>
-              
                 </div>
-
                 <div class="article" style="flex: 6; padding-left: 5%;">
                   <a href= "<%= article.link %>"><%=article.title%></a>
                 </div>
                 <div class="article_like" style="flex: 3;">
-                  <a href= "/home/like/<%=article.id%>">좋아요</a>(<%=article.like%>)
-                  <a href= "/home/unlike/<%=article.id%>">싫어요</a>(<%=article.unlike%>)
+                  <a href= "/home/like/<%=article.id%>">좋아요</a>(<%=article.like || 0%>)
+                  <a href= "/home/unlike/<%=article.id%>">싫어요</a>(<%=article.unlike || 0%>)
                 </div>
 
               </div>
             </div>
           </div>
         </div>
-
-
-
-
-
-        <div class="flexbox">
-          <div class="col s12 m8 offset-m2 l6 offset-l3 card_content">
-            <div class="card-panel white z-depth-1" style="padding: 10px;">
-              <div class="flexbox valign-wrapper">
-                <div class="article_pic" style="flex: 1;">
-                  <%= image_tag (@candidate.image), :class => "circle responsive-img",:style =>"margin-left: 10px" %>
-                </div>
-
-                <div class="article" style="flex: 6; padding-left: 5%;">
-                  <a href= "<%= article.link %>"><%=article.title%></a>
-                </div>
-                <div class="article_like" style="flex: 3;">
-                  <a href= "/home/like/<%=article.id%>">좋아요</a>(<%=article.like%>)
-                  <a href= "/home/unlike/<%=article.id%>">싫어요</a>(<%=article.unlike%>)
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-
     <% end %>
 
 
@@ -97,21 +60,9 @@
     </div>
   </div>
   <div class="card_margin"></div>
-<!--
-  <div id="inform_wrapper">
-    <div id="inform_content">
-      <div id="candidate_pic">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm8vOX_z0SoI7Lnh1YHaoImkUtZZatSUSYwir6EsDIn41cAYRuZXP7Er4"/>
-      </div>
-      <div id="candidate_inform">
-        <p><%= @candidate.name %>(지지율 0위 <%=@rate %>%)</p>
-        <p>소속: <%= @candidate.party %></p>
-        <p><a href="<%= @candidate.link %>"><%= @candidate.link %></a></p>
-      </div>
-    </div>
-  </div>
-  -->
 
+
+  <!--자바스크립트 부분-->
   <script type="text/javascript">
       // word cloud
       var word_array = [
