@@ -2,6 +2,7 @@ require 'open-uri'
 require 'nokogiri'
 require 'uri'
 require 'cgi'
+require 'date'
 
 namespace :db_article do
   desc "TODO"
@@ -88,11 +89,19 @@ namespace :db_article do
           num = num + 1
           one = Nokogiri::HTML(open("http://search.khan.co.kr/search.html?stb=khan&q=#{de_name}&sort=1&pg=#{num}"))
           t = one.xpath("//dl[@class='phArtc']//dt//a")
-          t.each do |i|
+          t.each_with_index do |i, n|
+            a =  i.xpath("//dl[@class='phArtc']//dt//span[@class='date']")[n].inner_text.split('(')[1].split(')')[0].gsub(/[:.]/, ' ').split(' ')
+
+            m = Array.new
+            for p in a
+              m << p.delete(' ').to_i
+            end
+
             article.title =  i.inner_text
             article.publisher = "경향신문"
             article.link = i['href']
             article.candidates = cand
+            article.article_date = DateTime.new(m[0],m[1],m[2],m[3],m[4],0, '+09:00')
             article.like = 0
             article.unlike = 0
             article.save
