@@ -84,11 +84,13 @@ namespace :db_article do
           donga_num = num * 15 + 1
           one = Nokogiri::HTML(open("http://news.donga.com/search?p=#{donga_num}&query=#{de_name}&check_news=1&more=1&sorting=1&search_date=1&v1=&v2=&range=1"))
           t = one.xpath("//p[@class='tit']//a")
-          t.each do |i|
+          t.each_with_index do |i, n|
+            a = one.xpath("//p[@class='tit']//span")[n].inner_text + '+09:00'
             article.title =  i.inner_text
             article.publisher = "동아일보"
             article.link = i['href']
             article.candidates = cand
+            article.article_date = DateTime.parse(a)
             article.like = 0
             article.unlike = 0
             article.save
