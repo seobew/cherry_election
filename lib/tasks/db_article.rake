@@ -121,10 +121,13 @@ namespace :db_article do
           one = Nokogiri::HTML(open("http://search.seoul.co.kr/index.php?scope=&sort=desc&cpCode=&period=&sDate=&eDate=&keyword=#{de_name}&iCategory=&pCategory=undefined&pageNum=#{num}"))
           t = one.xpath("//dl[@class='article']//dt//a")
           t.each do |i|
+            two = Nokogiri::HTML(open(i['href']))
+            m = two.xpath("//p[@class='v_days']").inner_text.split('ㅣ')[0].to_s.delete "입력"
             article.title =  i.inner_text
             article.publisher = "서울일보"
             article.link = i['href']
             article.candidates = cand
+            article.article_date = DateTime.parse(m[9..24]+ '+09:00')
             article.like = 0
             article.unlike = 0
             article.save
@@ -134,10 +137,13 @@ namespace :db_article do
           one = Nokogiri::HTML(open("http://jtbc.joins.com/search/news?source=jtbc&field=any&page=#{num}&section=any&sort=latest&term=#{de_name}"))
           t = one.xpath("//h3[@class='prg_ttl']//a")
           t.each do |i|
+            two = Nokogiri::HTML(open(i['href']))
+            m = two.xpath("//span[@class='i_date']").inner_text.to_s.delete "입력"
             article.title =  i.inner_text
             article.publisher = "JTBC"
             article.link = i['href']
             article.candidates = cand
+            article.article_date = DateTime.parse(m+ '+09:00')
             article.like = 0
             article.unlike = 0
             article.save
