@@ -30,7 +30,7 @@
         <div class="col s8 l8">
           <div class="article_title">
             <a href= "<%= article.link %>" class="section2">[<%=article.publisher %>] <%=article.title%></a>
-            <br><p>(<%=article.article_date %>)</p>
+            <br><p>(<%=article.article_date.strftime("%F %T") %>)</p>
           </div>
         </div>
         
