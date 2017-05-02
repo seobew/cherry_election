@@ -8,8 +8,12 @@ namespace :db_article do
   desc "TODO"
   task article_task: :environment do
 
-
-    candi_name = ["문재인", "홍준표", "안철수", "유승민", "심상정", "조원진", "오영국", "장성민", "이재오", "김선동", "남재준", "이경희", "이경희", "윤홍식", "김민찬"]
+    # candi_name = ["문재인", "홍준표", "안철수", "유승민", "심상정", "조원진", "오영국", "장성민", "이재오", "김선동", "이경희", "이경희", "윤홍식", "김민찬"]
+    candi_name = []
+    for c in Candidate.all
+      candi_name.push(c.name)
+    end
+    puts candi_name
 
     #0 : 한겨레, 1 : 조선일보, 2 : 중앙일보, 3 : 동아일보, 4 : 경향신문, 5 : jtbc
 
