@@ -3,7 +3,9 @@
 <section class="candidate_main">
   <div class="row">
     <div class="col offset-m1 m10 offset-l3 l6">
-      <%= image_tag (@candidate.image), :style =>"width: 100%;" %>
+      <a target="_blank" href="<%= @candidate.link %>">
+        <%= image_tag ('button_'+@candidate.image), :style =>"width: 100%;" %>
+      </a>
     </div>
   </div>
 </section>
@@ -20,8 +22,10 @@
         <!--후보자 이름-->
         <div class="col s2 l2">
           <div class="article_candidate">
-            <% article.candidates.each do |candi| %>
-              <a class="section2" href="https://cherry-election-kanghyeongmin.c9users.io/home/candidate/<%=candi.id%>"><%= candi.name %></a>
+            <% if (article.candidates.size == 1) %>
+              <a class="section2" href="https://cherry-election-kanghyeongmin.c9users.io/home/candidate/<%=article.candidates[0].id%>"><%= article.candidates[0].name %></a>
+            <% else %>
+              <a class="section2" style="font-size: 1.3vw;" href="https://cherry-election-kanghyeongmin.c9users.io/home/candidate/<%=article.candidates[0].id%>"><%= article.candidates[0].name + ' 외 ' + (article.candidates.size-1).to_s + '명' %></a>
             <% end %>
           </div>
         </div>
@@ -30,7 +34,7 @@
         <div class="col s8 l8">
           <div class="article_title">
             <a href= "<%= article.link %>" class="section2">[<%=article.publisher %>] <%=article.title%></a>
-            <br><p>(<%=article.article_date %>)</p>
+            <br><p>(<%=article.article_date.strftime("%F %T") %>)</p>
           </div>
         </div>
         
