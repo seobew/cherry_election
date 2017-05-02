@@ -2,7 +2,10 @@
 <section class="random_candidate">
   <div class="row">
     <div class="col offset-m1 m10 offset-l3 l6">
+      <div class="imagewrap" style="position:ralative; display:inline-block; ">
       <a href="/home/candidate/<%= @candidate.id %>"><%= image_tag (@candidate.image), :style =>"width: 100%;" %></a>
+      <a href="<%= @candidate.link %>"><%= image_tag (@candidate.button), :style =>"width: 15%; position:absolute;" %></button>
+      </div>
     </div>
   </div>
 </section>

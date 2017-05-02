@@ -219,7 +219,7 @@ background: #428bca;
   background-color: #f8bbd0;
 }
 
-.modal { overflow-y: hidden !important; 
+.modal {  
 	     overflow-x: hidden ;
 	     
 	
@@ -229,4 +229,4 @@ background: #428bca;
 #login_nav{
 	font-size:140%;
 }
-}
+
