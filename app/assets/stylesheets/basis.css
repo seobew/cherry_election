@@ -218,3 +218,14 @@ background: #428bca;
   background-color: #f8bbd0;
 }
 
+.modal { overflow-y: hidden !important; 
+	     overflow-x: hidden ;
+	     
+	
+}  
+
+/* increase the width, height and prevent vertical scroll! However, i don't recommend this, its better to turn on vertical scrolling. */
+#login_nav{
+	font-size:140%;
+}
+}
