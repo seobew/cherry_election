@@ -59,47 +59,55 @@
         
           <!--2단계 if : 좋아요를 눌러둔 상태-->
           <% if userfavor.check_like %>
-            <div class="col s2 l2">
+            <div class="col s1 l1">
               <%= form_tag("/article/like_cancel", method: "post") do %>
                 <%= hidden_field_tag :article , article.id %>
-                <%= submit_tag("좋아요 취소(#{article.like || 0})", :class =>"btn red lighten-4 waves-effect") %>
+                 <%= image_submit_tag("좋아요취소" ) %>
+              <br><%= "(#{article.like || 0})" %>
               <% end %>
             </div>
-            <div class="col s2 l2">
+            <div class="col s1 l1">
               <%= form_tag("/article/unlike", method: "post") do %>
                 <%= hidden_field_tag :article , article.id %>
-                <%= submit_tag("싫어요 (#{article.unlike || 0})", :class =>"btn grey lighten-1 waves-effect") %>
+                <%= image_submit_tag("dislike.png" ) %>
+              <%= "(#{article.unlike || 0})"%>
               <% end %>
             </div>
             
           <!--2단계 else : 싫어요를 눌러둔 상태-->
           <% else %>
-            <div class="col s2 l2">
+            <div class="col s1 l1">
               <%= form_tag("/article/like", method: "post") do %>
                 <%= hidden_field_tag :article , article.id %>
-                <%= submit_tag("좋아요 (#{article.like || 0})", :class =>"btn red lighten-4 waves-effect") %>
+               <%= image_submit_tag("like.png" ) %>
+              <br><%= "(#{article.like || 0})" %>
               <% end %>
             </div>
-            <div class="col s2 l2">
+            <div class="col s1 l1">
               <%= form_tag("/article/unlike_cancel", method: "post") do %>
                 <%= hidden_field_tag :article , article.id %>
-                <%= submit_tag("싫어요 취소(#{article.unlike || 0})", :class =>"btn grey lighten-1 waves-effect") %>
+                <%= image_submit_tag("싫어요취소" ) %>
+              <%= "(#{article.unlike || 0})"%>
               <% end %>
             </div>
           <% end %>
           
         <!--1단계 else : 이전 좋아요/싫어요 기록이 없으면 -->
         <% else %> 
-          <div class="col s2 l2">
+          <div class="col s1 l1">
             <%= form_tag("/article/like", method: "post") do %>
               <%= hidden_field_tag :article , article.id %>
-              <%= submit_tag("좋아요(#{article.like || 0})", :class =>"btn red lighten-4 waves-effect") %>
+              
+              <%= image_submit_tag("like.png" ) %>
+              <br><%= "(#{article.like || 0})" %>
             <% end %>
           </div>
-          <div class="col s2 l2">
+          <div class="col s1 l1">
             <%= form_tag("/article/unlike", method: "post") do %>
               <%= hidden_field_tag :article , article.id %>
-              <%= submit_tag("싫어요(#{article.unlike || 0})", :class =>"btn grey lighten-1 waves-effect") %>
+              <%= image_submit_tag("dislike.png" ) %>
+              <%= "(#{article.unlike || 0})"%>
+              
             <% end %>
           </div>
         <% end %>
