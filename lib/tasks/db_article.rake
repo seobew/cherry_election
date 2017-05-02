@@ -38,23 +38,29 @@ namespace :db_article do
         if post == 0
           one = Nokogiri::HTML(open("http://search.hani.co.kr/Search?command=query&keyword=#{de_name}&media=news&sort=d&period=all&pageseq=#{num}"))
           t = one.xpath("//dt//a")
-          t.each do |i|
+          t.each_with_index do |i, n|
+            a = one.xpath("//dd[@class='date']//dl//dd")[n].inner_text + '+09:00'
             article.title =  i.inner_text
             article.publisher = "한겨레"
             article.link = i['href']
             article.candidates = cand
+            article.article_date =  DateTime.parse(a)
             article.like = 0
             article.unlike = 0
             article.save
           end
 
         elsif post == 1
-          one = Nokogiri::HTML(open("http://search.chosun.com/search/news.search?query=#{de_name}&pageno=#{num}&orderby=&naviarraystr=&kind=&cont1=&cont2=&cont5=&categoryname=&categoryd2=&c_scope=news&sdate=&edate=&premium="))
-          t = one.xpath("//dt//a")
+          one = Nokogiri::HTML(open("http://search.chosun.com/search/news.search?query=#{de_name}&pageno=#{num}&orderby=news&categoryname=#{CGI::escape("조선일보")}"))
+          t = one.xpath("//section[@class='result news']//dl//dt//a")
           t.each do |i|
+            two = Nokogiri::HTML(open(i['href']))
+            m = two.xpath("//div[@class='news_date']//div//p").inner_text.split('|')[0].to_s.delete "입력"
+
             article.title =  i.inner_text
             article.publisher = "조선일보"
             article.link = i['href']
+            article.article_date = DateTime.parse(m[9..24]+ '+09:00')
             article.candidates = cand
             article.like = 0
             article.unlike = 0
