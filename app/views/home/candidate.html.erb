@@ -3,7 +3,9 @@
 <section class="candidate_main">
   <div class="row">
     <div class="col offset-m1 m10 offset-l3 l6">
-      <%= image_tag ('button_'+@candidate.image), :style =>"width: 100%;" %>
+      <a target="_blank" href="<%= @candidate.link %>">
+        <%= image_tag ('button_'+@candidate.image), :style =>"width: 100%;" %>
+      </a>
     </div>
   </div>
 </section>
