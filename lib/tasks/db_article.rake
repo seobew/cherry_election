@@ -14,8 +14,10 @@ namespace :db_article do
 
     #name = 검색할 후보자 이름
 
+    #ccc = ["유승민", "심상정", "조원진"]
+
     #num = 페이지 수
-    num = 0
+
 
 
 
@@ -29,7 +31,7 @@ namespace :db_article do
       desc "start #{name}"
       puts "start #{name}"
 
-      for post in 0..6
+      for post in 0..5
         article = Article.new
 
 
@@ -40,6 +42,8 @@ namespace :db_article do
         puts "#{name} - #{post}"
 
         if post == 0
+          num = 0
+
           one = Nokogiri::HTML(open("http://search.hani.co.kr/Search?command=query&keyword=#{de_name}&media=news&sort=d&period=all&pageseq=#{num}"))
           t = one.xpath("//dt//a")
           t.each_with_index do |i, n|
@@ -64,6 +68,8 @@ namespace :db_article do
           end
 
         elsif post == 1
+          num = 0
+
           one = Nokogiri::HTML(open("http://search.chosun.com/search/news.search?query=#{de_name}&pageno=#{num}&orderby=news&categoryname=#{CGI::escape("조선일보")}"))
           t = one.xpath("//section[@class='result news']//dl//dt//a")
           t.each do |i|
@@ -80,6 +86,8 @@ namespace :db_article do
             article.save
           end
         elsif post == 2
+          num = 0
+
           one = Nokogiri::HTML(open("http://search.joins.com/JoongangNews?page=#{num}&Keyword=#{de_name}&SortType=New&SearchCategoryType=JoongangNews"))
           t = one.xpath("//strong[@class='headline mg']//a")
           t.each_with_index do |i, n|
@@ -94,6 +102,8 @@ namespace :db_article do
             article.save
           end
         elsif post == 3
+          num = 0
+
           donga_num = num * 15 + 1
           one = Nokogiri::HTML(open("http://news.donga.com/search?p=#{donga_num}&query=#{de_name}&check_news=1&more=1&sorting=1&search_date=1&v1=&v2=&range=1"))
           t = one.xpath("//p[@class='tit']//a[0]")
@@ -109,6 +119,8 @@ namespace :db_article do
             article.save
           end
         elsif post == 4
+          num = 0
+
           num = num + 1
           one = Nokogiri::HTML(open("http://search.khan.co.kr/search.html?stb=khan&q=#{de_name}&sort=1&pg=#{num}"))
           t = one.xpath("//dl[@class='phArtc']//dt//a")
@@ -129,9 +141,13 @@ namespace :db_article do
             article.unlike = 0
             article.save
           end
+=begin
         elsif post == 5
+          num = 0
+
           num = num + 1
-          one = Nokogiri::HTML(open("http://search.seoul.co.kr/index.php?scope=&sort=desc&cpCode=&period=&sDate=&eDate=&keyword=#{de_name}&iCategory=&pCategory=undefined&pageNum=#{num}"))
+          #http://search.seoul.co.kr/index.php?scope=&sort=desc&cpCode=seoul&period=&sDate=&eDate=&keyword=%EC%8B%AC%EC%83%81%EC%A0%95&iCategory=&pCategory=undefined&pageNum=2
+          one = Nokogiri::HTML(open("http://search.seoul.co.kr/index.php?scope=&sort=desc&cpCode=seoul&period=&sDate=&eDate=&keyword=#{de_name}&iCategory=&pCategory=undefined&pageNum=#{num}"))
           t = one.xpath("//dl[@class='article']//dt//a")
           t.each do |i|
             two = Nokogiri::HTML(open(i['href']))
@@ -140,12 +156,17 @@ namespace :db_article do
             article.publisher = "서울일보"
             article.link = i['href']
             article.candidates = cand
-            article.article_date = DateTime.parse(m[9..24]+ '+09:00')
+            puts i.inner_text
+            puts i['href']
+            article.article_date = DateTime.parse(m[9..24] + '+09:00')
             article.like = 0
             article.unlike = 0
             article.save
           end
-        elsif post == 6
+=end
+        elsif post == 5
+          num = 0
+
           num = num + 1
           one = Nokogiri::HTML(open("http://jtbc.joins.com/search/news?source=jtbc&field=any&page=#{num}&section=any&sort=latest&term=#{de_name}"))
           t = one.xpath("//h3[@class='prg_ttl']//a")
