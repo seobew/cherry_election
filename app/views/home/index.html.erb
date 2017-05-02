@@ -2,10 +2,7 @@
 <section class="random_candidate">
   <div class="row">
     <div class="col offset-m1 m10 offset-l3 l6">
-      <div class="imagewrap" style="position:ralative; display:inline-block; ">
       <a href="/home/candidate/<%= @candidate.id %>"><%= image_tag (@candidate.image), :style =>"width: 100%;" %></a>
-      <a href="<%= @candidate.link %>"><%= image_tag (@candidate.button), :style =>"width: 15%; position:absolute;" %></button>
-      </div>
     </div>
   </div>
 </section>
@@ -69,7 +66,7 @@
             <div class="col s2 l2">
               <%= form_tag("/article/unlike", method: "post") do %>
                 <%= hidden_field_tag :article , article.id %>
-                <%= submit_tag("싫어요(#{article.unlike || 0})", :class =>"btn grey lighten-1 waves-effect") %>
+                <%= submit_tag("싫어요 (#{article.unlike || 0})", :class =>"btn grey lighten-1 waves-effect") %>
               <% end %>
             </div>
             
@@ -78,7 +75,7 @@
             <div class="col s2 l2">
               <%= form_tag("/article/like", method: "post") do %>
                 <%= hidden_field_tag :article , article.id %>
-                <%= submit_tag("좋아요(#{article.like || 0})", :class =>"btn red lighten-4 waves-effect") %>
+                <%= submit_tag("좋아요 (#{article.like || 0})", :class =>"btn red lighten-4 waves-effect") %>
               <% end %>
             </div>
             <div class="col s2 l2">
