@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170502162112) do
+ActiveRecord::Schema.define(version: 20170502092341) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 20170502162112) do
     t.integer  "number"
     t.string   "image"
     t.string   "caricature"
-    t.string   "button"
   end
 
   create_table "userfavors", force: :cascade do |t|
