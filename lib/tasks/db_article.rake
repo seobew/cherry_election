@@ -69,10 +69,12 @@ namespace :db_article do
         elsif post == 2
           one = Nokogiri::HTML(open("http://search.joins.com/JoongangNews?page=#{num}&Keyword=#{de_name}&SortType=New&SearchCategoryType=JoongangNews"))
           t = one.xpath("//strong[@class='headline mg']//a")
-          t.each do |i|
+          t.each_with_index do |i, n|
             article.title =  i.inner_text
             article.publisher = "중앙일보"
             article.link = i['href']
+            a = one.xpath("//span[@class='byline']//em")[2 * n + 1].inner_text + '+09:00'
+            article.article_date = DateTime.parse(a)
             article.candidates = cand
             article.like = 0
             article.unlike = 0
