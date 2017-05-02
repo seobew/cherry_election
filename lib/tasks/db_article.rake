@@ -11,12 +11,15 @@ namespace :db_article do
 
     candi_name = ["문재인", "홍준표", "안철수", "유승민", "심상정", "조원진", "오영국", "장성민", "이재오", "김선동", "남재준", "이경희", "이경희", "윤홍식", "김민찬"]
 
+
     #name = 검색할 후보자 이름
 
     #num = 페이지 수
     num = 0
 
-    #post = 신문사 번호
+
+
+        #post = 신문사 번호
     #0 : 한겨레, 1 : 조선일보, 2 : 중앙일보, 3 : 동아일보, 4 : 경향신문, 5 : 서울신문, 6 : jtbc
     #post = 6
 
@@ -29,6 +32,7 @@ namespace :db_article do
       for post in 0..6
         article = Article.new
 
+
         cand = Candidate.where(name: name)
         de_name = CGI::escape(name)
 
@@ -39,6 +43,15 @@ namespace :db_article do
           one = Nokogiri::HTML(open("http://search.hani.co.kr/Search?command=query&keyword=#{de_name}&media=news&sort=d&period=all&pageseq=#{num}"))
           t = one.xpath("//dt//a")
           t.each_with_index do |i, n|
+=begin
+            if Article.exists?(:link => i['href'])
+              at = Article.find_by(link: i['href'])
+              puts at.title
+              puts at.link
+              puts at.publisher
+            end
+=end
+
             a = one.xpath("//dd[@class='date']//dl//dd")[n].inner_text + '+09:00'
             article.title =  i.inner_text
             article.publisher = "한겨레"
@@ -83,7 +96,7 @@ namespace :db_article do
         elsif post == 3
           donga_num = num * 15 + 1
           one = Nokogiri::HTML(open("http://news.donga.com/search?p=#{donga_num}&query=#{de_name}&check_news=1&more=1&sorting=1&search_date=1&v1=&v2=&range=1"))
-          t = one.xpath("//p[@class='tit']//a")
+          t = one.xpath("//p[@class='tit']//a[0]")
           t.each_with_index do |i, n|
             a = one.xpath("//p[@class='tit']//span")[n].inner_text + '+09:00'
             article.title =  i.inner_text
