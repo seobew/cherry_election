@@ -62,14 +62,14 @@
             <div class="col s1 l1">
               <%= form_tag("/article/like_cancel", method: "post") do %>
                 <%= hidden_field_tag :article , article.id %>
-                <%= image_submit_tag("unclicked_like.png" ) %>
+                <%= image_submit_tag("like.png" ) %>
                 <br><%= "(#{article.like || 0})" %>
               <% end %>
             </div>
             <div class="col s1 l1">
               <%= form_tag("/article/unlike", method: "post") do %>
                 <%= hidden_field_tag :article , article.id %>
-                <%= image_submit_tag("dislike.png" ) %>
+                <%= image_submit_tag("unclicked_dislike.png" ) %>
                 <br><%= "(#{article.unlike || 0})"%>
               <% end %>
             </div>
@@ -79,14 +79,14 @@
             <div class="col s1 l1">
               <%= form_tag("/article/like", method: "post") do %>
                 <%= hidden_field_tag :article , article.id %>
-                <%= image_submit_tag("like.png" ) %>
+                <%= image_submit_tag("unclicked_like.png" ) %>
                 <br><%= "(#{article.like || 0})" %>
               <% end %>
             </div>
             <div class="col s1 l1">
               <%= form_tag("/article/unlike_cancel", method: "post") do %>
                 <%= hidden_field_tag :article , article.id %>
-                <%= image_submit_tag("unclicked_dislike.png" ) %>
+                <%= image_submit_tag("dislike.png" ) %>
                 <br><%= "(#{article.unlike || 0})"%>
               <% end %>
             </div>
@@ -97,14 +97,14 @@
           <div class="col s1 l1">
             <%= form_tag("/article/like", method: "post") do %>
               <%= hidden_field_tag :article , article.id %>
-              <%= image_submit_tag("like.png" ) %>
+              <%= image_submit_tag("unclicked_like.png" ) %>
               <br><%= "(#{article.like || 0})" %>
             <% end %>
           </div>
           <div class="col s1 l1">
             <%= form_tag("/article/unlike", method: "post") do %>
               <%= hidden_field_tag :article , article.id %>
-              <%= image_submit_tag("dislike.png" ) %>
+              <%= image_submit_tag("unclicked_dislike.png" ) %>
               <br><%= "(#{article.unlike || 0})"%>
               
             <% end %>
