@@ -157,8 +157,9 @@ background: #428bca;
 }
 
 .carousel .carousel-item img {
-  border-radius: 100px !important;
+  /*border-radius: 100px !important;*/
   height: inherit !important;
+  width: auto !important;
   
 }
 
