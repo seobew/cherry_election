@@ -37,7 +37,7 @@
         <div class="col s2 l2">
           <div class="article_candidate">
             <% article.candidates.each do |candi| %>
-              <a class="section2" href="https://cherry-election-kanghyeongmin.c9users.io/home/candidate/<%=candi.id%>"><%= candi.name %></a>
+              <a class="section2" href="/home/candidate/<%=candi.id%>"><%= candi.name %></a>
             <% end %>
           </div>
         </div>
@@ -58,29 +58,33 @@
           <!--2단계 if : 좋아요를 눌러둔 상태-->
           <% if userfavor.check_like %>
             <div class="col s2 l2">
-              <%= form_tag("/article/like_cancel", method: "post") do %>
+              <%= form_tag("/home/like", method: "post", remote: true, class:"like_form_#{article.id}") do %>
                 <%= hidden_field_tag :article , article.id %>
+                <%= hidden_field_tag :is_cancel , "true" %>
                 <%= submit_tag("좋아요 취소(#{article.like || 0})", :class =>"btn red lighten-4 waves-effect") %>
               <% end %>
             </div>
             <div class="col s2 l2">
-              <%= form_tag("/article/unlike", method: "post") do %>
+              <%= form_tag("/home/unlike", method: "post", remote: true, class:"unlike_form_#{article.id}") do %>
                 <%= hidden_field_tag :article , article.id %>
+                <%= hidden_field_tag :is_cancel , "false" %>
                 <%= submit_tag("싫어요(#{article.unlike || 0})", :class =>"btn grey lighten-1 waves-effect") %>
-              <% end %>
+              <%end %>
             </div>
             
           <!--2단계 else : 싫어요를 눌러둔 상태-->
           <% else %>
             <div class="col s2 l2">
-              <%= form_tag("/article/like", method: "post") do %>
+              <%= form_tag("/home/like", method: "post", remote: true, class:"like_form_#{article.id}") do %>
                 <%= hidden_field_tag :article , article.id %>
+                <%= hidden_field_tag :is_cancel , "false" %>
                 <%= submit_tag("좋아요(#{article.like || 0})", :class =>"btn red lighten-4 waves-effect") %>
               <% end %>
             </div>
             <div class="col s2 l2">
-              <%= form_tag("/article/unlike_cancel", method: "post") do %>
+              <%= form_tag("/home/unlike", method: "post", remote: true, class:"unlike_form_#{article.id}") do %>
                 <%= hidden_field_tag :article , article.id %>
+                <%= hidden_field_tag :is_cancel , "true" %>
                 <%= submit_tag("싫어요 취소(#{article.unlike || 0})", :class =>"btn grey lighten-1 waves-effect") %>
               <% end %>
             </div>
@@ -89,14 +93,16 @@
         <!--1단계 else : 이전 좋아요/싫어요 기록이 없으면 -->
         <% else %> 
           <div class="col s2 l2">
-            <%= form_tag("/article/like", method: "post") do %>
+            <%= form_tag("/home/like", method: "post", remote: true, class:"like_form_#{article.id}") do %>
               <%= hidden_field_tag :article , article.id %>
+              <%= hidden_field_tag :is_cancel , "false" %>
               <%= submit_tag("좋아요(#{article.like || 0})", :class =>"btn red lighten-4 waves-effect") %>
             <% end %>
           </div>
           <div class="col s2 l2">
-            <%= form_tag("/article/unlike", method: "post") do %>
+            <%= form_tag("/home/unlike", method: "post", remote: true, class:"unlike_form_#{article.id}") do %>
               <%= hidden_field_tag :article , article.id %>
+              <%= hidden_field_tag :is_cancel , "false" %>
               <%= submit_tag("싫어요(#{article.unlike || 0})", :class =>"btn grey lighten-1 waves-effect") %>
             <% end %>
           </div>
@@ -118,6 +124,7 @@ $('.carousel').carousel({
         nowrap:false,
         indicators:false,
 });
+
 
 // Next slide
 /*$('.carousel').carousel('next');
