@@ -14,7 +14,7 @@
     <div class="col offset-m1 m10 offset-l2 l8">
       <div class="carousel" >
         <% @candidates.each do |candidate| %>
-          <a class="carousel-item" href="/home/candidate/<%= candidate.id %>"><%=candidate.number%>.<%=candidate.name%></a>
+          <a class="carousel-item" href="/home/candidate/<%= candidate.id %>"><%= image_tag (candidate.caricature), :style =>"width: 100%;" %></a>
         <% end %>
       </div>
   	</div>
@@ -36,8 +36,10 @@
         <!--후보자 이름-->
         <div class="col s2 l2">
           <div class="article_candidate">
-            <% article.candidates.each do |candi| %>
-              <a class="section2" href="/home/candidate/<%=candi.id%>"><%= candi.name %></a>
+            <% if (article.candidates.size == 1) %>
+              <a class="section2" href="/home/candidate/<%=article.candidates[0].id%>"><%= article.candidates[0].name %></a>
+            <% else %>
+              <a class="section2" style="font-size: 1.3vw;" href="/home/candidate/<%=article.candidates[0].id%>"><%= article.candidates[0].name + ' 외 ' + (article.candidates.size-1).to_s + '명' %></a>
             <% end %>
           </div>
         </div>
@@ -46,7 +48,7 @@
         <div class="col s8 l8">
           <div class="article_title">
             <a href= "<%= article.link %>" class="section2">[<%=article.publisher %>] <%=article.title%></a>
-            <br><p>(<%=article.article_date %>)</p>
+            <br><p>(<%=article.article_date.strftime("%F %T") %>)</p>
           </div>
         </div>
         
@@ -54,56 +56,59 @@
         <% userfavor = Userfavor.find_by(article_id: article.id,user_id: current_user) %>
         <!--1단계 if : 이전 좋아요/싫어요 기록이 있으면 -->
         <% if userfavor && (userfavor.check_like || userfavor.check_unlike) %> 
-        
           <!--2단계 if : 좋아요를 눌러둔 상태-->
           <% if userfavor.check_like %>
-            <div class="col s2 l2">
+            <div class="col s1 l1">
               <%= form_tag("/home/like", method: "post", remote: true, class:"like_form_#{article.id}") do %>
                 <%= hidden_field_tag :article , article.id %>
                 <%= hidden_field_tag :is_cancel , "true" %>
-                <%= submit_tag("좋아요 취소(#{article.like || 0})", :class =>"btn red lighten-4 waves-effect") %>
+                <%= image_submit_tag("unclicked_like.png", class:"brightness" ) %>
+                <div class="article_like_<%=article.id%>"><%= "(#{article.like || 0})" %></div>
               <% end %>
             </div>
-            <div class="col s2 l2">
+            <div class="col s1 l1">
               <%= form_tag("/home/unlike", method: "post", remote: true, class:"unlike_form_#{article.id}") do %>
                 <%= hidden_field_tag :article , article.id %>
                 <%= hidden_field_tag :is_cancel , "false" %>
-                <%= submit_tag("싫어요(#{article.unlike || 0})", :class =>"btn grey lighten-1 waves-effect") %>
+                <%= image_submit_tag("unclicked_dislike.png") %>
+                <div class="article_unlike_<%=article.id%>"><%= "(#{article.unlike || 0})" %></div>
               <%end %>
             </div>
-            
           <!--2단계 else : 싫어요를 눌러둔 상태-->
           <% else %>
-            <div class="col s2 l2">
+            <div class="col s1 l1">
               <%= form_tag("/home/like", method: "post", remote: true, class:"like_form_#{article.id}") do %>
                 <%= hidden_field_tag :article , article.id %>
                 <%= hidden_field_tag :is_cancel , "false" %>
-                <%= submit_tag("좋아요(#{article.like || 0})", :class =>"btn red lighten-4 waves-effect") %>
+                <%= image_submit_tag("unclicked_like.png" ) %>
+                <div class="article_like_<%=article.id%>"><%= "(#{article.like || 0})" %></div>
               <% end %>
             </div>
-            <div class="col s2 l2">
+            <div class="col s1 l1">
               <%= form_tag("/home/unlike", method: "post", remote: true, class:"unlike_form_#{article.id}") do %>
                 <%= hidden_field_tag :article , article.id %>
                 <%= hidden_field_tag :is_cancel , "true" %>
-                <%= submit_tag("싫어요 취소(#{article.unlike || 0})", :class =>"btn grey lighten-1 waves-effect") %>
+                <%= image_submit_tag("unclicked_dislike.png",  class: "brightness") %>
+                <div class="article_unlike_<%=article.id%>"><%= "(#{article.unlike || 0})" %></div>
               <% end %>
             </div>
           <% end %>
-          
         <!--1단계 else : 이전 좋아요/싫어요 기록이 없으면 -->
         <% else %> 
-          <div class="col s2 l2">
+          <div class="col s1 l1">
             <%= form_tag("/home/like", method: "post", remote: true, class:"like_form_#{article.id}") do %>
               <%= hidden_field_tag :article , article.id %>
               <%= hidden_field_tag :is_cancel , "false" %>
-              <%= submit_tag("좋아요(#{article.like || 0})", :class =>"btn red lighten-4 waves-effect") %>
+              <%= image_submit_tag("unclicked_like.png" ) %>
+              <div class="article_like_<%=article.id%>"><%= "(#{article.like || 0})" %></div>
             <% end %>
           </div>
-          <div class="col s2 l2">
+          <div class="col s1 l1">
             <%= form_tag("/home/unlike", method: "post", remote: true, class:"unlike_form_#{article.id}") do %>
               <%= hidden_field_tag :article , article.id %>
               <%= hidden_field_tag :is_cancel , "false" %>
-              <%= submit_tag("싫어요(#{article.unlike || 0})", :class =>"btn grey lighten-1 waves-effect") %>
+              <%= image_submit_tag("unclicked_dislike.png" ) %>
+              <div class="article_unlike_<%=article.id%>"><%= "(#{article.unlike || 0})" %></div>
             <% end %>
           </div>
         <% end %>
@@ -159,6 +164,4 @@ $('.carousel').carousel('set', 4);
 </script>
 
 
-<!--arrow button credit
-<div>Icons made by <a href="http://www.flaticon.com/authors/madebyoliver" title="Madebyoliver">Madebyoliver</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 
-title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
+

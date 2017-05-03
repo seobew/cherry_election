@@ -1,16 +1,19 @@
 if(<%==@login %> == true){
   if(<%=@is_cancel%> == true){
     $('.like_form_<%=@article_id%> #is_cancel').val("false");
-    $('.like_form_<%=@article_id%> input[type="submit"]').val("좋아요(<%=@like_num%>)");
+    $('.like_form_<%=@article_id%> .article_like_<%=@article_id%>').text("(<%=@like_num%>)");
+    $('.like_form_<%=@article_id%> input[type="image"]').removeClass("brightness");
   }
   else{
     $('.like_form_<%=@article_id%> #is_cancel').val("true");
-    $('.like_form_<%=@article_id%> input[type="submit"]').val("좋아요 취소(<%=@like_num%>)");
+    $('.like_form_<%=@article_id%> .article_like_<%=@article_id%>').text("(<%=@like_num%>)");
+    $('.like_form_<%=@article_id%> input[type="image"]').addClass("brightness");
 
     // 싫어요 취소로 되어있으면(싫어요가 눌러있으면) 싫어요로 바꿔주기
     if(<%=@unlike_check %>==true){
       $('.unlike_form_<%=@article_id%> #is_cancel').val("false");
-      $('.unlike_form_<%=@article_id%> input[type="submit"]').val("싫어요(<%=@unlike_num%>)");
+      $('.unlike_form_<%=@article_id%> .article_unlike_<%=@article_id%>').text("(<%=@unlike_num%>)");
+      $('.unlike_form_<%=@article_id%> input[type="image"]').removeClass("brightness");
     }
   }
 }
