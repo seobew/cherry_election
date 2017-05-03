@@ -29,7 +29,20 @@
 <br>
 
 <scetion>
+  
   <div class="container">
+    <ul class="pagination">
+      <li class="waves-effect"><a href="#!">기사 TOP 1- 10</a></li>
+      <li class="waves-effect"><a href="#!">11- 20</a></li>
+      <li class="waves-effect"><a href="#!">21- 30</a></li>
+      <li class="waves-effect"><a href="#!">31- 40</a></li>
+      <li class="waves-effect"><a href="#!">41- 50</a></li>
+      <li class="waves-effect"><a href="#!">51- 60</a></li>
+      <li class="waves-effect"><a href="#!">61- 70</a></li>
+      <li class="waves-effect"><a href="#!">71- 80</a></li>
+      <li class="waves-effect"><a href="#!">81- 90</a></li>
+      <li class="waves-effect"><a href="#!">91- 100</a></li>
+      
     <% @articles.each do |article| %>
       <div class="row">
         <hr class="article-border">
@@ -114,7 +127,10 @@
         <% end %>
       </div> <!--end of row-->
     <%end%> <!--end of for @articles.each-->
+    
+  </ul>  <!-- end of pagination -->
   </div> <!--end of container-->
+  
 </section>
 
 
