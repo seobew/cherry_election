@@ -10,106 +10,115 @@ class HomeController < ApplicationController
     @candidate = @candidates.sample
     @articles = Article.all
   end
-  
+
   def like
+    @is_cancel = params[:is_cancel]
+    @article_id = params[:article]
+    @unlike_check = false
+    @login =true
     if !current_user
-      message = "로그인을 하신 후에 이용해주세요."
+      @login =false
     else
       article_relationship = Userfavor.find_by(article_id: params[:article],user_id: current_user.id)
-      if article_relationship.nil?
-        temp_userfavor = Userfavor.create(article_id: params[:article], user_id: current_user.id, check_like: true, check_unlike: false)
-        article=Article.find(params[:article])
-        article.like= article.like + 1
-        article.save
-      else
-        article=Article.find(params[:article])
-        if article_relationship.check_unlike
-          article.unlike= article.unlike - 1  
+      if @is_cancel=="true"
+        # 좋아요 취소 부분
+        unless article_relationship.nil?
+          article_relationship.check_like = false
+          article_relationship.save
+          article=Article.find(params[:article])
+          article.like = article.like - 1
+          article.save
         end
-        article_relationship.check_like = true
-        article_relationship.check_unlike = false
-        article_relationship.save
-        article.like= article.like + 1
-        article.save
-      end
-    end
-    redirect_to home_index_path
-  end
-  
-  def like_cancel
-    if !current_user
-      message = "로그인을 하신 후에 이용해주세요."
-    else
-      article_relationship = Userfavor.find_by(article_id: params[:article],user_id: current_user.id)
-      if article_relationship.nil?
       else
-        article_relationship.check_like = false
-        article_relationship.save
-        article=Article.find(params[:article])
-        article.like = article.like - 1
-        article.save
+        # 좋아요 부분
+        if article_relationship.nil?
+          temp_userfavor = Userfavor.create(article_id: params[:article], user_id: current_user.id, check_like: true, check_unlike: false)
+          article=Article.find(params[:article])
+          article.like= article.like + 1
+          article.save
+        else
+          article=Article.find(params[:article])
+          if article_relationship.check_unlike
+            article.unlike= article.unlike - 1
+            @unlike_check=true
+          end
+          article_relationship.check_like = true
+          article_relationship.check_unlike = false
+          article_relationship.save
+          article.like= article.like + 1
+          article.save
+        end
       end
+      @like_num = article.like
+      @unlike_num = article.unlike
     end
-    redirect_to home_index_path
+
+    respond_to do |format|
+      format.js
+    end
   end
-  
+
   def unlike
+    @article_id = params[:article]
+    @is_cancel = params[:is_cancel]
+    @like_check = false
+    @login =true
     if !current_user
-      message = "로그인을 하신 후에 이용해주세요."
+      @login = false
     else
       article_relationship = Userfavor.find_by(article_id: params[:article],user_id: current_user.id)
-      if article_relationship.nil?
-        temp_userfavor = Userfavor.create(article_id: params[:article], user_id: current_user.id, check_like: false, check_unlike: true)
-        article=Article.find(params[:article])
-        article.unlike= article.unlike + 1
-        article.save
-      else
-        article=Article.find(params[:article])
-        if article_relationship.check_like
-          article.like= article.like - 1  
+      if @is_cancel=="true"
+        # 싫어요 취소 부분
+        unless article_relationship.nil?
+          article_relationship.check_unlike = false
+          article_relationship.save
+          article=Article.find(params[:article])
+          article.unlike = article.unlike - 1
+          article.save
         end
-        article_relationship.check_unlike = true
-        article_relationship.check_like = false
-        article_relationship.save
-        article.unlike= article.unlike + 1
-        article.save
-      end
-    end
-    redirect_to home_index_path
-  end
-  
-  def unlike_cancel
-    if !current_user
-      message = "로그인을 하신 후에 이용해주세요."
-    else
-      article_relationship = Userfavor.find_by(article_id: params[:article],user_id: current_user.id)
-      if article_relationship.nil?
       else
-        article_relationship.check_unlike = false
-        article_relationship.save
-        article=Article.find(params[:article])
-        article.unlike = article.unlike - 1
-        article.save
+        # 싫어요 부분
+        if article_relationship.nil?
+          temp_userfavor = Userfavor.create(article_id: params[:article], user_id: current_user.id, check_like: false, check_unlike: true)
+          article=Article.find(params[:article])
+          article.unlike= article.unlike + 1
+          article.save
+        else
+          article=Article.find(params[:article])
+          if article_relationship.check_like
+            article.like= article.like - 1
+            @like_check = true
+          end
+          article_relationship.check_unlike = true
+          article_relationship.check_like = false
+          article_relationship.save
+          article.unlike= article.unlike + 1
+          article.save
+        end
       end
+      @like_num = article.like
+      @unlike_num = article.unlike
     end
-    redirect_to home_index_path
+    respond_to do |format|
+      format.js
+    end
   end
-  
+
   def candidate
     @candidate=Candidate.find(params[:candidate_id])
     @rank_in_order = Candidate.order(:rank).reverse.index(@candidate) + 1
     @rate = @candidate.rank
-    
+
     #@articles = Article.all
     #@articles = Article.find_by(candidate_id: params[:candidate_id])
     @articles = @candidate.articles
-    
+
     # wordcloud용 array
     @texts =[]
     @weights = []
     if @candidate.keyword
       word_weight_set=@candidate.keyword.split(",")
-      
+
       for s in word_weight_set
         @texts.push(s.split(":")[0])
         @weights.push(s.split(":")[1].to_i)
