@@ -116,10 +116,9 @@
       </div> <!--end of row-->
     <%end%> <!--end of for @articles.each-->
     <% @article_index.times do |index| %>
-      <%= link_to "#{index+1}", "/home/index?page="+index.to_s %>
+      <%= link_to "#{index+1}", "/home/index?page="+(index+1).to_s %>
     <% end %>
   </div> <!--end of container-->
-  
 </section>
 
 
