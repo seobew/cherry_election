@@ -122,6 +122,14 @@ class HomeController < ApplicationController
   end
 
   def candidate
+    # 페이지네이션 부분
+    @page = params[:page]
+    if @page.nil?
+      @page=1
+    end
+    @page = @page.to_i
+
+
     @candidate=Candidate.find(params[:candidate_id])
     @rank_in_order = Candidate.order(:rank).reverse.index(@candidate) + 1
     @rate = @candidate.rank
@@ -129,6 +137,17 @@ class HomeController < ApplicationController
     #@articles = Article.all
     #@articles = Article.find_by(candidate_id: params[:candidate_id])
     @articles = @candidate.articles.sort_by {|a| (-a.like + a.unlike)}
+    article_num = @articles.size
+
+    @article_index = (article_num/10)+1
+    if @article_index>10
+      @article_index = 10
+    end
+
+    @articles = @articles[0+10*(@page-1)..9+10*(@page-1)]
+    if @articles.nil?
+      @articles=[]
+    end
 
     # wordcloud용 array
     @texts =[]
