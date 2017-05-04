@@ -8,7 +8,6 @@ class HomeController < ApplicationController
     @message = params[:message]
     @candidates = Candidate.all
     @candidate = @candidates.sample
-    @articles = (Article.all.sort_by &:like).reverse
     @articles = Article.all.sort_by {|a| (-a.like + a.unlike)}
   end
 
