@@ -19,3 +19,9 @@ Candidate.create(name: "김선동", number:10, image:"kimsundong.png", caricatur
 Candidate.create(name: "이경희", number:12, image:"leekyunghee.png", caricature:"leekyunghee_c.png", party: "한국국민당", link: "http://policy.nec.go.kr/skin/doc.html?fn=20170416211132932_1.pdf&rs=/preview/html/20170428/", keyword: "키워드 없음:3000", rank: 0.01, rank1ago: 0.01, rank2ago: 0.01, rank3ago: 0.01)
 Candidate.create(name: "윤홍식", number:14, image:"yoonhongsick.png", caricature:"yoonhongsick_c.png", party: "홍익당", link: "http://policy.nec.go.kr/skin/doc.html?fn=20170416211303694_1.pdf&rs=/preview/html/20170428/", keyword: "키워드 없음:3000", rank: 0.01, rank1ago: 0.01, rank2ago: 0.01, rank3ago: 0.01)
 Candidate.create(name: "김민찬", number:15, image:"kimminchan.png", caricature:"kimminchan_c.png", party: "무소속", link: "http://blog.naver.com/new-kimminchan?Redirect=Log&logNo=220967007508", keyword: "키워드 없음:3000", rank: 0.01, rank1ago: 0.01, rank2ago: 0.01, rank3ago: 0.01)
+
+100.times do |i|
+	a = Article.create(title:"tt", publisher: "pp", like:0, unlike:0, link:"ll", article_date:Time.now)
+	a.candidates = [Candidate.all.sample]
+	a.save
+end

@@ -14,91 +14,105 @@
     <div class="flexbox">
       <div id="word_cloud" style="flex:1; height: 500px;"></div>
     </div>
-
   <div class="container">
-    <% @articles.each do |article| %>
-      <div class="row">
-        <hr class="article-border">
-        <!--후보자 이름-->
-        <div class="col s2 l2">
-          <div class="article_candidate">
-            <% if (article.candidates.size == 1) %>
-              <a class="section2" href="/home/candidate/<%=article.candidates[0].id%>"><%= article.candidates[0].name %></a>
-            <% else %>
-              <a class="section2" style="font-size: 1.3vw;" href="/home/candidate/<%=article.candidates[0].id%>"><%= article.candidates[0].name + ' 외 ' + (article.candidates.size-1).to_s + '명' %></a>
-            <% end %>
-          </div>
-        </div>
-        <!--기사 제목-->
-        <div class="col s8 l8">
-          <div class="article_title">
-            <a href= "<%= article.link %>" class="section2">[<%=article.publisher %>] <%=article.title%></a>
-            <br><p>(<%=article.article_date.strftime("%F %T") %>)</p>
-          </div>
-        </div>
-
-        <!--좋아요,싫어요 버튼 부분-->
-        <% userfavor = Userfavor.find_by(article_id: article.id,user_id: current_user) %>
-        <!--1단계 if : 이전 좋아요/싫어요 기록이 있으면 -->
-        <% if userfavor && (userfavor.check_like || userfavor.check_unlike) %> 
-          <!--2단계 if : 좋아요를 눌러둔 상태-->
-          <% if userfavor.check_like %>
-            <div class="col s1 l1">
-              <%= form_tag("/home/like", method: "post", remote: true, class:"like_form_#{article.id}") do %>
-                <%= hidden_field_tag :article , article.id %>
-                <%= hidden_field_tag :is_cancel , "true" %>
-                <%= image_submit_tag("unclicked_like.png", class:"brightness" ) %>
-                <div class="article_like_<%=article.id%>"><%= "(#{article.like || 0})" %></div>
+    <div class="row" style="margin-bottom:0px">
+      <div style="width:90%; margin:auto; padding-bottom:10px;">
+        <% @article_index.times do |index| %>
+          <% if @page == index+1 %>
+            <%= link_to "기사 TOP #{(index)*10+1}-#{(index+1)*10}", "/home/candidate/#{@candidate.id}?page="+(index+1).to_s, class:"pagination_index", style:"background:#f7f7f9;" %>
+          <% else %>
+            <%= link_to "#{(index)*10+1}-#{(index+1)*10}", "/home/candidate/#{@candidate.id}?page="+(index+1).to_s, class:"pagination_index"%>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="article_container">
+      <% @articles.each do |article| %>
+        <div class="row">
+          <hr class="article-border">
+          <!--후보자 이름-->
+          <div class="col s2 l2">
+            <div class="article_candidate">
+              <% if (article.candidates.size == 1) %>
+                <a class="section2" href="/home/candidate/<%=article.candidates[0].id%>"><%= article.candidates[0].name %></a>
+              <% else %>
+                <a class="section2" style="font-size: 1.3vw;" href="/home/candidate/<%=article.candidates[0].id%>"><%= article.candidates[0].name + ' 외 ' + (article.candidates.size-1).to_s + '명' %></a>
               <% end %>
             </div>
-            <div class="col s1 l1">
-              <%= form_tag("/home/unlike", method: "post", remote: true, class:"unlike_form_#{article.id}") do %>
-                <%= hidden_field_tag :article , article.id %>
-                <%= hidden_field_tag :is_cancel , "false" %>
-                <%= image_submit_tag("unclicked_dislike.png") %>
-                <div class="article_unlike_<%=article.id%>"><%= "(#{article.unlike || 0})" %></div>
-              <%end %>
+          </div>
+
+          <!--기사 제목-->
+          <div class="col s8 l8">
+            <div class="article_title">
+              <a href= "<%= article.link %>" class="section2">[<%=article.publisher %>] <%=article.title%></a>
+              <br><p>(<%=article.article_date.strftime("%F %T") %>)</p>
             </div>
-          <!--2단계 else : 싫어요를 눌러둔 상태-->
-          <% else %>
+          </div>
+
+          <!--좋아요,싫어요 버튼 부분-->
+          <% userfavor = Userfavor.find_by(article_id: article.id,user_id: current_user) %>
+          <!--1단계 if : 이전 좋아요/싫어요 기록이 있으면 -->
+          <% if userfavor && (userfavor.check_like || userfavor.check_unlike) %> 
+            <!--2단계 if : 좋아요를 눌러둔 상태-->
+            <% if userfavor.check_like %>
+              <div class="col s1 l1">
+                <%= form_tag("/home/like", method: "post", remote: true, class:"like_form_#{article.id}") do %>
+                  <%= hidden_field_tag :article , article.id %>
+                  <%= hidden_field_tag :is_cancel , "true" %>
+                  <%= image_submit_tag("unclicked_like.png", class:"brightness" ) %>
+                  <div class="article_like_<%=article.id%> align_center"><%= "(#{article.like || 0})" %></div>
+                <% end %>
+              </div>
+              <div class="col s1 l1">
+                <%= form_tag("/home/unlike", method: "post", remote: true, class:"unlike_form_#{article.id}") do %>
+                  <%= hidden_field_tag :article , article.id %>
+                  <%= hidden_field_tag :is_cancel , "false" %>
+                  <%= image_submit_tag("unclicked_dislike.png") %>
+                  <div class="article_unlike_<%=article.id%> align_center"><%= "(#{article.unlike || 0})" %></div>
+                <%end %>
+              </div>
+              <!--2단계 else : 싫어요를 눌러둔 상태-->
+            <% else %>
+              <div class="col s1 l1">
+                <%= form_tag("/home/like", method: "post", remote: true, class:"like_form_#{article.id}") do %>
+                  <%= hidden_field_tag :article , article.id %>
+                  <%= hidden_field_tag :is_cancel , "false" %>
+                  <%= image_submit_tag("unclicked_like.png" ) %>
+                  <div class="article_like_<%=article.id%> align_center"><%= "(#{article.like || 0})" %></div>
+                <% end %>
+              </div>
+              <div class="col s1 l1">
+                <%= form_tag("/home/unlike", method: "post", remote: true, class:"unlike_form_#{article.id}") do %>
+                  <%= hidden_field_tag :article , article.id %>
+                  <%= hidden_field_tag :is_cancel , "true" %>
+                  <%= image_submit_tag("unclicked_dislike.png",  class: "brightness") %>
+                  <div class="article_unlike_<%=article.id%> align_center"><%= "(#{article.unlike || 0})" %></div>
+                <% end %>
+              </div>
+            <% end %>
+            <!--1단계 else : 이전 좋아요/싫어요 기록이 없으면 -->
+          <% else %> 
             <div class="col s1 l1">
               <%= form_tag("/home/like", method: "post", remote: true, class:"like_form_#{article.id}") do %>
                 <%= hidden_field_tag :article , article.id %>
                 <%= hidden_field_tag :is_cancel , "false" %>
                 <%= image_submit_tag("unclicked_like.png" ) %>
-                <div class="article_like_<%=article.id%>"><%= "(#{article.like || 0})" %></div>
+                <div class="article_like_<%=article.id%> align_center"><%= "(#{article.like || 0})" %></div>
               <% end %>
             </div>
             <div class="col s1 l1">
               <%= form_tag("/home/unlike", method: "post", remote: true, class:"unlike_form_#{article.id}") do %>
                 <%= hidden_field_tag :article , article.id %>
-                <%= hidden_field_tag :is_cancel , "true" %>
-                <%= image_submit_tag("unclicked_dislike.png",  class: "brightness") %>
-                <div class="article_unlike_<%=article.id%>"><%= "(#{article.unlike || 0})" %></div>
+                <%= hidden_field_tag :is_cancel , "false" %>
+                <%= image_submit_tag("unclicked_dislike.png" ) %>
+                <div class="article_unlike_<%=article.id%> align_center"><%= "(#{article.unlike || 0})" %></div>
               <% end %>
             </div>
           <% end %>
-        <!--1단계 else : 이전 좋아요/싫어요 기록이 없으면 -->
-        <% else %> 
-          <div class="col s1 l1">
-            <%= form_tag("/home/like", method: "post", remote: true, class:"like_form_#{article.id}") do %>
-              <%= hidden_field_tag :article , article.id %>
-              <%= hidden_field_tag :is_cancel , "false" %>
-              <%= image_submit_tag("unclicked_like.png" ) %>
-              <div class="article_like_<%=article.id%>"><%= "(#{article.like || 0})" %></div>
-            <% end %>
-          </div>
-          <div class="col s1 l1">
-            <%= form_tag("/home/unlike", method: "post", remote: true, class:"unlike_form_#{article.id}") do %>
-              <%= hidden_field_tag :article , article.id %>
-              <%= hidden_field_tag :is_cancel , "false" %>
-              <%= image_submit_tag("unclicked_dislike.png" ) %>
-              <div class="article_unlike_<%=article.id%>"><%= "(#{article.unlike || 0})" %></div>
-            <% end %>
-          </div>
-        <% end %>
-      </div> <!--end of row-->
-    <%end%> <!--end of for @articles.each-->
+        </div> <!--end of row-->
+      <%end%> <!--end of for @articles.each-->
+    </div> <!-- end of article_container -->
+
     <!--지지율 그래프-->
     <div id="graph_wrapper flex">
       <div id="popularity_graph" style="flex: 1; height: 400px; margin-top: 40px; margin-bottom: 40px;"></div>
