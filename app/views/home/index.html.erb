@@ -148,9 +148,24 @@ $(document).ready(function(){
   $('.carousel-item').click(function(){
     var temp_href = $(this).attr('href');
 
-    window.location.href=temp_href;
+    //window.location.href=temp_href;
+  });
+  var flag = false;
+
+  $(".carousel-item").on("touchstart",function(){
+    flag =true;
   });
 
+  $(".carousel-item").on("touchmove",function(){
+    flag =false;
+  });
+
+  $(".carousel-item").on("touchend",function(){
+    var temp_href = $(this).attr('href');
+    if(flag){
+      window.location.href=temp_href;
+    }
+  });
 
   // Next slide
   /*$('.carousel').carousel('next');
