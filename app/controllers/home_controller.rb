@@ -8,7 +8,7 @@ class HomeController < ApplicationController
     @message = params[:message]
     @candidates = Candidate.all
     @candidate = @candidates.sample
-    @articles = Article.all
+    @articles = Article.all.sort_by {|a| (-a.like + a.unlike)}
   end
 
   def like
@@ -111,7 +111,7 @@ class HomeController < ApplicationController
 
     #@articles = Article.all
     #@articles = Article.find_by(candidate_id: params[:candidate_id])
-    @articles = @candidate.articles
+    @articles = @candidate.articles.sort_by {|a| (-a.like + a.unlike)}
 
     # wordcloud용 array
     @texts =[]
