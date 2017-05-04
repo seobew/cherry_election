@@ -155,6 +155,7 @@ background: #428bca;
 	color: #000000;
 	font-size: 25px;
 	width: 150px !important;
+  text-align: center !important;
 }
 
 .carousel .carousel-item img {
@@ -239,3 +240,19 @@ background: #428bca;
 .sepia {-webkit-filter: sepia(100%); filter: sepia(100%);}
 .huerotate {-webkit-filter: hue-rotate(180deg); filter: hue-rotate(180deg);}
 .rss.opacity {-webkit-filter: opacity(50%); filter: opacity(50%);}
+
+.pagination_index{
+  border-radius:10px;
+  padding:20px;
+  color: #707070;
+}
+
+.article_container{
+  background:#f7f7f9;
+  padding:20px; 
+  padding-top:30px;
+}
+
+.align_center{
+  text-align:center;
+}
