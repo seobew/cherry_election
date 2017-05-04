@@ -14,7 +14,7 @@
     <div class="col offset-m1 m10 offset-l2 l8">
       <div class="carousel" >
         <% @candidates.each do |candidate| %>
-          <a class="carousel-item" href="/home/candidate/<%= candidate.id %>"><%= image_tag (candidate.caricature), :style =>"width: 100%;" %></a>
+          <a class="carousel-item" href="/home/candidate/<%= candidate.id %>"><img src="/assets/<%=candidate.caricature%>" style="width: 100%;" onMouseover= "this.src='assets/<%='1_'+candidate.caricature%>';" onMouseout= "this.src='assets/<%=candidate.caricature%>';"/></a>
         <% end %>
       </div>
   	</div>
@@ -162,6 +162,8 @@ $('.carousel').carousel('set', 4);
       }); */
       
 });           
+      
+      
       
 </script>
 
