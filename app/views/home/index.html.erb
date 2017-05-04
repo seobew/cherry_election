@@ -143,6 +143,12 @@ $(document).ready(function(){
     indicators:false,
   });
 
+  $('.carousel-item').click(function(){
+    var temp_href = $(this).attr('href');
+
+    window.location.href=temp_href;
+  });
+
 
   // Next slide
   /*$('.carousel').carousel('next');
