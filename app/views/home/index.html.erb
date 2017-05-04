@@ -14,7 +14,9 @@
     <div class="col offset-m1 m10 offset-l2 l8">
       <div class="carousel" >
         <% @candidates.each do |candidate| %>
-          <a class="carousel-item" href="/home/candidate/<%= candidate.id %>"><img src="/assets/<%=candidate.caricature%>" style="width: 100%;" onMouseover= "this.src='assets/<%='1_'+candidate.caricature%>';" onMouseout= "this.src='assets/<%=candidate.caricature%>';"/></a>
+          <a class="carousel-item" href="/home/candidate/<%= candidate.id %>">
+            <img src="<%=image_path(candidate.caricature)%>" style="width: 100%;" onMouseover="this.src= &quot; <%= image_path('1_'+candidate.caricature) %>&quot; ;" onMouseout="this.src='<%=image_path(candidate.caricature)%>';"/>
+          </a>
         <% end %>
       </div>
   	</div>
@@ -179,13 +181,7 @@ $(document).ready(function(){
   }); */
 
 });           
-<<<<<<< HEAD
-      
-      
-      
-=======
 
->>>>>>> e64771e82ba192bd01da993f3e12adbf1058e1e2
 </script>
 
 
