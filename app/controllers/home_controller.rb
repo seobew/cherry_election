@@ -5,10 +5,23 @@ require 'cgi'
 
 class HomeController < ApplicationController
   def index
+    @page = params[:page]
+    if @page.nil?
+      @page=1
+    end
+    @page = @page.to_i
+
+    article_num = Article.all.size
+    @article_index = (article_num/10)+1
+
     @message = params[:message]
     @candidates = Candidate.all
     @candidate = @candidates.sample
     @articles = Article.all.sort_by {|a| (-a.like + a.unlike)}
+    @articles = @articles[0+10*(@page-1)..9+10*(@page-1)]
+    if @articles.nil?
+      @articles=[]
+    end
   end
 
   def like
