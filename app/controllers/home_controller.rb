@@ -12,7 +12,11 @@ class HomeController < ApplicationController
     @page = @page.to_i
 
     article_num = Article.all.size
+
     @article_index = (article_num/10)+1
+    if @article_index>10
+      @article_index = 10
+    end
 
     @message = params[:message]
     @candidates = Candidate.all
