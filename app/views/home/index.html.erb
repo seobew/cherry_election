@@ -12,7 +12,6 @@
 <section>
   <div class="row">
     <div class="col offset-m1 m10 offset-l2 l8">
-      
       <div class="carousel" >
         <% @candidates.each do |candidate| %>
           <a class="carousel-item" href="/home/candidate/<%= candidate.id %>">
@@ -30,54 +29,6 @@
 
 <section>
   <div class="container">
-<<<<<<< HEAD
-    <ul class="pagination">
-      <li class="waves-effect"><a href="">기사 TOP 1- 10</a></li>
-      <li class="waves-effect"><a href="#!">11- 20</a></li>
-      <li class="waves-effect"><a href="#!">21- 30</a></li>
-      <li class="waves-effect"><a href="#!">31- 40</a></li>
-      <li class="waves-effect"><a href="#!">41- 50</a></li>
-      <li class="waves-effect"><a href="#!">51- 60</a></li>
-      <li class="waves-effect"><a href="#!">61- 70</a></li>
-      <li class="waves-effect"><a href="#!">71- 80</a></li>
-      <li class="waves-effect"><a href="#!">81- 90</a></li>
-      <li class="waves-effect"><a href="#!">91- 100</a></li>
-      
-    <% @articles.each do |article| %>
-      <div class="row">
-        <hr class="article-border">
-        <!--후보자 이름-->
-        <div class="col s2 l2">
-          <div class="article_candidate">
-            <% if (article.candidates.size == 1) %>
-              <a class="section2" href="https://cherry-election-kanghyeongmin.c9users.io/home/candidate/<%=article.candidates[0].id%>"><%= article.candidates[0].name %></a>
-            <% else %>
-              <a class="section2" style="font-size: 1.3vw;" href="https://cherry-election-kanghyeongmin.c9users.io/home/candidate/<%=article.candidates[0].id%>"><%= article.candidates[0].name + ' 외 ' + (article.candidates.size-1).to_s + '명' %></a>
-            <% end %>
-          </div>
-        </div>
-        
-        <!--기사 제목-->
-        <div class="col s8 l8">
-          <div class="article_title">
-            <a href= "<%= article.link %>" class="section2">[<%=article.publisher %>] <%=article.title%></a>
-            <br><p>(<%=article.article_date.strftime("%F %T") %>)</p>
-          </div>
-        </div>
-        
-        <!--좋아요,싫어요 버튼 부분-->
-        <% userfavor = Userfavor.find_by(article_id: article.id,user_id: current_user) %>
-        <!--1단계 if : 이전 좋아요/싫어요 기록이 있으면 -->
-        <% if userfavor && (userfavor.check_like || userfavor.check_unlike) %> 
-        
-          <!--2단계 if : 좋아요를 눌러둔 상태-->
-          <% if userfavor.check_like %>
-            <div class="col s1 l1">
-              <%= form_tag("/article/like_cancel", method: "post") do %>
-                <%= hidden_field_tag :article , article.id %>
-                <%= image_submit_tag("like.png" ) %>
-                <br><%= "(#{article.like || 0})" %>
-=======
     <div class="row" style="margin-bottom:0px">
       <div style="width:90%; margin:auto; padding-bottom:10px;">
         <% @article_index.times do |index| %>
@@ -100,7 +51,7 @@
                 <a class="section2" href="/home/candidate/<%=article.candidates[0].id%>"><%= article.candidates[0].name %></a>
               <% else %>
                 <a class="section2" style="font-size: 1.3vw;" href="/home/candidate/<%=article.candidates[0].id%>"><%= article.candidates[0].name + ' 외 ' + (article.candidates.size-1).to_s + '명' %></a>
->>>>>>> 43ad018121fca903e104662c7a309ace4a48e87e
+
               <% end %>
             </div>
           </div>
