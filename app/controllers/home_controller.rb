@@ -21,7 +21,8 @@ class HomeController < ApplicationController
     @message = params[:message]
     @candidates = Candidate.all
     @candidate = @candidates.sample
-    @articles = Article.all.sort_by {|a| (-a.like + a.unlike)}
+    @articles = Article.all.sort_by {|a| a.article_date}.reverse
+    @articles = @articles.sort_by {|a| (-a.like + a.unlike)}
     @articles = @articles[0+10*(@page-1)..9+10*(@page-1)]
     if @articles.nil?
       @articles=[]
