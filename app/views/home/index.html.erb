@@ -15,14 +15,13 @@
       <div class="carousel" >
         <% @candidates.each do |candidate| %>
           <a class="carousel-item" href="/home/candidate/<%= candidate.id %>">
-            <img src="<%=image_path(candidate.caricature)%>" style="width: 100%;" onMouseover="this.src= &quot; <%= image_path('1_'+candidate.caricature) %>&quot; ;" onMouseout="this.src='<%=image_path(candidate.caricature)%>';"/>
+            <img src="<%=image_path(candidate.caricature)%>" class="change" style="width: 100%;" onMouseover="this.src= &quot; <%= image_path('1_'+candidate.caricature) %>&quot; ;" onMouseout="this.src='<%=image_path(candidate.caricature)%>';"/>
           </a>
         <% end %>
       </div>
   	</div>
   </div>  
 </section>
-
 <br>
 <br>
 <br>
@@ -50,7 +49,8 @@
               <% if (article.candidates.size == 1) %>
                 <a class="section2" href="/home/candidate/<%=article.candidates[0].id%>"><%= article.candidates[0].name %></a>
               <% else %>
-                <a class="section2" style="font-size: 1.3vw;" href="/home/candidate/<%=article.candidates[0].id%>"><%= article.candidates[0].name + ' 외 ' + (article.candidates.size-1).to_s + '명' %></a>
+                <a class="section2" style="font-size: 1.2vw;" href="/home/candidate/<%=article.candidates[0].id%>"><%= article.candidates[0].name + ' 외 ' + (article.candidates.size-1).to_s + '명' %></a>
+
               <% end %>
             </div>
           </div>
@@ -196,6 +196,9 @@ $(document).ready(function(){
   }); */
 
 });           
+
+ 
+
 
 </script>
 

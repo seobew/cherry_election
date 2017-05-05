@@ -36,7 +36,7 @@
               <% if (article.candidates.size == 1) %>
                 <a class="section2" href="/home/candidate/<%=article.candidates[0].id%>"><%= article.candidates[0].name %></a>
               <% else %>
-                <a class="section2" style="font-size: 1.3vw;" href="/home/candidate/<%=article.candidates[0].id%>"><%= article.candidates[0].name + ' 외 ' + (article.candidates.size-1).to_s + '명' %></a>
+                <a class="section2" style="font-size: 1.2vw;" href="/home/candidate/<%=article.candidates[0].id%>"><%= article.candidates[0].name + ' 외 ' + (article.candidates.size-1).to_s + '명' %></a>
               <% end %>
             </div>
           </div>
