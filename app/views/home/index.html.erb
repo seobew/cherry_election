@@ -12,6 +12,7 @@
 <section>
   <div class="row">
     <div class="col offset-m1 m10 offset-l2 l8">
+      
       <div class="carousel" >
         <% @candidates.each do |candidate| %>
           <a class="carousel-item" href="/home/candidate/<%= candidate.id %>"><img src="/assets/<%=candidate.caricature%>" style="width: 100%;" onMouseover= "this.src='assets/<%='1_'+candidate.caricature%>';" onMouseout= "this.src='assets/<%=candidate.caricature%>';"/></a>
@@ -32,7 +33,7 @@
   
   <div class="container">
     <ul class="pagination">
-      <li class="waves-effect"><a href="#!">기사 TOP 1- 10</a></li>
+      <li class="waves-effect"><a href="">기사 TOP 1- 10</a></li>
       <li class="waves-effect"><a href="#!">11- 20</a></li>
       <li class="waves-effect"><a href="#!">21- 30</a></li>
       <li class="waves-effect"><a href="#!">31- 40</a></li>
@@ -144,6 +145,7 @@ $('.carousel').carousel({
         indicators:false,
 });
 
+
 // Next slide
 /*$('.carousel').carousel('next');
 $('.carousel').carousel('next', 3); // Move next n times.
@@ -172,9 +174,9 @@ $('.carousel').carousel('set', 4);
           }, 8000);
       }); */
       
-});           
+}); 
       
-      
+  
       
 </script>
 
