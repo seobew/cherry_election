@@ -15,14 +15,13 @@
       <div class="carousel" >
         <% @candidates.each do |candidate| %>
           <a class="carousel-item" href="/home/candidate/<%= candidate.id %>">
-            <img src="<%=image_path(candidate.caricature)%>" style="width: 100%;" onMouseover="this.src= &quot; <%= image_path('1_'+candidate.caricature) %>&quot; ;" onMouseout="this.src='<%=image_path(candidate.caricature)%>';"/>
+            <img src="<%=image_path(candidate.caricature)%>" class="change" style="width: 100%;" onMouseover="this.src= &quot; <%= image_path('1_'+candidate.caricature) %>&quot; ;" onMouseout="this.src='<%=image_path(candidate.caricature)%>';"/>
           </a>
         <% end %>
       </div>
   	</div>
   </div>  
 </section>
-
 <br>
 <br>
 <br>
@@ -197,6 +196,8 @@ $(document).ready(function(){
   }); */
 
 });           
+
+ 
 
 
 </script>
