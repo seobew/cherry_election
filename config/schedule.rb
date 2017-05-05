@@ -18,7 +18,7 @@
 # end
 
 every :hour do
-  rake "db_article:article_task"
+  rake "db_article:article_task RAILS_ENV=production"
 end
 
 # Learn more: http://github.com/javan/whenever
