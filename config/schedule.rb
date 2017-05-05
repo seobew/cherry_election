@@ -17,7 +17,7 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
-every :day, :at => '06:00am' do
+every :hour do
   rake "db_article:article_task"
 end
 
