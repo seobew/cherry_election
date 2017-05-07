@@ -15,7 +15,7 @@
       <div class="carousel" >
         <% @candidates.each do |candidate| %>
           <a class="carousel-item" href="/home/candidate/<%= candidate.id %>">
-            <img src="<%=image_path(candidate.caricature)%>" class="change" style="width: 100%;" onMouseover="this.src= &quot; <%= image_path('1_'+candidate.caricature) %>&quot; ;" onMouseout="this.src='<%=image_path(candidate.caricature)%>';"/>
+            <img src="<%=image_path(candidate.caricature)%>" class="change" style="width: 100%;" data-original="<%=image_path(candidate.caricature)%>" data-flower="<%=image_path('1_'+candidate.caricature)%>" onMouseover="this.src= &quot; <%= image_path('1_'+candidate.caricature) %>&quot; ;" onMouseout="this.src='<%=image_path(candidate.caricature)%>';"/>
           </a>
         <% end %>
       </div>
@@ -153,6 +153,7 @@ $(document).ready(function(){
   var flag = false;
 
   $(".carousel-item").on("touchstart",function(){
+    $(this).children(".change")[0].src = $(this).children(".change").data("flower");
     flag =true;
   });
 
@@ -162,6 +163,7 @@ $(document).ready(function(){
 
   $(".carousel-item").on("touchend",function(){
     var temp_href = $(this).attr('href');
+    $(this).children(".change")[0].src = $(this).children(".change").data("original");
     if(flag){
       window.location.href=temp_href;
     }
