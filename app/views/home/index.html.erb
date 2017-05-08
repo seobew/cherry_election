@@ -163,9 +163,11 @@ $(document).ready(function(){
 
   $(".carousel-item").on("touchend",function(){
     var temp_href = $(this).attr('href');
-    $(this).children(".change")[0].src = $(this).children(".change").data("original");
     if(flag){
       window.location.href=temp_href;
+    }
+    else {
+      $(this).children(".change")[0].src = $(this).children(".change").data("original");
     }
   });
 
